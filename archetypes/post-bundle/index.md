@@ -33,5 +33,5 @@ cover:
 editPost:
     URL: "https://github.com/livey/livey.github.io"
     Text: "Suggest Changes" # edit text
-    appendFilePath: true # to append file path to Edit link
+    appendFilePath: false # to append file path to Edit link
 ---
