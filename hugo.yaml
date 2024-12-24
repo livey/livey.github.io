@@ -101,9 +101,9 @@ params:
     hiddenInSingle: true # hide on single page
 
   editPost:
-    URL: "https://github.com/livey/livey.github.io/tree/main/content"
+    URL: "https://github.com/livey/livey.github.io/issues/new"
     Text: "Suggest Changes" # edit text
-    appendFilePath: true # to append file path to Edit link
+    appendFilePath: false  # Changed to false since we're not editing files directly
 
   # for search
   # https://fusejs.io/api/options.html
