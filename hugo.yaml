@@ -75,6 +75,13 @@ params:
     Title: "👋 Welcome to Fuwei's Tech Notes"
     Content: "Hi, this is Fuwei. I'm documenting my tech notes in this blog."
 
+  # Add these archive settings
+  features:
+    archives:
+      enable: true
+      limit: 5
+      path: "archives"
+
   socialIcons:
     - name: github
       url: "https://github.com/livey"
@@ -117,7 +124,7 @@ menu:
       weight: 10
     - identifier: archive
       name: Archive
-      url: /archive/
+      url: /archives/
       weight: 20
     - identifier: tags
       name: Tags
