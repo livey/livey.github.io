@@ -36,4 +36,3 @@ editPost:
     appendFilePath: false # to append file path to Edit link
 ---
 
-{{< include-content "content/posts/{{ .Name }}/content.md" >}}
