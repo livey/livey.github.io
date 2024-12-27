@@ -1,5 +1,5 @@
 ---
-title: "Pose Tracking"
+title: "Pose Tracking with Iterative Extended Kalman Filter"
 date: 2024-12-24
 # weight: 1
 # aliases: ["/first"]
@@ -121,7 +121,9 @@ $$\mathbf{y}''(t) = \mathbf{R}_y(t)\mathbf{a}_y\\
 where $\boldsymbol{\omega}$ is the IMU angular velocity measurements, $\mathbf{a}_x$ and $\mathbf{a}_y$ denote the IMU measured accelerations. Taking derivative of Eq. (2) with respect to $t$ we have:
 
 $$\dot{\mathbf{R}}_y(t) = \dot{\mathbf{R}}_x(t)\mathbf{R}$$
+
 and
+
 $$
 \mathbf{R}_y(t)[\boldsymbol{\omega}_y]_{\times} = \mathbf{R}_x(t)[\boldsymbol{\omega}_x]_{\times} \mathbf{R}
 $$
@@ -144,11 +146,16 @@ $$\begin{aligned}
 \end{aligned}$$
 
 where (a) establishes due to 
+
 $$
 \mathbf{R}(\mathbf{a}\times\mathbf{b}) = (\mathbf{R}\mathbf{a})\times (\mathbf{R}\mathbf{b})
-$$ So, we have
+$$
 
-$$\boldsymbol{\omega}_x = \mathbf{R}\boldsymbol{\omega}_y\tag{3}$$
+So, we have
+
+$$
+\boldsymbol{\omega}_x = \mathbf{R}\boldsymbol{\omega}_y\tag{3}
+$$
 
 Thus we conclude that the measured angular velocity can be directly transformed from point $\mathbf{y}$ to point $\mathbf{x}$ only by a rotation. It does not depend on other parameters, e.g., the translation.
 
@@ -183,16 +190,16 @@ If we assume $\boldsymbol{\omega}_x'=\mathbf{0}$, we have
 $$\mathbf{a}_x  =\mathbf{R}\mathbf{a}_y - [\boldsymbol{\omega}_x]_\times^2 
 \mathbf{r}\tag{4}.$$
 
-This gives us the interesting result that 
+This gives us the interesting result that
+
 $$\mathbf{a}_y  =\mathbf{R}^\top\left(\mathbf{a}_x +[\boldsymbol{\omega}_x]_\times^2 
 \mathbf{r}\right)
 $$
+
 It indicates that the linear acceleration of the point of $\mathbf{y}$ comprises two parts: the linear acceleration of point $\mathbf{x}$; and the angular velocity of $\mathbf{x}$, which is proportional to the length $\mathbf{r}$.
 
 
-
 In summary, Eq. (3) and Eq. (4) give the linear acceleration and angular velocity relationships between the two points in the rigid body system.
-
 
 
 In the following, we assume the IMU measurements are aligned with ego-car coordinates.
@@ -265,7 +272,10 @@ $$,
 
 $$
 \mathbf{y}_v = \mathbf{R}\mathbf{v} + \boldsymbol{\varepsilon}_v
-$$, or 
+$$,
+
+or 
+
 $$
 \mathbf{y}_v = \mathbf{v} + \boldsymbol{\varepsilon}_v
 $$
@@ -294,7 +304,8 @@ Since using continuous/discrete EKF, we do not need to discretize the motion mod
 
 Please refer to the appendix for the details of solving the ordinal differential equation and linearization. $T$ denotes the time interval between $t_{k+1}$ and $t_k$.
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 \mathbf{R}_{k+1} &= \mathbf{R}_k\boxplus  (T\boldsymbol{\omega}_k + \frac{1}{2}T^2\boldsymbol{\varepsilon}_w)\\
 \boldsymbol{\omega}_{k+1} &= \boldsymbol{\omega}_k + T\boldsymbol{\varepsilon}_w\\
 \mathbf{p}_{k+1} &= \mathbf{p}_k + \mathbf{v}_kT + \frac{1}{2}\mathbf{R}\mathbf{a}_kT^2+\frac{1}{6}T^3\mathbf{R}\boldsymbol{\varepsilon}_a,\\
@@ -303,9 +314,13 @@ $$\begin{aligned}
 \mathbf{b}^w_{k+1} &= \mathbf{b}^w_k + T\boldsymbol{\epsilon}_{b_w},\\
 \mathbf{b}_{k+1}^a &= \mathbf{b}_k^a + T\boldsymbol{\epsilon}_{b_a}
 \end{aligned}
-$$.
+$$
 
-And we denote it as $$\mathbf{x}_{k+1} = f(\mathbf{x}_k, \boldsymbol{\varepsilon}_k)$$
+and we denote it as
+
+$$
+\mathbf{x}_{k+1} = f(\mathbf{x}_k, \boldsymbol{\varepsilon}_k)
+$$
 
 ### Linearize the motion model
 
@@ -382,6 +397,7 @@ $$
 $$,
 
 where we use the identity $\mathbf{J}^{\mathbf{R}\boldsymbol{\theta}}_{\mathbf{R}} = -\mathbf{R}[\boldsymbol{\theta}]_\times$,
+
 $$
 [\boldsymbol{\theta}]_\times=
 \begin{bmatrix}
@@ -389,7 +405,8 @@ $$
 \theta_z&0&-\theta_x\\
 -\theta_y&\theta_x&0
 \end{bmatrix}
-$$.
+$$
+
 and
 
 $$
@@ -410,7 +427,7 @@ $$\begin{equation}
 \end{equation}$$
 
 # Iterative Extended Kalman Filter
-
+This section shows how the iterative extended Kalman filter's update steps
 ## Predict step
 
 Given last time estimation $\mathbf{x}_{k-1} \sim \mathcal{N}(\hat{\mathbf{x}}_{k-1}, \hat{\mathbf{P}}_{k-1})$
@@ -539,7 +556,9 @@ $$\begin{aligned}
 &\log : \text{SO}(3) \longrightarrow \mathfrak{so}(3) \\
 &\text{SU}(2) \longrightarrow \boldsymbol{\omega}
 \end{aligned}$$
+
 and 
+
 $$
 \boldsymbol{\omega} = 2 \arccos(q_r) \frac{\mathbf{q}_v}{\|\mathbf{q}_v\|_2}
 $$.
@@ -669,7 +688,6 @@ aT
 
 
 # References
-
 > \[1] J. Solà, J. Deray, and D. Atchuthan, "A micro Lie theory for state estimation in robotics." arXiv, Dec. 08, 2021. doi: 10.48550/arXiv.1812.01537.
 
 > \[2] W. Xu and F. Zhang, "FAST-LIO: A Fast, Robust LiDAR-inertial Odometry Package by Tightly-Coupled Iterated Kalman Filter." arXiv, Apr. 14, 2021. Accessed: May 06, 2024. \[Online]. Available: http://arxiv.org/abs/2010.08196
@@ -687,3 +705,4 @@ aT
 > \[8] Z. Nurlanov, "Exploring SO(3) logarithmic map: degeneracies and derivatives".
 
 > \[9] [Extended Kalman Filter Lecture Notes](https://www.cs.cmu.edu/~./motionplanning/papers/sbp_papers/kalman/ekf_lecture_notes.pdf)
+
