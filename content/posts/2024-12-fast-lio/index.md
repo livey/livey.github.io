@@ -11,7 +11,7 @@ TocOpen: false
 draft: false
 hidemeta: false
 comments: false
-description: "Try to reveal the details of Fast LIO paper."
+description: "A detailed derivation complementing the Fast LIO paper."
 canonicalURL: "https://livey.github.io"
 disableHLJS: true # to disable highlightjs
 disableShare: false
@@ -36,7 +36,7 @@ editPost:
     appendFilePath: false
 ---
 
-In this document, we complement some detailed derivatives in \[2].
+In this document, we provide detailed derivations complementing those presented in \[2].
 
 # Details of the derivation
 
@@ -46,7 +46,7 @@ Based on the $\boxplus$ operation defined above, we can discretize the continuou
 
 $$ \mathbf{x}_{i+1} = \mathbf{x}_i \boxplus (\Delta t f(\mathbf{x}_i, \mathbf{u}_i, \mathbf{w}_i))$$
 
-where $i$ is the index of IMU measurements, the function $f$, state $\mathbf{x}$, input $\mathbf{u}$, and noise $\mathbf{w}$ are defined as below:
+where $i$ is the index of IMU measurements, and the function $f$, state $\mathbf{x}$, input $\mathbf{u}$, and noise $\mathbf{w}$ are defined below:
 
 $$
 \mathcal{M} = SO(3) \times \mathbb{R}^{15}, \quad \text{dim}(\mathcal{M}) = 18
@@ -97,9 +97,9 @@ $$
 \hat{\mathbf{x}}_{i+1} = \hat{\mathbf{x}}_i \boxplus (\Delta t f(\hat{\mathbf{x}}_i, \mathbf{u}_i, \mathbf{0})) ; \quad \hat{\mathbf{x}}_0 = \bar{\mathbf{x}}_{k-1}.
 $$
 
-where $\hat{\mathbf{x}}_{i}$ is the predicted state and $\mathbf{u}_i$ is the control variable and $\mathbf{x}_i$ is the groundtruth.
+Here, $\hat{\mathbf{x}}_{i}$ is the predicted state, $\mathbf{u}_i$ is the control variable, and $\mathbf{x}_i$ is the ground truth.
 
-and $\Delta t = \tau_{i+1} - \tau_i$. To propagate the covariance, we use the error state dynamic model obtained below:
+With $\Delta t = \tau_{i+1} - \tau_i$, we propagate the covariance using the error state dynamic model obtained below:
 
 $$
 \begin{aligned}
@@ -136,7 +136,7 @@ $$
 
 ## Derivative of the error propagation
 
-Recall $\mathbf{x}_i = \hat{\mathbf{x}}_i \boxplus \tilde{\mathbf{x}}_i$, denote $g(\tilde{\mathbf{x}}_i, \mathbf{w}_i) = f(\mathbf{x}_i, \mathbf{u}_i, \mathbf{w}_i) \Delta t = f(\hat{\mathbf{x}}_i \boxplus \tilde{\mathbf{x}}_i, \mathbf{u}_i, \mathbf{w}_i) \Delta t$. Then the error state is
+First, recall that $\mathbf{x}_i = \hat{\mathbf{x}}_i \boxplus \tilde{\mathbf{x}}_i$. Let us denote $g(\tilde{\mathbf{x}}_i, \mathbf{w}_i) = f(\mathbf{x}_i, \mathbf{u}_i, \mathbf{w}_i) \Delta t = f(\hat{\mathbf{x}}_i \boxplus \tilde{\mathbf{x}}_i, \mathbf{u}_i, \mathbf{w}_i) \Delta t$. Then, the error state is
 
 $$
 \begin{equation}
@@ -184,7 +184,7 @@ $$
 $$ \mathbf{F}_w = \left( \frac{\partial \mathbf{G}(0, g(0, \mathbf{w}_i))}{\partial g(0, \mathbf{w}_i)} \frac{\partial g(0, \mathbf{w}_i)}{\partial \mathbf{w}_i} \right) \bigg|_{\mathbf{w}_i = 0}
 $$
 
-### How to get $\mathbf{F}_{\tilde{\mathbf{x}}}$ and $\mathbf{F}_w$
+### How to obtain $\mathbf{F}_{\tilde{\mathbf{x}}}$ and $\mathbf{F}_w$
 
 $$ \tilde{\mathbf{x}}_{i+1} = 
 \underbrace{
@@ -193,7 +193,7 @@ g(\tilde{\mathbf{x}}_i, \mathbf{w}_i))}_{A}
 \boxminus 
 \underbrace{(\hat{\mathbf{x}}_i \boxplus g(\mathbf{0}, \mathbf{0}))}_{B}$$
 
-So, we have
+From this, we derive:
 
 $$
 \begin{aligned}
@@ -253,7 +253,7 @@ $$
 \end{aligned}
 $$
 
-where equation (a) establishes because we note that $[\mathbf{u}]_\times $is a skew-symmetric matrix. Then, we have $[\mathbf{u}]_\times^T = [-\mathbf{u}]_\times$. Thus, we get $\mathbf{R}^T(\boldsymbol{\theta}) = \mathbf{R}(\boldsymbol{-\theta})$.
+where equation (a) holds because $[\mathbf{u}]_\times$ is a skew-symmetric matrix. Consequently, we have $[\mathbf{u}]_\times^T = [-\mathbf{u}]_\times$, which leads to $\mathbf{R}^T(\boldsymbol{\theta}) = \mathbf{R}(\boldsymbol{-\theta})$.
 
 For $Q$ in $SO(3)$, $\mathbf{J}_{\boldsymbol{\theta}}^{Q\boxplus \boldsymbol{\theta}} = \mathbf{J}_r(\boldsymbol{\theta}) \triangleq \mathbf{I} - \frac{1 - \cos \theta}{\theta^2} [\theta]_{\times} + \frac{\theta - \sin \theta}{\theta^3} [\theta]_{\times}^2$; and for $\mathbf{x}, \mathbf{y} \in\mathbb{R}^n$, $\frac{\partial \mathbf{x} + \mathbf{y}}{\partial\mathbf{y}} = \frac{\partial \mathbf{x} + \mathbf{y}}{\partial\mathbf{x}} = \mathbf{I}$
 
