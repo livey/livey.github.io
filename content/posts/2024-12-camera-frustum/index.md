@@ -1,5 +1,5 @@
 ---
-title: "Camera Projection via View Frustum"
+title: "Camera Projection via View Frustum Culling"
 date: 2024-12-27
 # weight: 1
 # aliases: ["/first"]
@@ -35,7 +35,8 @@ editPost:
     Text: "Suggest Changes"
     appendFilePath: false
 ---
-When projecting a 3D object onto the camera plane, we usually using the pinhole model. However, it only applies to the single point. When we consider a solid object, we need to consider the interaction between the object and the camera, especially the object is close to the camera. In the following, we will use the view frustum to cull the object and project it onto the camera plane.
+When projecting a 3D object onto the camera plane, we usually use the pinhole model. However, it only applies to a single point. When we consider a solid object, we need to consider the interaction between the object and the camera, especially when the object is close to the camera. In the following, we will use the view frustum to cull the object and project it onto the camera plane.
+
 # Object projection
 
 ## Use view frustum to cull the object box
@@ -71,7 +72,7 @@ Please refer to [1] for more details.
 Green line indicates the boundary of the perception area, blue line the boundary of camera, and black line the frustum boundary
 
 $$$$
-Since we use four corner vertices to compute the frustum, it is different from the actual frustum which is curved. Object culled by this boundary is usually outside the perception area. We should clip it into the perception area further.
+Since we use four corner vertices to compute the frustum, it is different from the actual frustum, which is curved. Objects culled by this boundary are usually outside the perception area. We should clip them into the perception area further.
 
 ## Advantages
 
@@ -93,9 +94,9 @@ We can further refine the shape of vehicles. For example:
     <img src="resources/car-model.png" alt="image" style="width: 100%;"/>
 </div>
 
-# Compute the position of a pix that is on a world surface
+# Compute the position of a pixel that is on a world surface
 
-Given reference point in pix coordinate $(u,v)$; camera intrinsic: $\mathbf F$; rotation matrix from lidar to camera: $\mathbf R$; translation vector from lidar to camera: $\mathbf t$.
+Given a reference point in pixel coordinate $(u,v)$; camera intrinsic: $\mathbf F$; rotation matrix from lidar to camera: $\mathbf R$; translation vector from lidar to camera: $\mathbf t$.
 
 we have
 
