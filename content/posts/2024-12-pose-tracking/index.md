@@ -101,7 +101,9 @@ In this section, we resort to the structure described in \[4]. Thus, we set the 
 
 In this subsection, we explore the relationship between the linear acceleration and angular velocity of two points within a rigid body.
 
-![imu coordinate alignment](./resources/imu-alignment.png)
+<div style="text-align: center; margin: 0 auto; display: flex; justify-content: center;">
+    <img src="./resources/imu-alignment.png" alt="IMU coordinate alignment" style="width: 50%;"/>
+</div>
 
 Assume there are two points $\mathbf{x}(t)$ and $\mathbf{y}(t)$. They are attached rigidly. The point $\mathbf{y}(t)$ is the in the $\mathbf{r}$ direction under the coordinate of the $\mathbf{x}$ point. The rotation of $\mathbf{x}$ and $\mathbf{y}$ are $\mathbf{R}_x(t)$ and $\mathbf{R}_y(t)$, respectively. Under the rigid attachment constraint and assume the extrinsic of $\mathbf{y}(t)$ with respect to $\mathbf{x}(t)$ is $(\mathbf{R}, \mathbf{r})$, we have:
 
@@ -225,7 +227,9 @@ Let $\mathbf{y} = [\mathbf{y}_p^\top, \mathbf{y}_v^\top, \mathbf{y}_a^\top,�
 
 ### Wheel encoder observation
 
-![wheel encoder](./resources/wheel-encoder.png)
+<div style="text-align: center; margin: 0 auto; display: flex; justify-content: center;">
+    <img src="./resources/wheel-encoder.png" alt="wheel encoder" style="width: 50%;"/>
+</div>
 
 Assume the left and right wheel speeds are $v_1$, $v_2$, respectively.  Denote $L$ as the wheel base. So, the vehicle speed, $v$, and rotation velocity, $\omega$, are
 
