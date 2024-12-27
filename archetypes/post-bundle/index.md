@@ -31,8 +31,8 @@ cover:
     relative: true # when using page bundles set this to true
     hidden: true # only hide on current single page
 editPost:
-    URL: "https://github.com/livey/livey.github.io"
-    Text: "Suggest Changes" # edit text
-    appendFilePath: false # to append file path to Edit link
+    URL: "https://github.com/livey/livey.github.io/issues/new"
+    Text: "Suggest Changes"
+    appendFilePath: false
 ---
 
