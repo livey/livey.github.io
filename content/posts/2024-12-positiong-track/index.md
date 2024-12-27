@@ -36,7 +36,7 @@ editPost:
     appendFilePath: false # to append file path to Edit link
 ---
 
-When tracking an object's position and heading, we always from the ego's perspective. However, ego's motion makes the tracking of the object a little difficult. The basic idea is doing the tracking on the world coordinate, then transforming into the ego-car's coordinate. In this post, we will discusss how to combine the ego's motion into the object's tracking concisely.
+When tracking an object's position, we always from the ego's perspective. However, ego's motion makes the tracking of the object a little difficult. The basic idea is doing the tracking on the world coordinate, then transforming into the ego-car's coordinate. In this post, we will discusss how to combine the ego's motion into the object's tracking concisely.
 
 # Continuous Form
 
