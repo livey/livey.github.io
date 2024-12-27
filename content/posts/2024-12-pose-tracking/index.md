@@ -3,7 +3,7 @@ title: "Pose Tracking with Iterative Extended Kalman Filter"
 date: 2024-12-24
 # weight: 1
 # aliases: ["/first"]
-tags: ["autonomous driving", "signal processing", "pose tracking"]
+tags: ["autonomous driving", "signal processing", "pose tracking", "Kalman filter"]
 author: "Fuwei Li"
 # author: ["Me", "You"] # multiple authors
 showToc: true
