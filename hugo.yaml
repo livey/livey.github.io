@@ -32,14 +32,14 @@ params:
   ShowCodeCopyButtons: false
   ShowWordCount: true
   ShowRssButtonInSectionTermList: true
-  UseHugoToc: true
+  UseHugoToc: false
   disableSpecial1stPost: false
   disableScrollToTop: false
   comments: false
   hidemeta: false
   hideSummary: false
-  showtoc: true
-  tocopen: true
+  showtoc: false
+  tocopen: false
   math: true
   assets:
     # disableHLJS: true # to disable highlight.js

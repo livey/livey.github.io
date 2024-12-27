@@ -6,7 +6,7 @@ date: 2024-12-24
 tags: ["autonomous driving", "signal processing", "pose tracking"]
 author: "Fuwei Li"
 # author: ["Me", "You"] # multiple authors
-showToc: true
+showToc: false
 TocOpen: false
 draft: false
 hidemeta: false
