@@ -111,7 +111,7 @@ $$\mathbf{y}(t) = \mathbf{x}(t)+\mathbf{R}_x(t)\mathbf{r}\tag{1}$$
 
 $$\mathbf{R}_y(t)=\mathbf{R}_x(t)\mathbf{R}\tag{2}$$
 
-Recall the representation of the IMU measurements we have&#x20;
+Recall the representation of the IMU measurements we have
 
 $$\dot{\mathbf{R}}(t)=\mathbf{R}(t)[\boldsymbol{\omega}]_\times$$
 
@@ -146,7 +146,7 @@ $$\begin{aligned}
 where (a) establishes due to 
 $$
 \mathbf{R}(\mathbf{a}\times\mathbf{b}) = (\mathbf{R}\mathbf{a})\times (\mathbf{R}\mathbf{b})
-$$ So, we have&#x20;
+$$ So, we have
 
 $$\boldsymbol{\omega}_x = \mathbf{R}\boldsymbol{\omega}_y\tag{3}$$
 
@@ -174,7 +174,7 @@ $$\mathbf{R}_x \mathbf{a}_x  =\mathbf{R}_y\mathbf{a}_y -
 \mathbf{R}_x[\boldsymbol{\omega}_x]_\times^2 + \mathbf{R}_x[\boldsymbol{\omega}_x']_\times
 \right)\mathbf{r}$$
 
-which leads to&#x20;
+which leads to
 
 $$\mathbf{a}_x = \mathbf{R}\mathbf{a}_y - \left([\boldsymbol{\omega}_x]_\times^2+[\boldsymbol{\omega}'_x]_\times\right)\mathbf{r}$$
 
@@ -251,7 +251,7 @@ $$FAC = -3.086 \times 10^{-6} \times h$$
 
 $$g = IGF + FAC$$
 
-Then, in our model, we do not need to estimate gravity. Instead, we use this approximation.&#x20;
+Then, in our model, we do not need to estimate gravity. Instead, we use this approximation.
 
 Further, the direction of gravity, $\mathbf{e}_g$, can also be estimated according to the GPS signal.
 
@@ -278,7 +278,7 @@ $$
 \mathbf{y}_\omega = \boldsymbol{\omega}  + \mathbf{b}_w+ \boldsymbol{\varepsilon}_w
 $$.
 
-where $\mathbf{g} = g\mathbf{e}_g$ is gravity vector, and $\mathbf{e}_g$ is the gravity direction in the world coordinate and can be approximated according to GPS.  If we move around a small local area, it can be further simplified as constant downwards to the earth center.&#x20;
+where $\mathbf{g} = g\mathbf{e}_g$ is gravity vector, and $\mathbf{e}_g$ is the gravity direction in the world coordinate and can be approximated according to GPS.  If we move around a small local area, it can be further simplified as constant downwards to the earth center.
 
 # Discretize the model
 
@@ -290,7 +290,7 @@ We follow a continuous-discrete extended Kalman filter, where we do the two step
 
 ## Continuous motion model
 
-Since using continuous/discrete EKF, we do not need to discretize the motion model explicitly. However, linearization is necessary to propagate the process noise.&#x20;
+Since using continuous/discrete EKF, we do not need to discretize the motion model explicitly. However, linearization is necessary to propagate the process noise.
 
 Please refer to the appendix for the details of solving the ordinal differential equation and linearization. $T$ denotes the time interval between $t_{k+1}$ and $t_k$.
 
@@ -307,7 +307,7 @@ $$.
 
 And we denote it as $$\mathbf{x}_{k+1} = f(\mathbf{x}_k, \boldsymbol{\varepsilon}_k)$$
 
-### Linearize the motion model&#x20;
+### Linearize the motion model
 
 The linear motion part is already a linear function. We only need to consider the rotation part.
 
@@ -421,7 +421,7 @@ Update covariance: $\mathbf{P}_{k|k-1} = \mathbf{F}_x\hat{\mathbf{P}}_{k-1}\ma
 
 where $\mathbf{Q}_{\varepsilon}$ is the process noise covariance.
 
-## Correct step&#x20;
+## Correct step
 
 Iterate
 
@@ -439,11 +439,11 @@ If converged: break; else: substitute the new updates into (2) , get the new $\m
 
 2. ~~When updating the $\mathbf{p}$ and $\boldsymbol{\omega}$individually or combine, we do not need to iterate the correcting step. Since it is already a linear observation.~~
 
-3. Compared with the traditional iterative extended Kalman filter, the only difference lies in the the mean updating step, where we substitute $\boxplus$ with $+$. Since $\mathbf{y}_k\in \mathbb{R}^{12}$, so $\boxminus$ can be replaced by $-$.&#x20;
+3. Compared with the traditional iterative extended Kalman filter, the only difference lies in the the mean updating step, where we substitute $\boxplus$ with $+$. Since $\mathbf{y}_k\in \mathbb{R}^{12}$, so $\boxminus$ can be replaced by $-$.
 
 # Implementations
 
-There are three ways to describe a rotation: axis-angle, matrix, and quaternion. In this section, we will explore their relationships and its numerical stability when implementation. \[8]&#x20;
+There are three ways to describe a rotation: axis-angle, matrix, and quaternion. In this section, we will explore their relationships and its numerical stability when implementation. \[8]
 
 ## Axis-angle to matrix
 
