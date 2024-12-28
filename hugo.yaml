@@ -1,7 +1,7 @@
 baseURL: "https://livey.github.io/"
 title: Fuwei's Tech Notes
 pagination:
-  pagerSize: 5
+  pagerSize: 10
 theme: PaperMod
 
 enableRobotsTXT: true
