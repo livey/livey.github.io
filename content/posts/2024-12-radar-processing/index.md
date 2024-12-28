@@ -249,13 +249,13 @@ $$\mathcal{P} = \{(x_i, y_i, z_i, v_i) \mid \text{CFAR detection holds}\}$$
 
 # Extend to MIMO System&#x20;
 
-When extended to MIMO system, the signal transmitted via different antennas are orthogonal. So, problem will be simplified into the trans-receiver pair problem as we have discussed before.&#x20;
+When extended to MIMO system, the signal transmitted via different antennas are orthogonal. So, problem will be simplified into the trans-receiver pair problem as we have discussed before.
 
 # Appendix
 
-## I: The transmitted signal&#x20;
+## I: The transmitted signal
 
-The factor $$\frac{B}{2T_c}$$ appears in the **phase term** of the transmitted FMCW signal because of the integral relationship between frequency and phase.
+The factor $\frac{B}{2T_c}$ appears in the **phase term** of the transmitted FMCW signal because of the integral relationship between frequency and phase.
 
 ### **Detailed Explanation:**
 
@@ -427,8 +427,7 @@ By taking an FFT across multiple chirps (the slow-time dimension), you transform
 
 ## VI: Velocity Derivation
 
-$$v = \frac{\lambda l}{2N T_c}$$
-
+$v = \frac{\lambda l}{2N T_c}$
 relates the target’s radial velocity $v$ to the Doppler bin index $l$, where $\lambda$ is the radar wavelength, $N$ is the number of chirps per frame used in the Doppler FFT, and $T_c$ is the chirp duration (or the pulse repetition interval when considering one chirp per interval).
 
 ### **Derivation Steps**
@@ -688,7 +687,7 @@ Here, increasing SNR or increasing bandwidth $B$ reduces the standard deviation 
 
 ### Summary of Parameter Influences
 
-* **Bandwidth&#x20;**$$B$$:
+* **Bandwidth $B$**:
 
   * Inversely affects range resolution ($\Delta R \sim 1/B$).
 
