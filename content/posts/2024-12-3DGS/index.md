@@ -36,7 +36,7 @@ editPost:
     appendFilePath: false
 ---
 
-I highly recommend reading the two papers: [5] and [3]. [5] provides a comprehensive description of the splatting processing. [3] provides an efficient implementation of the splatting processing. 
+I highly recommend reading the two papers: [5] and [3]. [5] provides a comprehensive description of the splatting process. [3] provides an efficient implementation of the splatting process. 
 
 # Problem formulation
 
@@ -49,7 +49,7 @@ I highly recommend reading the two papers: [5] and [3]. [5] provides a comprehen
 
 The volume density $\sigma(\mathbf{x})$ can be interpreted as the differential probability of a ray terminating(being absorbed or scattered) at an infinitesimal particle at location $\mathbf{x}$.
 
-The expected color $\mathcal{C}(\mathbf{r})$ of camera ray $\mathbf{r}(t) = \mathbf{o} + t\mathbf{d}$ with near and far bounds $t_n$ and $t_f$ is (the ray starts from the observer to the far field):
+The expected color $\mathcal{C}(\mathbf{r})$ of camera ray $\mathbf{r}(t) = \mathbf{o} + t\mathbf{d}$ with near and far bounds $t_n$ and $t_f$ is, where the ray starts from the observer and extends to the far field:
 
 $$\begin{equation}
 \mathcal{C}(\mathbf{r}) = \int_{t_n}^{t_f} T(t) \sigma (\mathbf{r}(t)) c(\mathbf{r}(t), \mathbf{d}) \, dt
@@ -77,7 +77,7 @@ where $\delta_i = t_{i+1} - t_i$ is the distance between adjacent samples. This 
 
 ### Why $1-\exp(-\sigma_i\delta_i)$?
 
-From Appendix A, we know $T(t_{i+1}) = \exp(-\int^{t_i}\sigma(t)dt-\int_{t_i}^{t+i}\sigma(t)dt)\approx T(t_i)\exp(-\sigma_i\delta_i)$. Considering the meaning of $T(t_i)$, the term $\exp(-\sigma_i\delta_i)$ can be treated as the probability of not observed. So, $(1-\exp(-\delta_i\sigma_i))$ is interpreted as the probability density of absorbing in the interval of $t_{i}$ and $t_{i+1}$.
+where From Appendix A, we know $T(t_{i+1}) = \exp(-\int^{t_i}\sigma(t)dt-\int_{t_i}^{t+i}\sigma(t)dt)\approx T(t_i)\exp(-\sigma_i\delta_i)$. Considering the meaning of $T(t_i)$, the term $\exp(-\sigma_i\delta_i)$ can be treated as the probability of not observed. So, $(1-\exp(-\delta_i\sigma_i))$ is interpreted as the probability density of absorbing in the interval of $t_{i}$ and $t_{i+1}$.
 
 
 
@@ -89,7 +89,7 @@ $C = \sum_{i=1}^{N} T_i \alpha_i c_i,$ $\alpha_i = (1 - \exp(-\sigma_i \delta_i)
 
 ### The point-based method
 
-"First, we assume that the emission coefficient is approximately constant in the support of each footprint function, hence $\alpha_k(\mathbf{r}) = \alpha_k$, for all $\mathbf{r}$ in the support area." \[5]. A typical neural point-based approach (e.g., \[Kopanas et al. 2022, 2021]) computes the color $C$ of a pixel by blending $\mathcal{N}$ ordered points overlapping the pixel:
+First, it is assumed that the emission coefficient is approximately constant in the support of each footprint function, hence $\alpha_k(\mathbf{r}) = \alpha_k$, for all $\mathbf{r}$ in the support area." \[5]. A typical neural point-based approach (e.g., \[Kopanas et al. 2022, 2021]) computes the color $C$ of a pixel by blending $\mathcal{N}$ ordered points overlapping the pixel:
 
 $$\begin{equation}
 C = \sum_{i \in \mathcal{N}} c_i \alpha_i \prod_{j=1}^{i-1} (1 - \alpha_j)
@@ -104,7 +104,7 @@ $$\begin{equation}
 C = \sum_{i \in \mathcal{N}} c_i \alpha_i w_i \prod_{j=1}^{i-1} (1 - \alpha_jw_j)
 \end{equation}$$
 
-where $w_i = \mathcal{G}_i(r_i;\mu_i, \Sigma_i)$ and
+where $w_i = \mathcal{G}_i(r_i;\mu_i, \Sigma_i)$ and
 
 $$\mathcal{G}(\mathbf{x} - \mu) = \frac{1}{\sqrt{2 \pi \Sigma(\mathbf{x})}} \exp \left( -\frac{1}{2} (\mathbf{x} - \mu)^T \Sigma^{-1} (\mathbf{x} - \mu) \right)$$
 
@@ -121,7 +121,7 @@ There are some detailed comparisons between the two in [github](https://github.c
 (See Appendix D)
 
 
-When project 3D Gaussian onto 2D, the covariance matrix is approximately as $\Sigma^\prime = JW\Sigma W^\top J^\top$, where $W$ is the viewing transformation (world to camera rotation) and $J$ is the Jacobian of affine projective transformation (camera to image affine transformation).
+When project 3D Gaussian onto 2D, the covariance matrix is approximately as $\Sigma^\prime = JW\Sigma W^\top J^\top$, where $W$ is the viewing transformation (world to camera rotation) and $J$ is the Jacobian of affine projective transformation (camera to image affine transformation).
 
 Since $\Sigma$ is symmetric and positive definite, it can be represented as
 
@@ -131,13 +131,11 @@ where $\mathbf{R}$ is a rotation matrix and $\mathbf{S}$ is a positive diagonal 
 
 ## Optimization
 
-### Loss function
-
 The loss function is $\mathcal{L}_1$ combined with a D-SSIM term:
 
 $$\mathcal{L} = (1 - \lambda) \mathcal{L}_1 + \lambda \mathcal{L}_{\text{D-SSIM}}$$
 
-The parameters include: the position, $\boldsymbol{\mu}_i$, covariance matrix, $\boldsymbol{\Sigma}$, the alpha-blending, $\alpha$, color, the spherical harmonics coefficients.
+The parameters include the position $\boldsymbol{\mu}_i$, covariance matrix $\boldsymbol{\Sigma}$, alpha-blending $\alpha$, color, and the spherical harmonics coefficients.
 
 ## Method
 
@@ -338,7 +336,7 @@ In neural radiance fields (NeRF) and other volumetric rendering techniques, sphe
 
 $$\mathbf{c}(\mathbf{x}, \mathbf{d}) = \sum_{\ell=0}^{L} \sum_{m=-\ell}^{\ell} \mathbf{c}_{\ell m}(\mathbf{x}) Y_{\ell m}(\mathbf{d})$$
 
-where $\mathbf{c}_{lm}=[c^r, c^g, c^b]^\top$.
+where $\mathbf{c}_{lm}=[c^r, c^g, c^b]^\top$.
 
 4. **Advantages**:
 
@@ -471,11 +469,7 @@ $$f_c(\mathbf{u}) = \sum_{k \in \mathbb{N}} c_k \hat{r}_k (\mathbf{u} - \mathbf{
 
 ## Appendix D: perspective transformation
 
-"where $J$ is the Jacobian of the affine approximation of the projective transformation. Zwicker et al. \cite{Zwicker2001a} also show that if we skip the third row and column of $\Sigma$, we obtain a $2 \times 2$ variance matrix with the same structure and properties as if we would start from planar points with normals, as in previous work \cite{Kopanas2021}." -- from Section 3, context below equation (5).
-
-
-
-These statements make it really confusing for the readers. From reference \[5] we know the author is talking about from ray space to image space. Converting the camera space, $[t_0, t_1, t_2]^\top$, to the ray space, $[x_0, x_1, x_2]^\top$ follows
+These statements may be unclear to readers. From reference [5], we know the author is talking about the transformation from ray space to image space. Converting the camera space, $[t_0, t_1, t_2]^\top$, to the ray space, $[x_0, x_1, x_2]^\top$ follows
 
 $$\begin{aligned}
 \begin{bmatrix}
@@ -512,7 +506,7 @@ t_1\\
 t_2
 \end{bmatrix}$$
 
-Then, we do linear approximation.&#x20;
+Then, we do linear approximation.
 
 # References
 
