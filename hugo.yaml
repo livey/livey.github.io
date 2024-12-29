@@ -4,7 +4,7 @@ pagination:
   pagerSize: 10
 theme: PaperMod
 
-enableRobotsTXT: true
+enableRobotsTXT: true 
 buildDrafts: false
 buildFuture: false
 buildExpired: false
@@ -14,13 +14,12 @@ minify:
   minifyOutput: true
 
 params:
-  env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: ExampleSite
-  description: "ExampleSite description"
-  keywords: [Blog, Portfolio, PaperMod]
-  author: Me
-  # author: ["Me", "You"] # multiple authors
-  images: ["<link or path of image for opengraph, twitter-cards>"]
+  env: production
+  title: "Fuwei's Tech Notes"
+  description: "Technical blog covering topics in autonomous driving, computer vision, robotics, optimization, and software engineering"
+  keywords: [Computer Vision, Robotics, Software Engineering, Tech Notes, Programming, Optimization, SLAM, 3D Reconstruction, SLAM, Autonomous Driving, Mathematics]
+  author: Fuwei Li
+  images: ["/images/site-preview.jpg"]
   DateFormat: "January 2, 2006"
   defaultTheme: auto # dark, light
   disableThemeToggle: false
@@ -89,11 +88,11 @@ params:
       url: "index.xml"
   analytics:
     google:
-      SiteVerificationTag: "XYZabc"
+      SiteVerificationTag: ""
     bing:
-      SiteVerificationTag: "XYZabc"
+      SiteVerificationTag: ""
     yandex:
-      SiteVerificationTag: "XYZabc"
+      SiteVerificationTag: ""
 
   cover:
     hidden: true # hide everywhere but not in structured data
