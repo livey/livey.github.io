@@ -304,7 +304,6 @@ In neural radiance fields (NeRF) and other volumetric rendering techniques, sphe
 
 <div style="text-align: center; margin: 0 auto;">
     <img src="./resources/3d-hs.png" alt="3DGS system diagram" style="width: 100%;"/>
-    <p style="margin-top: 10px; font-style: italic;">figure from https://sgvr.kaist.ac.kr/\~sungeui/ICG/Students/\[CS482\]%203D%20Gaussian%20Splatting%20for%20Real-Time%20Radiance%20Field%20Rendering.</p>
 </div>
 
 
