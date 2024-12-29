@@ -77,7 +77,7 @@ where $\delta_i = t_{i+1} - t_i$ is the distance between adjacent samples. This 
 
 ### Why $1-\exp(-\sigma_i\delta_i)$?
 
-From Appendix A, we know $T(t_{i+1}) = \exp(-\int^{t_i}\sigma(t)dt-\int_{t_i}^{t+i}\sigma(t)dt)\approx T(t_i)\exp(-\sigma_i\delta_i)$$. Considering the meaning of $T(t_i)$, the term $\exp(-\sigma_i\delta_i)$ can be treated as the probability of not observed. So, $(1-\exp(-\delta_i\sigma_i))$ is interpreted as the probability density of absorbing in the interval of $t_{i}$ and $t_{i+1}$.
+From Appendix A, we know $T(t_{i+1}) = \exp(-\int^{t_i}\sigma(t)dt-\int_{t_i}^{t+i}\sigma(t)dt)\approx T(t_i)\exp(-\sigma_i\delta_i)$. Considering the meaning of $T(t_i)$, the term $\exp(-\sigma_i\delta_i)$ can be treated as the probability of not observed. So, $(1-\exp(-\delta_i\sigma_i))$ is interpreted as the probability density of absorbing in the interval of $t_{i}$ and $t_{i+1}$.
 
 
 
@@ -441,11 +441,15 @@ where $|\mathbf{V}|$ is the determinant of $\mathbf{V}$. We denote the variance 
 $$r'_k(\mathbf{x}) = r(\mathbf{J}^{-1}\mathbf{x}) = \mathcal{G}_{\mathbf{V}^r_k}(\mathbf{J}^{-1}\mathbf{x}) = \frac{1}{|\mathbf{J}|^{-1}} \mathcal{G}_{\mathbf{J}\mathbf{V}^r_k \mathbf{J}^T}(\mathbf{x})\\
 h(\mathbf{x}) = \mathcal{G}_{\mathbf{V}^h}(\mathbf{x}).$$
 
-The resampling kernel $\rho_k$ of (5) can be written as a single Gaussian with a variance matrix that combines the warped basis function and the low-pass filter. Typically $\mathbf{V}^h = \mathbf{I}$$, yielding:
+The resampling kernel $\rho_k$ of (5) can be written as a single Gaussian with a variance matrix that combines the warped basis function and the low-pass filter. Typically $\mathbf{V}^h = \mathbf{I}$, yielding:
 
-$$\begin{equation}
-\rho_k(\mathbf{x}) = (r'_k \otimes h)(\mathbf{x} - \mathbf{m}(\mathbf{u_k})) = \frac{1}{|\mathbf{J}|^{-1}} (\mathcal{G}_{\mathbf{J}\mathbf{V}^r_k \mathbf{J}^T} \otimes \mathcal{G}_{\mathbf{I}})(\mathbf{x} - \mathbf{m}(\mathbf{u_k})) = \frac{1}{|\mathbf{J}|^{-1}} \mathcal{G}_{\mathbf{J}\mathbf{V}^r_k \mathbf{J}^T + \mathbf{I}}(\mathbf{x} - \mathbf{m}(\mathbf{u_k}))
-\end{equation}$$
+$$
+\begin{aligned}
+\rho_k(\mathbf{x}) &= (r'_k \otimes h)(\mathbf{x} - \mathbf{m}(\mathbf{u_k})) \\
+&= \frac{1}{|\mathbf{J}|^{-1}} (\mathcal{G}_{\mathbf{J}\mathbf{V}^r_k \mathbf{J}^T} \otimes \mathcal{G}_{\mathbf{I}})(\mathbf{x} - \mathbf{m}(\mathbf{u_k})) \\
+&= \frac{1}{|\mathbf{J}|^{-1}} \mathcal{G}_{\mathbf{J}\mathbf{V}^r_k \mathbf{J}^T + \mathbf{I}}(\mathbf{x} - \mathbf{m}(\mathbf{u_k}))
+\end{aligned}
+$$
 
 
 
