@@ -66,9 +66,9 @@ Thinking about what these conditions mean for the assignment problem allows us t
 
 1. We maintain a feasible dual solution. We let $u_i$ be the amount subtracted from row $i$ and $v_j$ is the amount subtracted from column $j$. Feasibility means that we must ensure that $\bar{c}_{i j}=c_{i j}-u_i-v_j$ is non-negative for all $(i, j)$.
 
-2. We try to find a primal solution $x$ that satisfies complementary slackness with respect to the current dual solution. Complementary slackness for the assignment problem means that we try to find an assignment that only uses edges with $\bar{c}_{i j}=0$, i.e., we solve the maximum cardinality bipartite matching problem on the graph that contains a node for every $i \in I, j \in J$ and an edge $(i, j)$ if $\bar{c}_{i j}=0$. We either find a perfect matching, or we get a vertex cover of size $<n$.
+2. We try to find a primal solution $x$ that satisfies complementary slackness with respect to the current dual solution. Complementary slackness for the assignment problem means that we try to find an assignment that only uses edges with $\bar{c}_{i j}=0$, i.e., we solve the maximum cardinality bipartite matching problem on the graph that contains a node for every $i \in I, j \in J$ and an edge $(i, j)$ if $\bar{c}_{i j}=0$. We either find a perfect matching, or we get a vertex cover of size $ < n$.
 
-3) If we can not find such a primal solution, we find a direction of dual increase. The vertex cover in the bipartite matching instance corresponds to $I^{\prime}, J^{\prime}$, a subet of the rows and columns, such that $\left|I^{\prime}\right|+\left|J^{\prime}\right|<n$ and if $\bar{c}_{i j}=0$ then $i \in I^{\prime}$ or $j \in J^{\prime}$.
+3) If we can not find such a primal solution, we find a direction of dual increase. The vertex cover in the bipartite matching instance corresponds to $I^{\prime}, J^{\prime}$, a subset of the rows and columns, such that $\left|I^{\prime}\right|+\left|J^{\prime}\right| < n$ and if $\bar{c}_{ij}=0$ then $i \in I^{\prime}$ or $j \in J^{\prime}$.
 
 We let $\alpha = \min_{(i,j): i\notin I^\prime, j\notin J^\prime} \bar{c}_{i,j}$, and we update
 
