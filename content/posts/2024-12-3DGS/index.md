@@ -42,10 +42,11 @@ I highly recommend reading the two papers: [5] and [3]. [5] provides a comprehen
 
 ## Volume rendering with radiance fields \[1, 2]
 
-<div style="text-align: center; margin: 0 auto;">
-    <img src="./resources/volume-rendering.png" alt="volumne rendering" style="width: 100%;"/>
-    <p style="margin-top: 10px; font-style: italic;">figure from https://www.cs.cornell.edu/courses/cs5670/2022sp/lectures/lec22_nerf_for_web.pdf</p>
-</div>
+
+<figure style="text-align: center;">
+    <img src="./resources/volume-rendering.png" alt="volumne rendering" style="width: 100%; margin: 0 auto; display: block;"/>
+    <figcaption style="font-weight: normal;">figure from https://www.cs.cornell.edu/courses/cs5670/2022sp/lectures/lec22_nerf_for_web.pdf.</figcaption>
+</figure>
 
 The volume density $\sigma(\mathbf{x})$ can be interpreted as the differential probability of a ray terminating(being absorbed or scattered) at an infinitesimal particle at location $\mathbf{x}$.
 
@@ -139,10 +140,11 @@ The parameters include the position $\boldsymbol{\mu}_i$, covariance matrix $\bo
 
 ## Method
 
-<div style="text-align: center; margin: 0 auto;">
-    <img src="./resources/3dgs-system-diagram.png" alt="3DGS system diagram" style="width: 100%;"/>
-    <p style="margin-top: 10px; font-style: italic;">figure from [3]</p>
-</div>
+<figure style="text-align: center;">
+    <img src="./resources/3dgs-system-diagram.png" alt="3DGS system diagram" style="width: 100%; margin: 0 auto; display: block;"/>
+    <figcaption style="font-weight: normal;">figure from [3].</figcaption>
+</figure>
+
 
 
 Adaptive Control of Gaussians:
@@ -301,11 +303,9 @@ In neural radiance fields (NeRF) and other volumetric rendering techniques, sphe
 
 ## Appendix B: Spherical Harmonics in Neural Radiance Fields
 
-
-<div style="text-align: center; margin: 0 auto;">
-    <img src="./resources/3d-hs.png" alt="3DGS system diagram" style="width: 100%;"/>
-</div>
-
+<figure style="text-align: center;">
+    <img src="./resources/3d-hs.png" alt="3D spherical harmonics" style="width: 100%; margin: 0 auto; display: block;"/>
+</figure>
 
 1. **Radiance Representation**:
 
@@ -360,10 +360,11 @@ where $\mathbf{c}_{lm}=[c^r, c^g, c^b]^\top$.
 #### Texture functions on point-based objects
 
 
-<div style="text-align: center; margin: 0 auto;">
-    <img src="./resources/image-1.png" alt="3DGS system diagram" style="width: 100%;"/>
-    <p style="margin-top: 10px; font-style: italic;">figure from [4]</p>
-</div>
+<figure style="text-align: center;">
+    <img src="./resources/image-1.png" alt="surface splatting" style="width: 100%; margin: 0 auto; display: block;"/>
+    <figcaption style="font-weight: normal;">figure from [4].</figcaption>
+</figure>
+
 
 The points $\mathbf{Q}$ and $\mathbf{P_k}$ have local coordinates $\mathbf{u}$ and $\mathbf{u_k}$, respectively. We define the continuous surface function $f_c(\mathbf{u})$ as the weighted sum:
 
@@ -373,11 +374,11 @@ where the basis functions $r_k$ that have local support or that are appropriatel
 
 #### Rendering
 
-<div style="text-align: center; margin: 0 auto;">
-    <img src="./resources/image-2.png" alt="rendering via filtering" style="width: 100%;"/>
-    <p style="margin-top: 10px; font-style: italic;">figure from [4]</p>
-</div>
 
+<figure style="text-align: center;">
+    <img src="./resources/image-2.png" alt="rendering via filtering" style="width: 100%; margin: 0 auto; display: block;"/>
+    <figcaption style="font-weight: normal;">figure from [4].</figcaption>
+</figure>
 
 
 1. Warp $f_c(\mathbf{u})$ to screen space, yielding the warped, continuous screen space signal $g_c(\mathbf{x})$:
@@ -410,10 +411,10 @@ $$\rho_k(\mathbf{x}) = \int_{\mathbb{R}^2} h(\mathbf{x} - \boldsymbol{\xi}) r_k(
 
 We call a warped and filtered basis function $\rho_k(\mathbf{x})$ a $\textit{resampling kernel}$$, which is expressed here as a screen space integral. Equation (5) states that we can first warp and filter each basis function $r_k$ individually to construct these resampling kernels $\rho_k$, and then sum up the contributions of these kernels in screen space. We call this approach $\textit{surface splatting}$.
 
-<div style="text-align: center; margin: 0 auto;">
-    <img src="./resources/image-3.png" alt="surface splatting illustration" style="width: 100%;"/>
-    <p style="margin-top: 10px; font-style: italic;">figure from [4]</p>
-</div>
+<figure style="text-align: center;">
+    <img src="./resources/image-3.png" alt="surface splatting illustration" style="width: 100%; margin: 0 auto; display: block;"/>
+    <figcaption style="font-weight: normal;">figure from [4].</figcaption>
+</figure>
 
 In order to simplify the integral for $\rho_k(\mathbf{x})$ in (5), we replace a general mapping $\mathbf{m}(\mathbf{u})$ by its local affine approximation $\mathbf{m_{u_k}}$ at a point $\mathbf{u_k}$,
 
