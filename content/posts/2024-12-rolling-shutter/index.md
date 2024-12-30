@@ -3,7 +3,7 @@ title: "Rolling Shutter Camera Projection"
 date: 2024-11-25
 # weight: 1
 # aliases: ["/first"]
-tags: ["first"]
+tags: ["autonomous driving", "signal processing", "rolling shutter camera"]
 author: "Fuwei Li"
 # author: ["Me", "You"] # multiple authors
 showToc: true
