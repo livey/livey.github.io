@@ -48,7 +48,7 @@ I highly recommend reading the two papers: [5] and [3]. [5] provides a comprehen
     <figcaption style="font-weight: normal;">figure from https://www.cs.cornell.edu/courses/cs5670/2022sp/lectures/lec22_nerf_for_web.pdf.</figcaption>
 </figure>
 
-The volume density $\sigma(\mathbf{x})$ can be interpreted as the differential probability of a ray terminating(being absorbed or scattered) at an infinitesimal particle at location $\mathbf{x}$.
+The volume density $\sigma(\mathbf{x})$ can be interpreted as the differential probability of a ray terminating (being absorbed or scattered) at an infinitesimal particle at location $\mathbf{x}$.
 
 The expected color $\mathcal{C}(\mathbf{r})$ of camera ray $\mathbf{r}(t) = \mathbf{o} + t\mathbf{d}$ with near and far bounds $t_n$ and $t_f$ is, where the ray starts from the observer and extends to the far field:
 
@@ -78,7 +78,7 @@ where $\delta_i = t_{i+1} - t_i$ is the distance between adjacent samples. This 
 
 ### Why $1-\exp(-\sigma_i\delta_i)$?
 
-where From Appendix A, we know $T(t_{i+1}) = \exp(-\int^{t_i}\sigma(t)dt-\int_{t_i}^{t+i}\sigma(t)dt)\approx T(t_i)\exp(-\sigma_i\delta_i)$. Considering the meaning of $T(t_i)$, the term $\exp(-\sigma_i\delta_i)$ can be treated as the probability of not observed. So, $(1-\exp(-\delta_i\sigma_i))$ is interpreted as the probability density of absorbing in the interval of $t_{i}$ and $t_{i+1}$.
+where From Appendix A, we know $T(t_{i+1}) = \exp(-\int^{t_i}\sigma(t)dt-\int_{t_i}^{t_{i+1}}\sigma(t)dt)\approx T(t_i)\exp(-\sigma_i\delta_i)$. Considering the meaning of $T(t_i)$, the term $\exp(-\sigma_i\delta_i)$ can be treated as the probability of not observed. So, $(1-\exp(-\delta_i\sigma_i))$ is interpreted as the probability density of absorbing in the interval of $t_{i}$ and $t_{i+1}$.
 
 
 
@@ -232,7 +232,7 @@ where $Y_{l}^{m}$ is the 3D spherical harmonics. The index $l \geq 0$ denotes it
 
 # Appendix
 
-## Appendix A: Understand the Accumulated transmittance
+## Appendix A: Understanding the Accumulated transmittance
 
 **Volume Density** $\sigma(\mathbf{x})$:
 
@@ -247,8 +247,6 @@ where $Y_{l}^{m}$ is the 3D spherical harmonics. The index $l \geq 0$ denotes it
 ### Differential Equation for Transmittance
 
 To derive the transmittance function, we consider how the survival probability changes over an infinitesimal segment of the ray path.
-
-#### Step-by-Step Derivation:
 
 1. **Infinitesimal Segment**:
 
@@ -353,7 +351,7 @@ where $\mathbf{c}_{lm}=[c^r, c^g, c^b]^\top$.
 
 
 
-## Appendix C: from surface to point splatting
+## Appendix C: From surface to point splatting
 
 ### Surface splatting \[4]
 
@@ -467,9 +465,9 @@ $$f_c(\mathbf{u}) = \sum_{k \in \mathbb{N}} c_k \hat{r}_k (\mathbf{u} - \mathbf{
 
 
 
-## Appendix D: perspective transformation
+## Appendix D: Perspective transformation
 
-These statements may be unclear to readers. From reference [5], we know the author is talking about the transformation from ray space to image space. Converting the camera space, $[t_0, t_1, t_2]^\top$, to the ray space, $[x_0, x_1, x_2]^\top$ follows
+These statements may be unclear to readers. From reference [5], we know the author is discussing the transformation from ray space to image space. Converting the camera space, $[t_0, t_1, t_2]^\top$, to the ray space, $[x_0, x_1, x_2]^\top$ follows
 
 $$\begin{aligned}
 \begin{bmatrix}
