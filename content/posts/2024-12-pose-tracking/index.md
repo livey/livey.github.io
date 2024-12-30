@@ -30,12 +30,14 @@ cover:
     relative: true # when using page bundles set this to true
     hidden: true # only hide on current single page
 editPost:
-    URL: "https://github.com/livey/livey.github.io"
+    URL: "https://github.com/livey/livey.github.io/issues/new"
     Text: "Suggest Changes" # edit text
     appendFilePath: false # to append file path to Edit link
 ---
 
+Tracking ego pose is critical in autonomous driving. In this article, we will discuss how to fuse the IMU, wheel encoder, GPS, etc. to track the ego pose. We will derive the pose tracking algorithm based on the iterative extended Kalman filter. 
 This document mainly follows \[1] and \[2].
+
 
 # Preliminaries
 
