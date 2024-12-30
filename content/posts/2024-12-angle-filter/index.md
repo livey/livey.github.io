@@ -51,7 +51,7 @@ So, when using the Kalman filter for angles, we should wrap the angle into $(0, 
 
 <figure style="text-align: center;">
     <img src="./resources/diagram.png" alt="The object's headning angle in the ego's coordinate." style="width: 70%; margin: 0 auto; display: block;"/>
-    <figcaption style="font-weight: normal;">The object's headning angle in the ego's coordinate.</figcaption>
+    <figcaption style="font-weight: normal;">The object's heading angle in the ego's coordinate.</figcaption>
 </figure>
 
 Assume the observed angle is $\theta$, the ego car's yaw angle is $\alpha$, the object's heading angle angle in the world coordinate is $\beta$. We have
