@@ -1,6 +1,6 @@
 ---
 title: "Position Filtering with Ego Motion Compensation"
-date: 2024-12-26
+date: 2024-12-02
 # weight: 1
 # aliases: ["/first"]
 tags: ["autonomous driving", "signal processing", "Kalman filter", "position tracking"]
