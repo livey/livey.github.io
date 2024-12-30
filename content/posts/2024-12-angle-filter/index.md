@@ -36,7 +36,7 @@ editPost:
     appendFilePath: false
 ---
 
-Besides object position tracking, angle tracking is also critical in autonomous driving. In this article, we will discuss how to track the angle of an object using the Kalman filter and how to do motion compensation.
+Besides object position tracking, heading angle tracking is also critical in autonomous driving. In this article, we will discuss how to track the angle of an object using the Kalman filter and how to do motion compensation.
 
 # Wrap the angle
 
@@ -44,16 +44,15 @@ In this paper "On wrapping the Kalman filter and estimating with the SO(2) group
 
 "based on the mathematically grounded framework of filtering on Lie groups, yields the same result as heuristically wrapping the angular variable within the EKF framework".
 
-So, when using the Kalman filter for angles, we should wrap the angle into (0, 360) or (-180, 180). When calculating the difference of angle, make sure it is between (-180, 180].
+So, when using the Kalman filter for angles, we should wrap the angle into $(0, 360]$ or $(-180, 180]$. When calculating the difference of angle, make sure it is between $(-180, 180]$.
 
-# Handle ambiguity of $0$ and $\pi$
 
 # Ego-motion compensation
 
-<div style="text-align: center; margin: 0 auto;">
-    <img src="./resources/diagram.png" alt="3DGS system diagram" style="width: 80%;"/>
-    <p style="margin-top: 10px; font-style: italic;">The object's angle in the ego's coordinate.</p>
-</div>
+<figure style="text-align: center;">
+    <img src="./resources/diagram.png" alt="The object's headning angle in the ego's coordinate." style="width: 70%; margin: 0 auto; display: block;"/>
+    <figcaption style="font-weight: normal;">The object's headning angle in the ego's coordinate.</figcaption>
+</figure>
 
 Assume the observed angle is $\theta$, the ego car's yaw angle is $\alpha$, the object's heading angle angle in the world coordinate is $\beta$. We have
 
