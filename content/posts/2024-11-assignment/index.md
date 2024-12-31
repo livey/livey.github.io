@@ -38,7 +38,7 @@ editPost:
 This post discusses the assignment problem, its primal-dual interpretation, and the gated Hungarian algorithm.
 # Tutor
 
-[HungarianAlgorithm.pdf](https://brilliant.org/wiki/hungarian-matching/) and \[4] gives a nice interpretation of the dual-prime of the Hungarian algorithm.
+[HungarianAlgorithm](https://brilliant.org/wiki/hungarian-matching/) and \[4] gives a nice interpretation of the dual-prime of the Hungarian algorithm.
 
 # Prime-Dual Interpretation of Hungarian Algorithm \[4]
 
