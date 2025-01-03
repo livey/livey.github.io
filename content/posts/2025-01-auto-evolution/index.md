@@ -36,7 +36,7 @@ editPost:
     appendFilePath: false
 ---
 
-In this post, we will discuss how the autonomous driving industry evolves from modular to end-to-end.
+In this post, we will discuss how the autonomous driving industry evolves from modular to end-to-end. survey papers [14] [15]
 
 # 3D perception
 
@@ -101,3 +101,7 @@ In this post, we will discuss how the autonomous driving industry evolves from m
 [12] Y. Hu et al., “Planning-oriented Autonomous Driving,” Mar. 23, 2023, arXiv:2212.10156. doi: 10.48550/arXiv.2212.10156.
 
 [13] J.-J. Hwang et al., “EMMA: End-to-End Multimodal Model for Autonomous Driving,” Nov. 04, 2024, arXiv: arXiv:2410.23262. doi: 10.48550/arXiv.2410.23262.
+
+[14] L. Chen, P. Wu, K. Chitta, B. Jaeger, A. Geiger, and H. Li, “End-to-End Autonomous Driving: Challenges and Frontiers,” IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 46, no. 12, pp. 10164–10183, Dec. 2024, doi: 10.1109/TPAMI.2024.3435937.
+
+[15] J. Mao, S. Shi, X. Wang, and H. Li, “3D Object Detection for Autonomous Driving: A Comprehensive Survey,” Apr. 04, 2023, arXiv: arXiv:2206.09474. doi: 10.48550/arXiv.2206.09474.
