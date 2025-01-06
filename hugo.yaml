@@ -68,6 +68,8 @@ params:
         url: posts
       - name: Tags
         url: tags
+      - name: About
+        url: about
 
   # home-info mode
   homeInfoParams:
@@ -129,6 +131,10 @@ menu:
       name: Tags
       url: /tags/
       weight: 30
+    - identifier: about
+      name: About
+      url: /about/
+      weight: 40
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
 markup:
