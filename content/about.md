@@ -80,3 +80,12 @@ Technical Lead specializing in machine learning, computer vision, SLAM, and 3D d
 - Jun Fang, Yanning Shen, Fuwei Li, Hongbin Li, and Zhi Chen. "Support knowledge-aided sparse bayesian learning for compressed sensing." In *Proc. IEEE International Conference on Acoustics, Speech and Signal Processing*, pages 3786–3790, Brisbane, Australia, April 2015
 
 - Jun Fang, Yanning Shen, Fuwei Li, and Hongbin Li. "One-bit quantization design and adaptive methods for compressed sensing." In *Proc. IEEE Wireless Communications and Network Conference*, Orleans, LA, March 2015
+
+## Review Activities
+- IEEE Transactions on Information Forensics & Security
+- EURASIP Journal on Advances in Signal Processing
+- IEEE Transactions on Signal and Information Processing over Networks
+- Computers & Security
+- IEEE Transactions on Mobile Computing
+- IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP)
+- International Joint Conference on Neural Networks (IJCNN)
