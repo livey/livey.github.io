@@ -64,15 +64,13 @@ To efficiently capture and read the image, the time constraints for rolling shut
 
 The warping transformation for undistorting is based on the same depth assumption [1].
 
-Second, the pixel of $^{c_n}\mathbf{q}_k$ captured by the RS camera at row $N$ can be transformed to the imaginary global shutter camera at the first row as follows:
+The pixel of $^{c_n}\mathbf{q}_k$ captured by the rolling shutter camera at row $N$ can be transformed to the imaginary global shutter camera at the first row as follows:
 
 $$^{c_0}\mathbf{q}_k = \frac{z_{c_n}}{z_{c_0}} \mathbf{K} \cdot {}^{c_0}\mathbf{T}_{c(n)} \cdot \mathbf{K}^{-1} \cdot {}^{c_n}\mathbf{q}_k$$
 
-Usually, it is assumed that $z_{c_0} = z_{c_n}$, which simplifies equation (4) as follows:
+Usually, it is assumed that $z_{c_0} = z_{c_n}$, which simplifies above equation as follows:
 
-$$^{c_0}\mathbf{q}_k = \mathbf{K} {}^{c_0}\mathbf{T}_{c(n)} \mathbf{K}^{-1} \cdot {}^{c_n}\mathbf{q}_k $$
-
-
+$$^{c_0}\mathbf{q}_k = \mathbf{K} {}^{c_0}\mathbf{T}_{c(n)} \mathbf{K}^{-1} \cdot {}^{c_n}\mathbf{q}_k \tag{1}$$
 
 This can be seen as a type of warp operation:
 
@@ -80,7 +78,7 @@ $$^{c_0}\mathbf{A}_{c(n)} = \mathbf{K} {}^{c_0}\mathbf{T}_{c(n)} \mathbf{K}^{-1}
 
 
 
-and the equation (5) can be written as:
+and the equation (1) can be written as:
 
 $$^{c_0}\mathbf{q}_k = {}^{c_0}\mathbf{A}_{c(n)} \cdot {}^{c_n}\mathbf{q}_k $$
 
@@ -114,9 +112,10 @@ e^{[\delta t*w]_\times} & \delta t*v\\
 \end{bmatrix}
 \end{aligned}$$
 
-We can project to a point, $\mathbf{p}$, into the image plane and get its row numbers as
+We can project a point, $\mathbf{p}$, into the image plane and get its row numbers, $v$, as (here we use the pinhole camera model)
 
-$$\begin{bmatrix}
+$$
+\begin{bmatrix}
 x^c\\
 y^c\\
 z^c
@@ -126,7 +125,9 @@ z^c
 x\\
 y\\
 z
-\end{bmatrix}$$,  $$\begin{bmatrix}
+\end{bmatrix}
+,\quad 
+\begin{bmatrix}
 u\\
 v\\
 1
@@ -136,19 +137,20 @@ v\\
 x^c/z^c\\
 y^c/z^c\\
 1
-\end{bmatrix}$$
+\end{bmatrix}
+$$
 
-and $t^\prime = t_0+v\Delta t$, where $t_0$ is the time in the first row and $\Delta t$ the readout time of each row. Minimizing the estimated time and the assumption time we get the problem formulation
+and the readout time at line $v$ is $t^\prime = t_0+v\Delta t$, where $t_0$ is the time in the first row and $\Delta t$ the readout time of each row. Minimizing the estimated time and the assumption time we get the problem formulation
 
-$$\begin{equation}
-\underset{t}{\arg\max} \|t - t^\prime \left(K, \mathbf{T}(t), \mathbf{p}\right) \|^2
-\end{equation}$$
+$$
+\underset{t}{\arg\max} \|t - t^\prime \left(K, \mathbf{T}(t), \mathbf{p}\right) \|^2 \tag{2}
+$$
 
 where, $t$, can be interpreted as the relative time to the start of the first row.
 
 ## Convexity check
 
-Let the LiDAR points project onto the time of the first row as, $\mathbf{x}$, we have, $\mathbf{x} = \mathbf{T}_0^{-1}\mathbf{p}$
+Let the LiDAR points, $\mathbf{p}$, undistorted to the time of the first row as, $\mathbf{x}$, we have, $\mathbf{x} = \mathbf{T}_0^{-1}\mathbf{p}$
 
 Then points in the camera coordinate is, 
 
@@ -159,7 +161,7 @@ e^{[wt]_\times} & vt\\
 \end{bmatrix}^{-1}
 \mathbf{x}$$
 
-where $t$ is the relative time to the exposure of the first row. Here 
+where $t$ is the relative time to first row. Here 
 
 $$\begin{bmatrix}
 e^{[wt]_\times} & vt\\
@@ -188,9 +190,10 @@ We can resort to iterative algorithm to solve problem (2) [1].
 
 To prove the solution of the iterative algorithm to problem (2) always exists and is unique, we can prove the operator, $t^\prime$, in problem (2) is a contraction mapping, i.e.,
 
-$\exist q\in[0,1)$ such that $\|t^\prime(t_1)-t^\prime(t_2)\| < q\|t_1-t_2\|$
+$$\exist q\in[0,1) \text{ such that } \|t^\prime(t_1)-t^\prime(t_2)\| < q\|t_1-t_2\|$$
 
-For simplicity, we assume $w=0$ and $v=[0, v_y, 0,]$,  then we have
+
+For simplicity, we assume $w=0$ and $v=[0, v_y, 0,]$,  then we have (using the pinhole camera model)
 
 $$\|t^\prime(t_1) - t^\prime(t_2)\| = \|f_y \frac{(t_1-t_2)v_y}{z}\Delta t\|$$
 
@@ -198,7 +201,7 @@ where $f_y$ is the focal length of the height of the camera and $\Delta t$ is th
 
 So, we only need to establish $\|f_y \frac{(t_1-t_2)v_y}{z}\Delta t\| < \|t_1-t_2\|$, which is equivalent to $f_y\frac{|v_y\Delta t|}{z}<1$, For a 4K resolution image, we have $f_y=1920$, $\Delta t = 1/(20*2160)$. For a typical car on the highway, the maximal velocity may be $v_y=80$. So, $f_y*|v_y*\Delta t| < 1920*80/20/2160 = 3.5$. Thus, for objects with $z>3.5$. It is a contraction operator. In a real scenario, $v_y$ will be much smaller. So, most of the conditions are satisfied except for extremely close points.
 
-Though the simplified problem, it gives us enough insights into why the iterative algorithm works.
+Though the simplified problem, it gives us enough insights into why the iterative algorithm works. However, we should note that, the convergence may not hold for other types of camera model, e.g., wide-angle fish-eye camera, where at the edge of the image, the distortion is much more severe.
 
 
 # Experiments
