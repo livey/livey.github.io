@@ -94,6 +94,28 @@ We can further refine the shape of vehicles. For example:
     <img src="resources/car-model.png" alt="image" style="width: 100%;"/>
 </div>
 
+## Examples
+
+In this example, we demonstrate results of the 3D object projected onto the camera by camera frustum culling.
+
+<figure style="text-align: center;">
+    <div style="display: flex; justify-content: center; gap: 20px;">
+        <img src="./resources/camera-positions.png" alt="camera position" style="width: 100%;"/>
+    </div>
+    <figcaption style="font-weight: normal;">
+        A top-down view of the camera positions, their frustums, ego car, and the object.
+    </figcaption>
+</figure>
+
+<figure style="text-align: center;">
+    <div style="display: flex; justify-content: center; gap: 20px;">
+        <img src="./resources/projections.png" alt="camera position" style="width: 100%;"/>
+    </div>
+    <figcaption style="font-weight: normal;">
+        2D bounding box of the object on different cameras. The blue line is the camera frustum boundary, and the red line is the projected 2D bounding box.
+    </figcaption>
+</figure>
+
 # Compute the position of a pixel that is on a world surface
 
 Given a reference point in pixel coordinate $(u,v)$; camera intrinsic: $\mathbf F$; rotation matrix from lidar to camera: $\mathbf R$; translation vector from lidar to camera: $\mathbf t$.
