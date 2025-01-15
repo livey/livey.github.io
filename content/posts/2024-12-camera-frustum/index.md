@@ -108,11 +108,14 @@ In this example, we demonstrate results of the 3D object projected onto the came
 </figure>
 
 <figure style="text-align: center;">
-    <div style="display: flex; justify-content: center; gap: 20px;">
-        <img src="./resources/projections.png" alt="camera position" style="width: 100%;"/>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0px; max-width: 100%;">
+        <img src="./resources/image-f.png" alt="camera position 1" style="width: 100%;"/>
+        <img src="./resources/image-r.png" alt="camera position 2" style="width: 100%;"/>
+        <img src="./resources/image-rf.png" alt="camera position 3" style="width: 100%;"/>
+        <img src="./resources/image-rr.png" alt="camera position 4" style="width: 100%;"/>
     </div>
     <figcaption style="font-weight: normal;">
-        2D bounding box of the object on different cameras. The blue line is the camera frustum boundary, and the red line is the projected 2D bounding box.
+        2D bounding box of the object on different cameras. The blue line is the camera frustum boundary, and the red line is the projected 2D bounding box. First row is the front view and rear view, the second row is the right-front view and right-rear view.
     </figcaption>
 </figure>
 
