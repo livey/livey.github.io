@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on Fuwei&#39;s Tech Notes</title>
+    <link>https://livey.github.io/tags/</link>
+    <description>Recent content in Tags on Fuwei&#39;s Tech Notes</description>
+    <image>
+      <title>Fuwei&#39;s Tech Notes</title>
+      <url>https://livey.github.io/images/site-preview.jpg</url>
+      <link>https://livey.github.io/images/site-preview.jpg</link>
+    </image>
+    <generator>Hugo -- 0.140.1</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 28 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://livey.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>3D Gaussian Splatting</title>
+      <link>https://livey.github.io/tags/3d-gaussian-splatting/</link>
+      <pubDate>Sat, 28 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/3d-gaussian-splatting/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>3D Reconstruction</title>
+      <link>https://livey.github.io/tags/3d-reconstruction/</link>
+      <pubDate>Sat, 28 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/3d-reconstruction/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>NeRF</title>
+      <link>https://livey.github.io/tags/nerf/</link>
+      <pubDate>Sat, 28 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/nerf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Fast LIO</title>
+      <link>https://livey.github.io/tags/fast-lio/</link>
+      <pubDate>Fri, 27 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/fast-lio/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>LIO</title>
+      <link>https://livey.github.io/tags/lio/</link>
+      <pubDate>Fri, 27 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/lio/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Paper Reading</title>
+      <link>https://livey.github.io/tags/paper-reading/</link>
+      <pubDate>Fri, 27 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/paper-reading/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Signal Processing</title>
+      <link>https://livey.github.io/tags/signal-processing/</link>
+      <pubDate>Fri, 27 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/signal-processing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SLAM</title>
+      <link>https://livey.github.io/tags/slam/</link>
+      <pubDate>Fri, 27 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/slam/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ICP</title>
+      <link>https://livey.github.io/tags/icp/</link>
+      <pubDate>Thu, 26 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/icp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Iterative Closest Point</title>
+      <link>https://livey.github.io/tags/iterative-closest-point/</link>
+      <pubDate>Thu, 26 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/iterative-closest-point/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Optimization</title>
+      <link>https://livey.github.io/tags/optimization/</link>
+      <pubDate>Thu, 26 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/optimization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Radar</title>
+      <link>https://livey.github.io/tags/radar/</link>
+      <pubDate>Thu, 26 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/radar/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tutorial</title>
+      <link>https://livey.github.io/tags/tutorial/</link>
+      <pubDate>Thu, 26 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/tutorial/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Autonomous Driving</title>
+      <link>https://livey.github.io/tags/autonomous-driving/</link>
+      <pubDate>Tue, 24 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/autonomous-driving/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kalman Filter</title>
+      <link>https://livey.github.io/tags/kalman-filter/</link>
+      <pubDate>Tue, 24 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/kalman-filter/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pose Tracking</title>
+      <link>https://livey.github.io/tags/pose-tracking/</link>
+      <pubDate>Tue, 24 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/pose-tracking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Position Tracking</title>
+      <link>https://livey.github.io/tags/position-tracking/</link>
+      <pubDate>Mon, 02 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/position-tracking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Angle Tracking</title>
+      <link>https://livey.github.io/tags/angle-tracking/</link>
+      <pubDate>Sat, 30 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/angle-tracking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Motion Compensation</title>
+      <link>https://livey.github.io/tags/motion-compensation/</link>
+      <pubDate>Sat, 30 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/motion-compensation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rolling Shutter Camera</title>
+      <link>https://livey.github.io/tags/rolling-shutter-camera/</link>
+      <pubDate>Mon, 25 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/rolling-shutter-camera/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Camera Projection</title>
+      <link>https://livey.github.io/tags/camera-projection/</link>
+      <pubDate>Sun, 24 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/camera-projection/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Computer Vision</title>
+      <link>https://livey.github.io/tags/computer-vision/</link>
+      <pubDate>Sun, 24 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/computer-vision/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>View Frustum</title>
+      <link>https://livey.github.io/tags/view-frustum/</link>
+      <pubDate>Sun, 24 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/view-frustum/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Assignment Problem</title>
+      <link>https://livey.github.io/tags/assignment-problem/</link>
+      <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/assignment-problem/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hungarian Algorithm</title>
+      <link>https://livey.github.io/tags/hungarian-algorithm/</link>
+      <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/hungarian-algorithm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Primal-Dual Algorithm</title>
+      <link>https://livey.github.io/tags/primal-dual-algorithm/</link>
+      <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/primal-dual-algorithm/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

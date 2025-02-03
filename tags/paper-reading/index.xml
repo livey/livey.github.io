@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Paper Reading on Fuwei&#39;s Tech Notes</title>
+    <link>https://livey.github.io/tags/paper-reading/</link>
+    <description>Recent content in Paper Reading on Fuwei&#39;s Tech Notes</description>
+    <image>
+      <title>Fuwei&#39;s Tech Notes</title>
+      <url>https://livey.github.io/images/site-preview.jpg</url>
+      <link>https://livey.github.io/images/site-preview.jpg</link>
+    </image>
+    <generator>Hugo -- 0.140.1</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 27 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://livey.github.io/tags/paper-reading/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fast LIO Paper Reading</title>
+      <link>https://livey.github.io/posts/2024-12-fast-lio/</link>
+      <pubDate>Fri, 27 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/posts/2024-12-fast-lio/</guid>
+      <description>A detailed derivation complementing the Fast LIO paper.</description>
+    </item>
+  </channel>
+</rss>
