@@ -2,10 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://livey.github.io/tags/autonomous-driving/</loc>
+    <lastmod>2025-02-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/coordinate/</loc>
+    <lastmod>2025-02-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/posts/2025-02-07-coordinate/</loc>
+    <lastmod>2025-02-07T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://livey.github.io/</loc>
     <lastmod>2025-02-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/posts/</loc>
+    <lastmod>2025-02-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/</loc>
     <lastmod>2025-02-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/3d-gaussian-splatting/</loc>
@@ -18,9 +30,6 @@
     <lastmod>2024-12-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/nerf/</loc>
-    <lastmod>2024-12-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/</loc>
     <lastmod>2024-12-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/fast-lio/</loc>
@@ -61,9 +70,6 @@
   </url><url>
     <loc>https://livey.github.io/tags/tutorial/</loc>
     <lastmod>2024-12-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/autonomous-driving/</loc>
-    <lastmod>2024-12-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/kalman-filter/</loc>
     <lastmod>2024-12-24T00:00:00+00:00</lastmod>

@@ -11,8 +11,22 @@
     </image>
     <generator>Hugo -- 0.140.1</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 28 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 07 Feb 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://livey.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Autonomous Driving</title>
+      <link>https://livey.github.io/tags/autonomous-driving/</link>
+      <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/autonomous-driving/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Coordinate</title>
+      <link>https://livey.github.io/tags/coordinate/</link>
+      <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/coordinate/</guid>
+      <description></description>
+    </item>
     <item>
       <title>3D Gaussian Splatting</title>
       <link>https://livey.github.io/tags/3d-gaussian-splatting/</link>
@@ -102,13 +116,6 @@
       <link>https://livey.github.io/tags/tutorial/</link>
       <pubDate>Thu, 26 Dec 2024 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/tags/tutorial/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Autonomous Driving</title>
-      <link>https://livey.github.io/tags/autonomous-driving/</link>
-      <pubDate>Tue, 24 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/tags/autonomous-driving/</guid>
       <description></description>
     </item>
     <item>
