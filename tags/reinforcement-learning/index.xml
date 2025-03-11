@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Reinforcement Learning on Fuwei&#39;s Tech Notes</title>
+    <link>https://livey.github.io/tags/reinforcement-learning/</link>
+    <description>Recent content in Reinforcement Learning on Fuwei&#39;s Tech Notes</description>
+    <image>
+      <title>Fuwei&#39;s Tech Notes</title>
+      <url>https://livey.github.io/images/site-preview.jpg</url>
+      <link>https://livey.github.io/images/site-preview.jpg</link>
+    </image>
+    <generator>Hugo -- 0.140.1</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 05 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://livey.github.io/tags/reinforcement-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reinforcement Learning</title>
+      <link>https://livey.github.io/posts/2025-03-05-reinforcement-learning/</link>
+      <pubDate>Wed, 05 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/posts/2025-03-05-reinforcement-learning/</guid>
+      <description>This is an introduction to reinforcement learning.</description>
+    </item>
+  </channel>
+</rss>
