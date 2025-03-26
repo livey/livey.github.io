@@ -11,8 +11,43 @@
     </image>
     <generator>Hugo -- 0.140.1</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 05 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 22 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://livey.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Extended Kalman Filter</title>
+      <link>https://livey.github.io/tags/extended-kalman-filter/</link>
+      <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/extended-kalman-filter/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kalman Filter</title>
+      <link>https://livey.github.io/tags/kalman-filter/</link>
+      <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/kalman-filter/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Optimal Estimation</title>
+      <link>https://livey.github.io/tags/optimal-estimation/</link>
+      <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/optimal-estimation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Particle Filter</title>
+      <link>https://livey.github.io/tags/particle-filter/</link>
+      <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/particle-filter/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Unscented Kalman Filter</title>
+      <link>https://livey.github.io/tags/unscented-kalman-filter/</link>
+      <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/unscented-kalman-filter/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Reinforcement Learning</title>
       <link>https://livey.github.io/tags/reinforcement-learning/</link>
@@ -144,13 +179,6 @@
       <link>https://livey.github.io/tags/tutorial/</link>
       <pubDate>Thu, 26 Dec 2024 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/tags/tutorial/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Kalman Filter</title>
-      <link>https://livey.github.io/tags/kalman-filter/</link>
-      <pubDate>Tue, 24 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/tags/kalman-filter/</guid>
       <description></description>
     </item>
     <item>

@@ -2,19 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://livey.github.io/tags/extended-kalman-filter/</loc>
+    <lastmod>2025-03-22T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://livey.github.io/</loc>
     <lastmod>2025-03-22T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://livey.github.io/tags/kalman-filter/</loc>
+    <lastmod>2025-03-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/posts/2025-03-22-kalman-filters/</loc>
+    <lastmod>2025-03-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/optimal-estimation/</loc>
+    <lastmod>2025-03-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/particle-filter/</loc>
+    <lastmod>2025-03-22T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://livey.github.io/posts/</loc>
+    <lastmod>2025-03-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/</loc>
+    <lastmod>2025-03-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/unscented-kalman-filter/</loc>
     <lastmod>2025-03-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/reinforcement-learning/</loc>
     <lastmod>2025-03-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/posts/2025-03-05-reinforcement-learning/</loc>
-    <lastmod>2025-03-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/</loc>
     <lastmod>2025-03-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/autonomous-driving/</loc>
@@ -88,9 +106,6 @@
   </url><url>
     <loc>https://livey.github.io/tags/tutorial/</loc>
     <lastmod>2024-12-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/kalman-filter/</loc>
-    <lastmod>2024-12-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/pose-tracking/</loc>
     <lastmod>2024-12-24T00:00:00+00:00</lastmod>
