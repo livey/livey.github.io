@@ -14,10 +14,10 @@
     <lastBuildDate>Sat, 22 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://livey.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Extended Kalman Filter</title>
-      <link>https://livey.github.io/tags/extended-kalman-filter/</link>
+      <title>Bayesian Estimation</title>
+      <link>https://livey.github.io/tags/bayesian-estimation/</link>
       <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/tags/extended-kalman-filter/</guid>
+      <guid>https://livey.github.io/tags/bayesian-estimation/</guid>
       <description></description>
     </item>
     <item>
@@ -35,17 +35,10 @@
       <description></description>
     </item>
     <item>
-      <title>Particle Filter</title>
-      <link>https://livey.github.io/tags/particle-filter/</link>
+      <title>Parameter Estimation</title>
+      <link>https://livey.github.io/tags/parameter-estimation/</link>
       <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/tags/particle-filter/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Unscented Kalman Filter</title>
-      <link>https://livey.github.io/tags/unscented-kalman-filter/</link>
-      <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/tags/unscented-kalman-filter/</guid>
+      <guid>https://livey.github.io/tags/parameter-estimation/</guid>
       <description></description>
     </item>
     <item>
