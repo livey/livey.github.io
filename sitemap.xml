@@ -2,10 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://livey.github.io/tags/bayesian-estimation/</loc>
-    <lastmod>2025-03-22T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://livey.github.io/</loc>
+    <lastmod>2025-04-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/posts/</loc>
+    <lastmod>2025-04-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/bayesian-estimation/</loc>
     <lastmod>2025-03-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/kalman-filter/</loc>
@@ -18,9 +21,6 @@
     <lastmod>2025-03-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/parameter-estimation/</loc>
-    <lastmod>2025-03-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/posts/</loc>
     <lastmod>2025-03-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/</loc>
