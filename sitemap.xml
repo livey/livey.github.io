@@ -2,13 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://livey.github.io/tags/annotation/</loc>
+    <lastmod>2025-04-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/autonomous-driving/</loc>
+    <lastmod>2025-04-16T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://livey.github.io/</loc>
+    <lastmod>2025-04-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/motion-planning/</loc>
     <lastmod>2025-04-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/path-generating/</loc>
     <lastmod>2025-04-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/posts/2025-04-16-path-genrating/</loc>
+    <lastmod>2025-04-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/path-planning/</loc>
     <lastmod>2025-04-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/posts/</loc>
@@ -37,9 +49,6 @@
   </url><url>
     <loc>https://livey.github.io/posts/2025-03-05-reinforcement-learning/</loc>
     <lastmod>2025-03-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/autonomous-driving/</loc>
-    <lastmod>2025-02-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/coordinate/</loc>
     <lastmod>2025-02-07T00:00:00+00:00</lastmod>
