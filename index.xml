@@ -124,7 +124,7 @@
       <pubDate>Sat, 06 Jan 2024 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/about/</guid>
       <description>&lt;h1 id=&#34;fuwei-li&#34;&gt;Fuwei Li&lt;/h1&gt;
-&lt;p&gt;Team Lead specializing in machine learning, computer vision, SLAM, and 3D driving scene reconstruction technologies. With extensive experience in adversarial machine learning, 3D Gaussian splatting, sensor calibration, sparse Bayesian learning, and object tracking.&lt;/p&gt;
+&lt;!-- Team Lead specializing in machine learning, computer vision, SLAM, and 3D driving scene reconstruction technologies. With extensive experience in adversarial machine learning, 3D Gaussian splatting, sensor calibration, sparse Bayesian learning, and object tracking. --&gt;
 &lt;h2 id=&#34;contact&#34;&gt;Contact&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;📍 San Jose, CA&lt;/li&gt;
@@ -132,17 +132,31 @@
 &lt;li&gt;🌐 &lt;a href=&#34;https://livey.github.io&#34;&gt;Tech Blog&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;🔗 &lt;a href=&#34;https://github.com/livey&#34;&gt;GitHub&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;professional-experience&#34;&gt;Professional Experience&lt;/h2&gt;
-&lt;h3 id=&#34;team-lead-calibration--pre-processing&#34;&gt;Team Lead, Calibration &amp;amp; Pre-processing&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Black Sesame Technologies Inc.&lt;/strong&gt; | &lt;em&gt;May 2024 - Present&lt;/em&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Developed ground truth system for training data collection, improving annotation efficiency by 20% and accuracy by 30%&lt;/li&gt;
-&lt;li&gt;Led sensor calibration team for data collection vehicles&lt;/li&gt;
-&lt;li&gt;Implemented large-scale LiDAR-based SLAM systems&lt;/li&gt;
-&lt;li&gt;Researched 3D Gaussian splatting and diffusion generative methods&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;senior-research-scientist-ai-perception-algorithm&#34;&gt;Senior Research Scientist, AI Perception Algorithm&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Black Sesame Technologies Inc.&lt;/strong&gt; | &lt;em&gt;Aug. 2023 - Apr. 2024&lt;/em&gt;&lt;/p&gt;</description>
+&lt;!-- ## Professional Experience
+
+### Team Lead, Calibration &amp; Pre-processing
+**Black Sesame Technologies Inc.** | *May 2024 - Present*
+
+- Developed ground truth system for training data collection, improving annotation efficiency by 20% and accuracy by 30%
+- Led sensor calibration team for data collection vehicles
+- Implemented large-scale LiDAR-based SLAM systems
+- Researched 3D Gaussian splatting and diffusion generative methods
+
+### Senior Research Scientist, AI Perception Algorithm
+**Black Sesame Technologies Inc.** | *Aug. 2023 - Apr. 2024*
+
+- Enhanced BEV object post-processing
+- Improved single-camera object processing through sensor fusion
+- Deployed production-ready object position estimation algorithms
+
+### Research Scientist, AI Perception Algorithm
+**Black Sesame Technologies Inc.** | *Oct. 2021 - July 2023*
+
+- Researched cutting-edge perception algorithms for autonomous driving
+- Conducted experiments on multi-object tracking and depth estimation --&gt;
+&lt;h2 id=&#34;education&#34;&gt;Education&lt;/h2&gt;
+&lt;h3 id=&#34;phd-in-electrical-and-computer-engineering&#34;&gt;Ph.D. in Electrical and Computer Engineering&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;University of California, Davis&lt;/strong&gt; | &lt;em&gt;2021&lt;/em&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
