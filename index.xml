@@ -49,14 +49,14 @@
       <description>Commonly used coordinate systems in autonomous driving.</description>
     </item>
     <item>
-      <title>End of Line Camera Calibration</title>
+      <title>A Deep Dive into End-of-Line Camera Calibration for Autonomous Vehicles</title>
       <link>https://livey.github.io/posts/2025-02-eol-calib/</link>
       <pubDate>Mon, 03 Feb 2025 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/posts/2025-02-eol-calib/</guid>
       <description>This post is about end-of-line (EOL) camera calibration, especially for camera bird&amp;#39;s-eye view (BEV) extrinsic calibration.</description>
     </item>
     <item>
-      <title>3D Gaussian Splatting</title>
+      <title>An In-Depth Guide to 3D Gaussian Splatting for Real-Time 3D Reconstruction</title>
       <link>https://livey.github.io/posts/2024-12-3dgs/</link>
       <pubDate>Sat, 28 Dec 2024 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/posts/2024-12-3dgs/</guid>

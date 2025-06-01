@@ -71,13 +71,13 @@
     <loc>https://livey.github.io/posts/2025-02-07-coordinate/</loc>
     <lastmod>2025-02-07T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://livey.github.io/posts/2025-02-eol-calib/</loc>
+    <lastmod>2025-02-03T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://livey.github.io/tags/bev/</loc>
     <lastmod>2025-02-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/camera-calibration/</loc>
-    <lastmod>2025-02-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/posts/2025-02-eol-calib/</loc>
     <lastmod>2025-02-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/eol/</loc>
@@ -86,10 +86,10 @@
     <loc>https://livey.github.io/tags/3d-gaussian-splatting/</loc>
     <lastmod>2024-12-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://livey.github.io/posts/2024-12-3dgs/</loc>
+    <loc>https://livey.github.io/tags/3d-reconstruction/</loc>
     <lastmod>2024-12-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://livey.github.io/tags/3d-reconstruction/</loc>
+    <loc>https://livey.github.io/posts/2024-12-3dgs/</loc>
     <lastmod>2024-12-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/nerf/</loc>
