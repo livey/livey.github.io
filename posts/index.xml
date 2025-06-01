@@ -21,7 +21,7 @@
       <description>Generating a natural path to connect two given points.</description>
     </item>
     <item>
-      <title>Kalman Filters</title>
+      <title>Demystifying Kalman Filters: From Classical Estimation to Bayesian Inference</title>
       <link>https://livey.github.io/posts/2025-03-22-kalman-filters/</link>
       <pubDate>Sat, 22 Mar 2025 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/posts/2025-03-22-kalman-filters/</guid>
