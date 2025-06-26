@@ -21,13 +21,6 @@
       <description>Generating a natural path to connect two given points.</description>
     </item>
     <item>
-      <title>Simultaneous Localization and Mapping (SLAM)</title>
-      <link>https://livey.github.io/posts/2025-02-20-slam/</link>
-      <pubDate>Thu, 20 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/posts/2025-02-20-slam/</guid>
-      <description>A tutorial on simultaneous localization and mapping.</description>
-    </item>
-    <item>
       <title>Coordinate Systems in Autonomous Driving</title>
       <link>https://livey.github.io/posts/2025-02-07-coordinate/</link>
       <pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate>

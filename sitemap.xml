@@ -50,21 +50,6 @@
     <loc>https://livey.github.io/posts/2025-03-05-reinforcement-learning/</loc>
     <lastmod>2025-03-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://livey.github.io/tags/iterative-closest-point/</loc>
-    <lastmod>2025-02-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/lidar/</loc>
-    <lastmod>2025-02-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/simultaneous-localization-and-mapping/</loc>
-    <lastmod>2025-02-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/posts/2025-02-20-slam/</loc>
-    <lastmod>2025-02-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/slam/</loc>
-    <lastmod>2025-02-20T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://livey.github.io/tags/coordinate/</loc>
     <lastmod>2025-02-07T00:00:00+00:00</lastmod>
   </url><url>
@@ -107,10 +92,16 @@
     <loc>https://livey.github.io/tags/signal-processing/</loc>
     <lastmod>2024-12-27T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://livey.github.io/tags/slam/</loc>
+    <lastmod>2024-12-27T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://livey.github.io/posts/2024-12-fast-lio/</loc>
     <lastmod>2024-12-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/icp/</loc>
+    <lastmod>2024-12-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/iterative-closest-point/</loc>
     <lastmod>2024-12-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/posts/2024-12-icp/</loc>
