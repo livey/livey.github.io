@@ -11,20 +11,76 @@
     </image>
     <generator>Hugo -- 0.140.1</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 16 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 19 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://livey.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Autonomous Driving</title>
+      <link>https://livey.github.io/tags/autonomous-driving/</link>
+      <pubDate>Sat, 19 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/autonomous-driving/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Iterative Closest Point</title>
+      <link>https://livey.github.io/tags/iterative-closest-point/</link>
+      <pubDate>Sat, 19 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/iterative-closest-point/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>LiDAR</title>
+      <link>https://livey.github.io/tags/lidar/</link>
+      <pubDate>Sat, 19 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/lidar/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>LiDAR-SLAM</title>
+      <link>https://livey.github.io/tags/lidar-slam/</link>
+      <pubDate>Sat, 19 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/lidar-slam/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Localization</title>
+      <link>https://livey.github.io/tags/localization/</link>
+      <pubDate>Sat, 19 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/localization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mapping</title>
+      <link>https://livey.github.io/tags/mapping/</link>
+      <pubDate>Sat, 19 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/mapping/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Point Cloud</title>
+      <link>https://livey.github.io/tags/point-cloud/</link>
+      <pubDate>Sat, 19 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/point-cloud/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Simultaneous Localization and Mapping</title>
+      <link>https://livey.github.io/tags/simultaneous-localization-and-mapping/</link>
+      <pubDate>Sat, 19 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/simultaneous-localization-and-mapping/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SLAM</title>
+      <link>https://livey.github.io/tags/slam/</link>
+      <pubDate>Sat, 19 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/slam/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Annotation</title>
       <link>https://livey.github.io/tags/annotation/</link>
       <pubDate>Wed, 16 Apr 2025 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/tags/annotation/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Autonomous Driving</title>
-      <link>https://livey.github.io/tags/autonomous-driving/</link>
-      <pubDate>Wed, 16 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/tags/autonomous-driving/</guid>
       <description></description>
     </item>
     <item>
@@ -161,24 +217,10 @@
       <description></description>
     </item>
     <item>
-      <title>SLAM</title>
-      <link>https://livey.github.io/tags/slam/</link>
-      <pubDate>Fri, 27 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/tags/slam/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>ICP</title>
       <link>https://livey.github.io/tags/icp/</link>
       <pubDate>Thu, 26 Dec 2024 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/tags/icp/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Iterative Closest Point</title>
-      <link>https://livey.github.io/tags/iterative-closest-point/</link>
-      <pubDate>Thu, 26 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/tags/iterative-closest-point/</guid>
       <description></description>
     </item>
     <item>

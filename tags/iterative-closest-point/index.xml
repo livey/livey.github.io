@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- 0.140.1</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 26 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 19 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://livey.github.io/tags/iterative-closest-point/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LiDAR-SLAM Decoded: From Point Clouds to Precision Maps</title>
+      <link>https://livey.github.io/posts/2025-02-20-slam/</link>
+      <pubDate>Sat, 19 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/posts/2025-02-20-slam/</guid>
+      <description>An in-depth tutorial on Simultaneous Localization and Mapping (SLAM), covering its fundamental concepts, real-world applications, and key challenges.</description>
+    </item>
     <item>
       <title>Iterative Closest Point Uncovered: Mathematical Foundations and Applications</title>
       <link>https://livey.github.io/posts/2024-12-icp/</link>
