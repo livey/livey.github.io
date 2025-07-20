@@ -21,6 +21,13 @@
       <description>An in-depth tutorial on Simultaneous Localization and Mapping (SLAM), covering its fundamental concepts, real-world applications, and key challenges.</description>
     </item>
     <item>
+      <title>Perspective and Point (PnP) Problem</title>
+      <link>https://livey.github.io/posts/2025-0515-pnp/</link>
+      <pubDate>Sat, 19 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/posts/2025-0515-pnp/</guid>
+      <description>An introduction to the Perspective-n-Point (PnP) problem.</description>
+    </item>
+    <item>
       <title>Connecting Points with Grace: A Study on Natural Path Generation Methods</title>
       <link>https://livey.github.io/posts/2025-04-16-path-genrating/</link>
       <pubDate>Wed, 16 Apr 2025 00:00:00 +0000</pubDate>
