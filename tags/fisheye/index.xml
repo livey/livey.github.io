@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Camera Calibration on Fuwei&#39;s Tech Notes</title>
-    <link>https://livey.github.io/tags/camera-calibration/</link>
-    <description>Recent content in Camera Calibration on Fuwei&#39;s Tech Notes</description>
+    <title>Fisheye on Fuwei&#39;s Tech Notes</title>
+    <link>https://livey.github.io/tags/fisheye/</link>
+    <description>Recent content in Fisheye on Fuwei&#39;s Tech Notes</description>
     <image>
       <title>Fuwei&#39;s Tech Notes</title>
       <url>https://livey.github.io/images/site-preview.jpg</url>
@@ -12,20 +12,13 @@
     <generator>Hugo -- 0.140.1</generator>
     <language>en</language>
     <lastBuildDate>Fri, 21 Feb 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://livey.github.io/tags/camera-calibration/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://livey.github.io/tags/fisheye/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Fisheye EOL Calibration</title>
       <link>https://livey.github.io/posts/2025-02-21-fisheye-calib/</link>
       <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/posts/2025-02-21-fisheye-calib/</guid>
       <description>Introduction to the fisheye EOL calibration.</description>
-    </item>
-    <item>
-      <title>A Deep Dive into End-of-Line Camera Calibration for Autonomous Vehicles</title>
-      <link>https://livey.github.io/posts/2025-02-eol-calib/</link>
-      <pubDate>Mon, 03 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/posts/2025-02-eol-calib/</guid>
-      <description>This post is about end-of-line (EOL) camera calibration, especially for camera bird&amp;#39;s-eye view (BEV) extrinsic calibration.</description>
     </item>
   </channel>
 </rss>

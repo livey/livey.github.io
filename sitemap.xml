@@ -89,6 +89,18 @@
     <loc>https://livey.github.io/posts/2025-03-05-reinforcement-learning/</loc>
     <lastmod>2025-03-05T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://livey.github.io/tags/camera-calibration/</loc>
+    <lastmod>2025-02-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/eol/</loc>
+    <lastmod>2025-02-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/fisheye/</loc>
+    <lastmod>2025-02-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/posts/2025-02-21-fisheye-calib/</loc>
+    <lastmod>2025-02-21T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://livey.github.io/tags/coordinate/</loc>
     <lastmod>2025-02-07T00:00:00+00:00</lastmod>
   </url><url>
@@ -99,12 +111,6 @@
     <lastmod>2025-02-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/bev/</loc>
-    <lastmod>2025-02-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/camera-calibration/</loc>
-    <lastmod>2025-02-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/eol/</loc>
     <lastmod>2025-02-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/3d-gaussian-splatting/</loc>
