@@ -49,11 +49,11 @@
       <description>This is an introduction to reinforcement learning.</description>
     </item>
     <item>
-      <title>Fisheye EOL Calibration</title>
+      <title>Fisheye Camera Extrinsic EOL Calibration</title>
       <link>https://livey.github.io/posts/2025-02-21-fisheye-calib/</link>
       <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/posts/2025-02-21-fisheye-calib/</guid>
-      <description>Introduction to the fisheye EOL calibration.</description>
+      <description>Introduction to the fisheye camera extrinsic EOL calibration.</description>
     </item>
     <item>
       <title>Coordinate Systems in Autonomous Driving</title>
