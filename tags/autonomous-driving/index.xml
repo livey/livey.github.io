@@ -42,11 +42,11 @@
       <description>Commonly used coordinate systems in autonomous driving.</description>
     </item>
     <item>
-      <title>A Deep Dive into End-of-Line Camera Calibration for Autonomous Vehicles</title>
+      <title>A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles</title>
       <link>https://livey.github.io/posts/2025-02-eol-calib/</link>
       <pubDate>Mon, 03 Feb 2025 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/posts/2025-02-eol-calib/</guid>
-      <description>This post is about end-of-line (EOL) camera calibration, especially for camera bird&amp;#39;s-eye view (BEV) extrinsic calibration.</description>
+      <description>This post is about end-of-line (EOL) camera extrinsic calibration, especially for camera bird&amp;#39;s-eye view (BEV) extrinsic calibration.</description>
     </item>
     <item>
       <title>Pose Tracking with Iterative Extended Kalman Filter</title>
