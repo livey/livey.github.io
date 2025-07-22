@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- 0.140.1</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 03 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 21 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://livey.github.io/tags/bev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Wayformer Paper Reading</title>
+      <link>https://livey.github.io/posts/2025-07-21-wayformer/</link>
+      <pubDate>Mon, 21 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/posts/2025-07-21-wayformer/</guid>
+      <description>A technical breakdown of the Wayformer paper for motion forecasting, focusing on its architecture and attention mechanisms.</description>
+    </item>
     <item>
       <title>A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles</title>
       <link>https://livey.github.io/posts/2025-02-eol-calib/</link>

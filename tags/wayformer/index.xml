@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Paper Reading on Fuwei&#39;s Tech Notes</title>
-    <link>https://livey.github.io/tags/paper-reading/</link>
-    <description>Recent content in Paper Reading on Fuwei&#39;s Tech Notes</description>
+    <title>Wayformer on Fuwei&#39;s Tech Notes</title>
+    <link>https://livey.github.io/tags/wayformer/</link>
+    <description>Recent content in Wayformer on Fuwei&#39;s Tech Notes</description>
     <image>
       <title>Fuwei&#39;s Tech Notes</title>
       <url>https://livey.github.io/images/site-preview.jpg</url>
@@ -12,20 +12,13 @@
     <generator>Hugo -- 0.140.1</generator>
     <language>en</language>
     <lastBuildDate>Mon, 21 Jul 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://livey.github.io/tags/paper-reading/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://livey.github.io/tags/wayformer/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Wayformer Paper Reading</title>
       <link>https://livey.github.io/posts/2025-07-21-wayformer/</link>
       <pubDate>Mon, 21 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/posts/2025-07-21-wayformer/</guid>
       <description>A technical breakdown of the Wayformer paper for motion forecasting, focusing on its architecture and attention mechanisms.</description>
-    </item>
-    <item>
-      <title>Understanding FAST-LIO: Supplementary Derivations and Explanations</title>
-      <link>https://livey.github.io/posts/2024-12-fast-lio/</link>
-      <pubDate>Fri, 27 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/posts/2024-12-fast-lio/</guid>
-      <description>A detailed derivation complementing the Fast LIO paper.</description>
     </item>
   </channel>
 </rss>

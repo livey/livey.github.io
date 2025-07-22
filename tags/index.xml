@@ -11,8 +11,43 @@
     </image>
     <generator>Hugo -- 0.140.1</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 19 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 21 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://livey.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BEV</title>
+      <link>https://livey.github.io/tags/bev/</link>
+      <pubDate>Mon, 21 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/bev/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>End to End Autonomous Driving</title>
+      <link>https://livey.github.io/tags/end-to-end-autonomous-driving/</link>
+      <pubDate>Mon, 21 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/end-to-end-autonomous-driving/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Paper Reading</title>
+      <link>https://livey.github.io/tags/paper-reading/</link>
+      <pubDate>Mon, 21 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/paper-reading/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Trajectory Prediction</title>
+      <link>https://livey.github.io/tags/trajectory-prediction/</link>
+      <pubDate>Mon, 21 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/trajectory-prediction/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Wayformer</title>
+      <link>https://livey.github.io/tags/wayformer/</link>
+      <pubDate>Mon, 21 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/wayformer/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Autonomous Driving</title>
       <link>https://livey.github.io/tags/autonomous-driving/</link>
@@ -203,13 +238,6 @@
       <description></description>
     </item>
     <item>
-      <title>BEV</title>
-      <link>https://livey.github.io/tags/bev/</link>
-      <pubDate>Mon, 03 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/tags/bev/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Camera Extrinsic Calibration</title>
       <link>https://livey.github.io/tags/camera-extrinsic-calibration/</link>
       <pubDate>Mon, 03 Feb 2025 00:00:00 +0000</pubDate>
@@ -256,13 +284,6 @@
       <link>https://livey.github.io/tags/lio/</link>
       <pubDate>Fri, 27 Dec 2024 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/tags/lio/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Paper Reading</title>
-      <link>https://livey.github.io/tags/paper-reading/</link>
-      <pubDate>Fri, 27 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/tags/paper-reading/</guid>
       <description></description>
     </item>
     <item>

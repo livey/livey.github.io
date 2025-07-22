@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- 0.140.1</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 19 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 21 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://livey.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Wayformer Paper Reading</title>
+      <link>https://livey.github.io/posts/2025-07-21-wayformer/</link>
+      <pubDate>Mon, 21 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/posts/2025-07-21-wayformer/</guid>
+      <description>A technical breakdown of the Wayformer paper for motion forecasting, focusing on its architecture and attention mechanisms.</description>
+    </item>
     <item>
       <title>LiDAR-SLAM Decoded: From Point Clouds to Precision Maps</title>
       <link>https://livey.github.io/posts/2025-02-20-slam/</link>
