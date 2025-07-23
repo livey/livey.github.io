@@ -2,22 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://livey.github.io/posts/2025-07-22-track-life/</loc>
+    <lastmod>2025-07-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/</loc>
+    <lastmod>2025-07-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/object-tracking/</loc>
+    <lastmod>2025-07-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/posts/</loc>
+    <lastmod>2025-07-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/state-machine/</loc>
+    <lastmod>2025-07-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/</loc>
+    <lastmod>2025-07-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/tracking-management/</loc>
+    <lastmod>2025-07-22T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://livey.github.io/tags/bev/</loc>
     <lastmod>2025-07-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/end-to-end-autonomous-driving/</loc>
     <lastmod>2025-07-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://livey.github.io/</loc>
-    <lastmod>2025-07-21T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://livey.github.io/tags/paper-reading/</loc>
-    <lastmod>2025-07-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/posts/</loc>
-    <lastmod>2025-07-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/</loc>
     <lastmod>2025-07-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/trajectory-prediction/</loc>

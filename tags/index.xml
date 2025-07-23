@@ -11,8 +11,29 @@
     </image>
     <generator>Hugo -- 0.140.1</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 21 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 22 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://livey.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Object Tracking</title>
+      <link>https://livey.github.io/tags/object-tracking/</link>
+      <pubDate>Tue, 22 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/object-tracking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>State Machine</title>
+      <link>https://livey.github.io/tags/state-machine/</link>
+      <pubDate>Tue, 22 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/state-machine/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tracking Management</title>
+      <link>https://livey.github.io/tags/tracking-management/</link>
+      <pubDate>Tue, 22 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/tracking-management/</guid>
+      <description></description>
+    </item>
     <item>
       <title>BEV</title>
       <link>https://livey.github.io/tags/bev/</link>
