@@ -2,22 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://livey.github.io/posts/2025-07-22-track-life/</loc>
-    <lastmod>2025-07-22T00:00:00+00:00</lastmod>
+    <loc>https://livey.github.io/tags/autonomous-driving/</loc>
+    <lastmod>2025-08-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/collision-loss/</loc>
+    <lastmod>2025-08-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/cost-map/</loc>
+    <lastmod>2025-08-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/end-to-end-planning/</loc>
+    <lastmod>2025-08-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/</loc>
+    <lastmod>2025-08-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/posts/</loc>
+    <lastmod>2025-08-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/posts/2025-08-13-collission-loss/</loc>
+    <lastmod>2025-08-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/probabilistic-maps/</loc>
+    <lastmod>2025-08-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/signed-distance-map/</loc>
+    <lastmod>2025-08-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/</loc>
+    <lastmod>2025-08-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/posts/2025-07-22-track-life/</loc>
     <lastmod>2025-07-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/object-tracking/</loc>
     <lastmod>2025-07-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://livey.github.io/posts/</loc>
-    <lastmod>2025-07-22T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://livey.github.io/tags/state-machine/</loc>
-    <lastmod>2025-07-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/</loc>
     <lastmod>2025-07-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/tracking-management/</loc>
@@ -40,9 +61,6 @@
   </url><url>
     <loc>https://livey.github.io/posts/2025-07-21-wayformer/</loc>
     <lastmod>2025-07-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/autonomous-driving/</loc>
-    <lastmod>2025-07-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/calibration/</loc>
     <lastmod>2025-07-19T00:00:00+00:00</lastmod>

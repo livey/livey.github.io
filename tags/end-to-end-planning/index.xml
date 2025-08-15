@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>End-to-End Planning on Fuwei&#39;s Tech Notes</title>
+    <link>https://livey.github.io/tags/end-to-end-planning/</link>
+    <description>Recent content in End-to-End Planning on Fuwei&#39;s Tech Notes</description>
+    <image>
+      <title>Fuwei&#39;s Tech Notes</title>
+      <url>https://livey.github.io/images/site-preview.jpg</url>
+      <link>https://livey.github.io/images/site-preview.jpg</link>
+    </image>
+    <generator>Hugo -- 0.140.1</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 14 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://livey.github.io/tags/end-to-end-planning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Probabilistic Collision Loss: Bounds and Soft Distance Maps for Autonomous Driving</title>
+      <link>https://livey.github.io/posts/2025-08-13-collission-loss/</link>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/posts/2025-08-13-collission-loss/</guid>
+      <description>Collision loss design in end-to-end autonomous driving.</description>
+    </item>
+  </channel>
+</rss>

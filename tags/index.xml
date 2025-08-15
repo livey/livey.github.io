@@ -11,8 +11,50 @@
     </image>
     <generator>Hugo -- 0.140.1</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 22 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 14 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://livey.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Autonomous Driving</title>
+      <link>https://livey.github.io/tags/autonomous-driving/</link>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/autonomous-driving/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Collision Loss</title>
+      <link>https://livey.github.io/tags/collision-loss/</link>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/collision-loss/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cost Map</title>
+      <link>https://livey.github.io/tags/cost-map/</link>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/cost-map/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>End-to-End Planning</title>
+      <link>https://livey.github.io/tags/end-to-end-planning/</link>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/end-to-end-planning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Probabilistic Maps</title>
+      <link>https://livey.github.io/tags/probabilistic-maps/</link>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/probabilistic-maps/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Signed Distance Map</title>
+      <link>https://livey.github.io/tags/signed-distance-map/</link>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/signed-distance-map/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Object Tracking</title>
       <link>https://livey.github.io/tags/object-tracking/</link>
@@ -67,13 +109,6 @@
       <link>https://livey.github.io/tags/wayformer/</link>
       <pubDate>Mon, 21 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/tags/wayformer/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Autonomous Driving</title>
-      <link>https://livey.github.io/tags/autonomous-driving/</link>
-      <pubDate>Sat, 19 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/tags/autonomous-driving/</guid>
       <description></description>
     </item>
     <item>
