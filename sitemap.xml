@@ -3,7 +3,34 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://livey.github.io/tags/autonomous-driving/</loc>
-    <lastmod>2025-08-14T00:00:00+00:00</lastmod>
+    <lastmod>2025-08-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/posts/2025-08-20-lidar-post-processing/</loc>
+    <lastmod>2025-08-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/bundle-adjustment/</loc>
+    <lastmod>2025-08-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/</loc>
+    <lastmod>2025-08-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/lidar/</loc>
+    <lastmod>2025-08-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/optimization/</loc>
+    <lastmod>2025-08-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/posts/</loc>
+    <lastmod>2025-08-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/signal-processing/</loc>
+    <lastmod>2025-08-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/slam/</loc>
+    <lastmod>2025-08-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/</loc>
+    <lastmod>2025-08-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/collision-loss/</loc>
     <lastmod>2025-08-14T00:00:00+00:00</lastmod>
@@ -14,12 +41,6 @@
     <loc>https://livey.github.io/tags/end-to-end-planning/</loc>
     <lastmod>2025-08-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://livey.github.io/</loc>
-    <lastmod>2025-08-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/posts/</loc>
-    <lastmod>2025-08-14T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://livey.github.io/posts/2025-08-13-collission-loss/</loc>
     <lastmod>2025-08-14T00:00:00+00:00</lastmod>
   </url><url>
@@ -27,9 +48,6 @@
     <lastmod>2025-08-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/signed-distance-map/</loc>
-    <lastmod>2025-08-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/</loc>
     <lastmod>2025-08-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/posts/2025-07-22-track-life/</loc>
@@ -68,9 +86,6 @@
     <loc>https://livey.github.io/tags/iterative-closest-point/</loc>
     <lastmod>2025-07-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://livey.github.io/tags/lidar/</loc>
-    <lastmod>2025-07-19T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://livey.github.io/tags/lidar-slam/</loc>
     <lastmod>2025-07-19T00:00:00+00:00</lastmod>
   </url><url>
@@ -98,13 +113,7 @@
     <loc>https://livey.github.io/tags/point-cloud/</loc>
     <lastmod>2025-07-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://livey.github.io/tags/signal-processing/</loc>
-    <lastmod>2025-07-19T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://livey.github.io/tags/simultaneous-localization-and-mapping/</loc>
-    <lastmod>2025-07-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/slam/</loc>
     <lastmod>2025-07-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/annotation/</loc>
@@ -195,9 +204,6 @@
     <lastmod>2024-12-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/posts/2024-12-icp/</loc>
-    <lastmod>2024-12-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/optimization/</loc>
     <lastmod>2024-12-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/radar/</loc>

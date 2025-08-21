@@ -11,13 +11,48 @@
     </image>
     <generator>Hugo -- 0.140.1</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 14 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 20 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://livey.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Autonomous Driving</title>
+      <title>Autonomous-Driving</title>
       <link>https://livey.github.io/tags/autonomous-driving/</link>
-      <pubDate>Thu, 14 Aug 2025 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 20 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/tags/autonomous-driving/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Bundle-Adjustment</title>
+      <link>https://livey.github.io/tags/bundle-adjustment/</link>
+      <pubDate>Wed, 20 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/bundle-adjustment/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>LiDAR</title>
+      <link>https://livey.github.io/tags/lidar/</link>
+      <pubDate>Wed, 20 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/lidar/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Optimization</title>
+      <link>https://livey.github.io/tags/optimization/</link>
+      <pubDate>Wed, 20 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/optimization/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Signal Processing</title>
+      <link>https://livey.github.io/tags/signal-processing/</link>
+      <pubDate>Wed, 20 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/signal-processing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SLAM</title>
+      <link>https://livey.github.io/tags/slam/</link>
+      <pubDate>Wed, 20 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/slam/</guid>
       <description></description>
     </item>
     <item>
@@ -126,13 +161,6 @@
       <description></description>
     </item>
     <item>
-      <title>LiDAR</title>
-      <link>https://livey.github.io/tags/lidar/</link>
-      <pubDate>Sat, 19 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/tags/lidar/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>LiDAR-SLAM</title>
       <link>https://livey.github.io/tags/lidar-slam/</link>
       <pubDate>Sat, 19 Jul 2025 00:00:00 +0000</pubDate>
@@ -182,24 +210,10 @@
       <description></description>
     </item>
     <item>
-      <title>Signal Processing</title>
-      <link>https://livey.github.io/tags/signal-processing/</link>
-      <pubDate>Sat, 19 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/tags/signal-processing/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Simultaneous Localization and Mapping</title>
       <link>https://livey.github.io/tags/simultaneous-localization-and-mapping/</link>
       <pubDate>Sat, 19 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/tags/simultaneous-localization-and-mapping/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>SLAM</title>
-      <link>https://livey.github.io/tags/slam/</link>
-      <pubDate>Sat, 19 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/tags/slam/</guid>
       <description></description>
     </item>
     <item>
@@ -347,13 +361,6 @@
       <link>https://livey.github.io/tags/icp/</link>
       <pubDate>Thu, 26 Dec 2024 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/tags/icp/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Optimization</title>
-      <link>https://livey.github.io/tags/optimization/</link>
-      <pubDate>Thu, 26 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/tags/optimization/</guid>
       <description></description>
     </item>
     <item>
