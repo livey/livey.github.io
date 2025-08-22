@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Autonomous-Driving on Fuwei&#39;s Tech Notes</title>
+    <title>Autonomous Driving on Fuwei&#39;s Tech Notes</title>
     <link>https://livey.github.io/tags/autonomous-driving/</link>
-    <description>Recent content in Autonomous-Driving on Fuwei&#39;s Tech Notes</description>
+    <description>Recent content in Autonomous Driving on Fuwei&#39;s Tech Notes</description>
     <image>
       <title>Fuwei&#39;s Tech Notes</title>
       <url>https://livey.github.io/images/site-preview.jpg</url>
@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- 0.140.1</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 20 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 21 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://livey.github.io/tags/autonomous-driving/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LiDAR Extrinsic Parameter Adjustment for SLAM Recalibration</title>
+      <link>https://livey.github.io/posts/2025-08-21-lidar-adjust/</link>
+      <pubDate>Thu, 21 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/posts/2025-08-21-lidar-adjust/</guid>
+      <description>Mathematical framework for recalibrating SLAM poses and maps when LiDAR extrinsic parameters change, without rerunning the entire SLAM process while preserving annotations.</description>
+    </item>
     <item>
       <title>Bundle Adjustment for LiDAR SLAM: Mathematical Formulation and Optimization</title>
       <link>https://livey.github.io/posts/2025-08-20-lidar-post-processing/</link>

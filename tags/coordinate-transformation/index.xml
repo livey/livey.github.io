@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Mapping on Fuwei&#39;s Tech Notes</title>
-    <link>https://livey.github.io/tags/mapping/</link>
-    <description>Recent content in Mapping on Fuwei&#39;s Tech Notes</description>
+    <title>Coordinate-Transformation on Fuwei&#39;s Tech Notes</title>
+    <link>https://livey.github.io/tags/coordinate-transformation/</link>
+    <description>Recent content in Coordinate-Transformation on Fuwei&#39;s Tech Notes</description>
     <image>
       <title>Fuwei&#39;s Tech Notes</title>
       <url>https://livey.github.io/images/site-preview.jpg</url>
@@ -12,20 +12,13 @@
     <generator>Hugo -- 0.140.1</generator>
     <language>en</language>
     <lastBuildDate>Thu, 21 Aug 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://livey.github.io/tags/mapping/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://livey.github.io/tags/coordinate-transformation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>LiDAR Extrinsic Parameter Adjustment for SLAM Recalibration</title>
       <link>https://livey.github.io/posts/2025-08-21-lidar-adjust/</link>
       <pubDate>Thu, 21 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/posts/2025-08-21-lidar-adjust/</guid>
       <description>Mathematical framework for recalibrating SLAM poses and maps when LiDAR extrinsic parameters change, without rerunning the entire SLAM process while preserving annotations.</description>
-    </item>
-    <item>
-      <title>LiDAR-SLAM Decoded: From Point Clouds to Precision Maps</title>
-      <link>https://livey.github.io/posts/2025-02-20-slam/</link>
-      <pubDate>Sat, 19 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/posts/2025-02-20-slam/</guid>
-      <description>An in-depth tutorial on Simultaneous Localization and Mapping (SLAM), covering its fundamental concepts, real-world applications, and key challenges.</description>
     </item>
   </channel>
 </rss>

@@ -3,7 +3,34 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://livey.github.io/tags/autonomous-driving/</loc>
-    <lastmod>2025-08-20T00:00:00+00:00</lastmod>
+    <lastmod>2025-08-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/calibration/</loc>
+    <lastmod>2025-08-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/coordinate-transformation/</loc>
+    <lastmod>2025-08-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/</loc>
+    <lastmod>2025-08-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/lidar/</loc>
+    <lastmod>2025-08-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/posts/2025-08-21-lidar-adjust/</loc>
+    <lastmod>2025-08-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/mapping/</loc>
+    <lastmod>2025-08-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/posts/</loc>
+    <lastmod>2025-08-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/slam/</loc>
+    <lastmod>2025-08-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/</loc>
+    <lastmod>2025-08-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/posts/2025-08-20-lidar-post-processing/</loc>
     <lastmod>2025-08-20T00:00:00+00:00</lastmod>
@@ -11,25 +38,10 @@
     <loc>https://livey.github.io/tags/bundle-adjustment/</loc>
     <lastmod>2025-08-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://livey.github.io/</loc>
-    <lastmod>2025-08-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/lidar/</loc>
-    <lastmod>2025-08-20T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://livey.github.io/tags/optimization/</loc>
     <lastmod>2025-08-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://livey.github.io/posts/</loc>
-    <lastmod>2025-08-20T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://livey.github.io/tags/signal-processing/</loc>
-    <lastmod>2025-08-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/slam/</loc>
-    <lastmod>2025-08-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/</loc>
     <lastmod>2025-08-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/collision-loss/</loc>
@@ -80,9 +92,6 @@
     <loc>https://livey.github.io/posts/2025-07-21-wayformer/</loc>
     <lastmod>2025-07-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://livey.github.io/tags/calibration/</loc>
-    <lastmod>2025-07-19T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://livey.github.io/tags/iterative-closest-point/</loc>
     <lastmod>2025-07-19T00:00:00+00:00</lastmod>
   </url><url>
@@ -93,9 +102,6 @@
     <lastmod>2025-07-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/localization/</loc>
-    <lastmod>2025-07-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/mapping/</loc>
     <lastmod>2025-07-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/perspective-n-point/</loc>
