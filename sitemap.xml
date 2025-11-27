@@ -2,6 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://livey.github.io/</loc>
+    <lastmod>2025-11-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/posts/</loc>
+    <lastmod>2025-11-22T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://livey.github.io/tags/autonomous-driving/</loc>
     <lastmod>2025-08-21T00:00:00+00:00</lastmod>
   </url><url>
@@ -11,9 +17,6 @@
     <loc>https://livey.github.io/tags/coordinate-transformation/</loc>
     <lastmod>2025-08-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://livey.github.io/</loc>
-    <lastmod>2025-08-21T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://livey.github.io/tags/lidar/</loc>
     <lastmod>2025-08-21T00:00:00+00:00</lastmod>
   </url><url>
@@ -21,9 +24,6 @@
     <lastmod>2025-08-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/mapping/</loc>
-    <lastmod>2025-08-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/posts/</loc>
     <lastmod>2025-08-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/slam/</loc>
