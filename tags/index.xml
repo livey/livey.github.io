@@ -11,8 +11,22 @@
     </image>
     <generator>Hugo -- 0.140.1</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 21 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 22 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://livey.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Diffusion Model</title>
+      <link>https://livey.github.io/tags/diffusion-model/</link>
+      <pubDate>Sat, 22 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/diffusion-model/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Generative Model</title>
+      <link>https://livey.github.io/tags/generative-model/</link>
+      <pubDate>Sat, 22 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/generative-model/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Autonomous Driving</title>
       <link>https://livey.github.io/tags/autonomous-driving/</link>

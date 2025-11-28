@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- 0.140.1</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 21 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 22 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://livey.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Gentle Introduction to Diffusion Models and Flow Matching</title>
+      <link>https://livey.github.io/posts/2025-11-22-diffusion/</link>
+      <pubDate>Sat, 22 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/posts/2025-11-22-diffusion/</guid>
+      <description>A beginner-friendly overview of diffusion models and flow matching, exploring the mathematical foundations and practical training procedures behind modern generative models.</description>
+    </item>
     <item>
       <title>LiDAR Extrinsic Parameter Adjustment for SLAM Recalibration</title>
       <link>https://livey.github.io/posts/2025-08-21-lidar-adjust/</link>

@@ -2,10 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://livey.github.io/posts/2025-11-22-diffusion/</loc>
+    <lastmod>2025-11-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/diffusion-model/</loc>
+    <lastmod>2025-11-22T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://livey.github.io/</loc>
     <lastmod>2025-11-22T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://livey.github.io/tags/generative-model/</loc>
+    <lastmod>2025-11-22T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://livey.github.io/posts/</loc>
+    <lastmod>2025-11-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/</loc>
     <lastmod>2025-11-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/autonomous-driving/</loc>
@@ -27,9 +39,6 @@
     <lastmod>2025-08-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/slam/</loc>
-    <lastmod>2025-08-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/</loc>
     <lastmod>2025-08-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/posts/2025-08-20-lidar-post-processing/</loc>
