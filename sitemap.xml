@@ -2,10 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://livey.github.io/tags/autonomous-driving/</loc>
+    <lastmod>2026-01-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/data-distribution/</loc>
+    <lastmod>2026-01-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/end-to-end-learning/</loc>
+    <lastmod>2026-01-13T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://livey.github.io/</loc>
     <lastmod>2026-01-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/posts/</loc>
+    <lastmod>2026-01-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/posts/2026-01-13-data-dist/</loc>
+    <lastmod>2026-01-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://livey.github.io/tags/</loc>
     <lastmod>2026-01-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/posts/2025-11-22-diffusion/</loc>
@@ -16,12 +31,6 @@
   </url><url>
     <loc>https://livey.github.io/tags/generative-model/</loc>
     <lastmod>2025-11-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/</loc>
-    <lastmod>2025-11-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://livey.github.io/tags/autonomous-driving/</loc>
-    <lastmod>2025-08-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://livey.github.io/tags/calibration/</loc>
     <lastmod>2025-08-21T00:00:00+00:00</lastmod>

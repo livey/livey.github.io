@@ -11,8 +11,29 @@
     </image>
     <generator>Hugo -- 0.140.1</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 22 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 13 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://livey.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Autonomous Driving</title>
+      <link>https://livey.github.io/tags/autonomous-driving/</link>
+      <pubDate>Tue, 13 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/autonomous-driving/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Data Distribution</title>
+      <link>https://livey.github.io/tags/data-distribution/</link>
+      <pubDate>Tue, 13 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/data-distribution/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>End-to-End Learning</title>
+      <link>https://livey.github.io/tags/end-to-end-learning/</link>
+      <pubDate>Tue, 13 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/end-to-end-learning/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Diffusion Model</title>
       <link>https://livey.github.io/tags/diffusion-model/</link>
@@ -25,13 +46,6 @@
       <link>https://livey.github.io/tags/generative-model/</link>
       <pubDate>Sat, 22 Nov 2025 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/tags/generative-model/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Autonomous Driving</title>
-      <link>https://livey.github.io/tags/autonomous-driving/</link>
-      <pubDate>Thu, 21 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/tags/autonomous-driving/</guid>
       <description></description>
     </item>
     <item>

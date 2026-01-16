@@ -11,8 +11,15 @@
     </image>
     <generator>Hugo -- 0.140.1</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 21 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 13 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://livey.github.io/tags/autonomous-driving/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rethinking Data Augmentation in End-to-End Learning</title>
+      <link>https://livey.github.io/posts/2026-01-13-data-dist/</link>
+      <pubDate>Tue, 13 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/posts/2026-01-13-data-dist/</guid>
+      <description>A note on how data distribution affects the performance of end-to-end learning.</description>
+    </item>
     <item>
       <title>LiDAR Extrinsic Parameter Adjustment for SLAM Recalibration</title>
       <link>https://livey.github.io/posts/2025-08-21-lidar-adjust/</link>
