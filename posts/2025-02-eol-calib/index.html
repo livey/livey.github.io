@@ -1,5 +1,5 @@
 <!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles | Fuwei's Tech Notes</title>
-<meta name=keywords content="Autonomous Driving,Camera Extrinsic Calibration,EOL,End-of-Line,BEV"><meta name=description content="This post is about end-of-line (EOL) camera extrinsic calibration, especially for camera bird's-eye view (BEV) extrinsic calibration."><meta name=author content="Fuwei Li"><link rel=canonical href=https://livey.github.io><link crossorigin=anonymous href=/assets/css/stylesheet.d6fcd20a4fb86efa4dfac8ec95da60244cc8871042183da1ef28e3a762ad79c8.css integrity="sha256-1vzSCk+4bvpN+sjsldpgJEzIhxBCGD2h7yjjp2Ktecg=" rel="preload stylesheet" as=style><link rel=icon href=https://livey.github.io/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=16x16 href=https://livey.github.io/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=https://livey.github.io/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=https://livey.github.io/%3Clink%20/%20abs%20url%3E><link rel=mask-icon href=https://livey.github.io/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://livey.github.io/posts/2025-02-eol-calib/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="index, follow"><meta name=author content="Fuwei Li"><meta name=description content="This post is about end-of-line (EOL) camera extrinsic calibration, especially for camera bird's-eye view (BEV) extrinsic calibration."><meta property="og:type" content="article"><meta property="og:url" content="https://livey.github.io/posts/2025-02-eol-calib/"><meta property="og:title" content="A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles"><meta property="og:description" content="This post is about end-of-line (EOL) camera extrinsic calibration, especially for camera bird's-eye view (BEV) extrinsic calibration."><meta property="og:image" content="https://livey.github.io/images/site-preview.jpg"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles"><meta name=twitter:description content="This post is about end-of-line (EOL) camera extrinsic calibration, especially for camera bird's-eye view (BEV) extrinsic calibration."><meta name=twitter:image content="https://livey.github.io/images/site-preview.jpg"><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css integrity=sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js integrity=sha384-VQ8d8WVFw0yHhCk5E8I86oOhv48xLpnDZx5T9GogA/Y84DcCKWXDmSDfn13bzFZY crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous onload=renderMathInElement(document.body)></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}]})})</script><meta property="og:url" content="https://livey.github.io/posts/2025-02-eol-calib/"><meta property="og:site_name" content="Fuwei's Tech Notes"><meta property="og:title" content="A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles"><meta property="og:description" content="This post is about end-of-line (EOL) camera extrinsic calibration, especially for camera bird's-eye view (BEV) extrinsic calibration."><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-02-03T00:00:00+00:00"><meta property="article:modified_time" content="2025-02-03T00:00:00+00:00"><meta property="article:tag" content="Autonomous Driving"><meta property="article:tag" content="Camera Extrinsic Calibration"><meta property="article:tag" content="EOL"><meta property="article:tag" content="End-of-Line"><meta property="article:tag" content="BEV"><meta property="og:image" content="https://livey.github.io/posts/2025-02-eol-calib/%3Cimage%20path/url%3E"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://livey.github.io/posts/2025-02-eol-calib/%3Cimage%20path/url%3E"><meta name=twitter:title content="A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles"><meta name=twitter:description content="This post is about end-of-line (EOL) camera extrinsic calibration, especially for camera bird's-eye view (BEV) extrinsic calibration."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://livey.github.io/posts/"},{"@type":"ListItem","position":2,"name":"A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles","item":"https://livey.github.io/posts/2025-02-eol-calib/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles","name":"A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles","description":"This post is about end-of-line (EOL) camera extrinsic calibration, especially for camera bird's-eye view (BEV) extrinsic calibration.","keywords":["Autonomous Driving","Camera Extrinsic Calibration","EOL","End-of-Line","BEV"],"articleBody":"In this post, we will discuss the end-of-line (EOL) camera calibration, especially for camera bird’s-eye view (BEV) extrinsic calibration.\nSuggested Pipeline Do single camera intrinsic calibration\nMeasure each corner in the world coordinate\nRefine the corners’ coordinates according to board constraints (plane, parallel, equally spaced)\nFind the plane equation in the world coordinate\nInitialize each camera’s extrinsic parameters by solving the perspective-n-point (PnP) problem\nEstimate the 3D coordinates by the intersection of the image ray and board plane\nConstruct the objective loss function (consistency of different cameras with common seen points and single camera’s observation)\nRefine the Corner’s Coordinates by the Board Constraints Assume the center of the board is located at the origin of a local coordinate, $(0,0,0)^\\top$, the corner coordinate is located at $\\{\\mathbf{x}_i\\}^N_{i=1}$, then the board normal is $(0,0,1)^\\top$. Assume the board is transformed to the world coordinate by rotation, $\\mathbf{R}$, and translation, $\\mathbf{t}$. We have the observed coordinates $\\{\\hat{\\mathbf{y}}_i\\}$. Then we minimize the objectives:\n$$\\{\\mathbf{y}_i^*, \\mathbf{R}^*, \\mathbf{t}^*\\} = \\underset{\\mathbf{y}_i,\\mathbf{R}, \\mathbf{t}}{\\arg\\min}\\sum_i \\|\\hat{\\mathbf{y}}_i -\\mathbf{y}_i\\|^2\\\\ \\text{s.t. } \\mathbf{y}_i = \\mathbf{R}\\mathbf{x}_i + \\mathbf{t} $$This problem can be easily solved since it is a simple Iterative Closest Point (ICP) problem.\nThen we can get the center of the board as $\\mathbf{x}_0=\\mathbf{t}^*$, and the normal of the board is $\\mathbf{R}^*[0, 0, 1]^\\top$.\nNow we have refined board corners in the world coordinates, i.e., $\\{\\mathbf{y}_i^*\\}^N_{i=1}$.\nUnknown Board Dimension If we do not have the board dimension, then we can directly fit the plane using the measured corners, $\\{\\mathbf{x}_i\\}^N_{i=1}$ (with a slight abuse of notation). Assume the plane equation is $\\mathbf{n}^\\top \\mathbf{x} - c = 0$ (with unit normal vector, i.e., $\\|\\mathbf{n}\\| = 1$). Then we can solve for $\\mathbf{n}$ and $c$ by minimizing the following objective:\n$$ \\underset{\\mathbf{n}, c}{\\text{argmin}} \\frac{1}{N}\\sum_i \\|\\mathbf{n}^\\top \\mathbf{x}_i - c\\|^2 \\\\ \\text{s.t. } \\|\\mathbf{n}\\| = 1 $$For any fixed $\\mathbf{n}$, taking derivative with respect to $c$ and setting it to zero, we have:\n$$ c = \\frac{1}{N} \\sum_i \\mathbf{n}^\\top \\mathbf{x}_i = \\mathbf{n}^\\top \\bar{\\mathbf{x}} $$where $\\bar{\\mathbf{x}} = \\frac{1}{N} \\sum_i \\mathbf{x}_i$ is the mean of the measured corners.\nSo, the objective function becomes:\n$$ \\begin{aligned} \u0026\\frac{1}{N}\\sum_i \\|\\mathbf{n}^\\top (\\mathbf{x}_i - \\bar{\\mathbf{x}})\\|^2 \\\\ \u0026= \\frac{1}{N}\\mathbf{n}^\\top \\left(\\sum_i (\\mathbf{x}_i - \\bar{\\mathbf{x}})(\\mathbf{x}_i - \\bar{\\mathbf{x}})^\\top\\right) \\mathbf{n} \\\\ \u0026 = \\mathbf{n}^\\top \\mathbf{\\Sigma}_x \\mathbf{n} \\end{aligned} $$where $\\mathbf{\\Sigma}_x = \\frac{1}{N} \\sum_i (\\mathbf{x}_i - \\bar{\\mathbf{x}})(\\mathbf{x}_i - \\bar{\\mathbf{x}})^\\top$ is the biased sample covariance matrix of the measured corners.\nConsidering $\\|\\mathbf{n}\\| = 1$, $\\mathbf{n}$ is the eigenvector of $\\mathbf{\\Sigma}_x$ corresponding to its smallest eigenvalue.\nThe refined corners’ coordinates are the projection of the measured corners on the plane, which can be written as:\n$$ \\mathbf{y}_i = \\mathbf{x}_i - \\mathbf{n}^\\top (\\mathbf{x}_i - \\bar{\\mathbf{x}}) \\mathbf{n} = \\mathbf{x}_i - (\\mathbf{n}^\\top\\mathbf{x}_i -c)\\mathbf{n}. $$which has clear geometric meaning: the measured corners minus the projection on the plane normal.\nThe Intersection of the Image Ray and Board Plane We are given a 3D plane:\n$$\\mathbf{n}^\\top \\mathbf{x} + c = 0,$$and a camera model with the projection equation:\n$$d\\, \\mathbf{u} = \\mathbf{K} (\\mathbf{R}\\, \\mathbf{x} + \\mathbf{t}),$$where:\n$\\mathbf{u} \\in \\mathbb{R}^3$ is the homogeneous image coordinate (usually $\\mathbf{u} = [u, v, 1]^\\top$) $d$ is an unknown scale (depth) factor $\\mathbf{K}$ is the camera intrinsic matrix $\\mathbf{R}$ and $\\mathbf{t}$ are the rotation and translation (extrinsic parameters) of the camera $\\mathbf{x} \\in \\mathbb{R}^3$ is the 3D point we wish to recover Our goal is to find $\\mathbf{x}$ in terms of the known quantities $\\mathbf{u}, \\mathbf{K}, \\mathbf{R}, \\mathbf{t}, \\mathbf{n},$ and $c$.\nRewrite the Projection Equation\n$$\\mathbf{x} = \\mathbf{R}^\\top \\left(d\\,\\mathbf{K}^{-1} \\mathbf{u} - \\mathbf{t}\\right).$$However, the scale factor $d$ is still unknown.\nUse the Plane Constraint to Solve for $d$\nSince $\\mathbf{x}$ lies on the plane, it must satisfy:\n$$\\mathbf{n}^\\top \\mathbf{x} + c = 0.$$Substitute the expression we just found for $\\mathbf{x}$:\n$$\\mathbf{n}^\\top \\Bigl(\\mathbf{R}^\\top (d\\,\\mathbf{K}^{-1} \\mathbf{u} - \\mathbf{t})\\Bigr) + c = 0.$$Because the scalar product is invariant under transposition, we can write:\nNow, solve for $d$:\n$$d = \\frac{\\mathbf{n}^\\top \\mathbf{R}^\\top \\mathbf{t} - c}{\\mathbf{n}^\\top \\mathbf{R}^\\top \\mathbf{K}^{-1} \\mathbf{u}}.$$Note: It is important that $\\mathbf{n}^\\top \\mathbf{R}^\\top \\mathbf{K}^{-1} \\mathbf{u} \\neq 0$ so that the division is valid (this means that the back-projected ray is not parallel to the plane).\nSubstitute the expression for $d$ back into the equation for $\\mathbf{x}$:\n$$\\mathbf{x} = \\mathbf{R}^\\top \\left( \\frac{\\mathbf{n}^\\top \\mathbf{R}^\\top \\mathbf{t} - c}{\\mathbf{n}^\\top \\mathbf{R}^\\top \\mathbf{K}^{-1} \\mathbf{u}}\\, \\mathbf{K}^{-1} \\mathbf{u} - \\mathbf{t} \\right).$$Solve the Intersection Problem as an Optimization Problem We wish to solve\n$$ \\min_{\\mathbf{x}} \\Big\\| \\mathbf{u} - \\frac{\\mathbf{R}\\mathbf{x} + \\mathbf{t}}{\\mathbf{e}^\\top (\\mathbf{R}\\mathbf{x} + \\mathbf{t})} \\Big\\|^2\\tag{1} $$subject to the plane constraint\n$$ \\mathbf{n}^\\top \\mathbf{x} + c = 0, $$where: •\t$\\mathbf{R}$ is the rotation matrix, •\t$\\mathbf{t}$ is the translation vector, •\t$\\mathbf{n}$ is the normal of the plane, •\t$c$ is a constant, and •\t$\\mathbf{e} = \\begin{pmatrix} 0 \\ 0 \\ 1 \\end{pmatrix}$ (which selects the depth coordinate).\nEven when the measured image coordinate $\\mathbf{u} \\in \\mathbb{R}^2$ is noisy, the pinhole camera model combined with the plane constraint induces a projective mapping (a homography) from the plane to the image. In other words, for any $\\mathbf{u}$ there exists an entire ray of points $\\mathbf{x}$ that project exactly to $\\mathbf{u}$. The plane constraint then selects one unique point on that ray.\nParameterizing the Back‐Projection Ray Any 3D point $\\mathbf{x}$ whose projection is $\\mathbf{u}$ must satisfy\n$$ \\frac{\\mathbf{R}\\mathbf{x} + \\mathbf{t}}{\\mathbf{e}^\\top (\\mathbf{R}\\mathbf{x} + \\mathbf{t})} = \\begin{pmatrix} \\mathbf{u} \\\\ 1 \\end{pmatrix}. $$This implies that there exists a scalar $\\lambda$ such that\n$$ \\mathbf{R}\\mathbf{x} + \\mathbf{t} = \\lambda \\begin{pmatrix} \\mathbf{u} \\\\ 1 \\end{pmatrix}. $$Solving for $\\mathbf{x}$ gives\n$$ \\mathbf{x} = \\mathbf{R}^{-1} \\Bigl( \\lambda \\begin{pmatrix} \\mathbf{u} \\\\ 1 \\end{pmatrix} - \\mathbf{t} \\Bigr). $$It is convenient to define the camera center in world coordinates as\n$$ \\mathbf{x}_c = -\\mathbf{R}^{-1}\\mathbf{t}, $$and to introduce the direction vector\n$$ \\mathbf{d} = \\mathbf{R}^{-1}\\begin{pmatrix} \\mathbf{u} \\\\ 1 \\end{pmatrix}. $$Thus, the 3D point $\\mathbf{x}$ can be written as\n$$ \\mathbf{x} = \\mathbf{x}_c + \\lambda \\mathbf{d}. $$All points of this form project exactly to $\\mathbf{u}$, which means the optimal value of Eq. (1) is zero\nEnforcing the Plane Constraint Since $\\mathbf{x}$ must lie on the plane, we impose\n$$ \\mathbf{n}^\\top \\mathbf{x} + c = 0. $$Substitute $\\mathbf{x} = \\mathbf{x}_c + \\lambda\\mathbf{d}$ into the plane equation:\n$$ \\mathbf{n}^\\top \\Bigl( \\mathbf{x}_c + \\lambda\\mathbf{d} \\Bigr) + c = 0. $$Expanding, we obtain\n$$ \\mathbf{n}^\\top \\mathbf{x}_c + \\lambda \\mathbf{n}^\\top \\mathbf{d} + c = 0. $$Recalling that $\\mathbf{x}_c = -\\mathbf{R}^{-1}\\mathbf{t}$, the equation becomes\n$$ \\mathbf{n}^\\top \\mathbf{R}^{-1}\\mathbf{t} + \\lambda \\mathbf{n}^\\top \\mathbf{d} + c = 0. $$Solving for $\\lambda$, we have\n$$ \\lambda \\mathbf{n}^\\top \\mathbf{d} = \\mathbf{n}^\\top \\mathbf{R}^{-1}\\mathbf{t} - c, $$or equivalently,\n$$ \\lambda = \\frac{\\mathbf{n}^\\top \\mathbf{R}^{-1}\\mathbf{t} - c}{\\mathbf{n}^\\top \\mathbf{d}} = \\frac{\\mathbf{n}^\\top \\mathbf{R}^{-1}\\mathbf{t} - c}{\\mathbf{n}^\\top \\mathbf{R}^{-1}\\begin{pmatrix} \\mathbf{u} \\ 1 \\end{pmatrix}}, $$provided that $\\mathbf{n}^\\top \\mathbf{d} \\neq 0$.\nThe Final Solution Substitute the value of $\\lambda$ back into the expression for $\\mathbf{x}$:\n$$ \\mathbf{x} = -\\mathbf{R}^{-1}\\mathbf{t} + \\frac{\\mathbf{n}^\\top \\mathbf{R}^{-1}\\mathbf{t} - c}{\\mathbf{n}^\\top \\mathbf{R}^{-1}\\begin{pmatrix} \\mathbf{u} \\\\ 1 \\end{pmatrix}} \\mathbf{R}^{-1}\\begin{pmatrix} \\mathbf{u} \\\\ 1 \\end{pmatrix}. $$This is the unique 3D point on the plane $\\mathbf{n}^\\top \\mathbf{x} + c = 0$ that minimizes the reprojection error, even when $\\mathbf{u}$ is noisy.\nSummary a. Back‐Projection: The projection model\n$$ \\mathbf{x} \\mapsto \\frac{\\mathbf{R}\\mathbf{x} + \\mathbf{t}}{\\mathbf{e}^\\top (\\mathbf{R}\\mathbf{x} + \\mathbf{t})} $$is a homography when restricted to the plane. Hence, every point along the ray\n$$ \\mathcal{R}(\\mathbf{u}) = \\Bigl\\{ \\mathbf{x} = -\\mathbf{R}^{-1}\\mathbf{t} + \\lambda \\mathbf{R}^{-1}\\begin{pmatrix} \\mathbf{u} \\\\ 1 \\end{pmatrix} : \\lambda \\in \\mathbb{R} \\Bigr\\} $$projects to $\\mathbf{u}$.\nb. Plane Intersection: The plane constraint $\\mathbf{n}^\\top \\mathbf{x} + c = 0$ uniquely determines the scalar $\\lambda$, and hence the unique point $\\mathbf{x}$.\nThus, the final answer is\n$$ \\boxed{ \\mathbf{x} = -\\mathbf{R}^{-1}\\mathbf{t} + \\frac{\\mathbf{n}^\\top \\mathbf{R}^{-1}\\mathbf{t} - c}{\\mathbf{n}^\\top \\mathbf{R}^{-1}\\begin{pmatrix} \\mathbf{u} \\\\ 1 \\end{pmatrix}} \\mathbf{R}^{-1}\\begin{pmatrix} \\mathbf{u} \\\\ 1 \\end{pmatrix}. } $$Solve Step 3 and 6 Jointly as a Bundle Adjustment Problem Suppose the board’s markers coordinate in the board’s frame are $\\{ \\mathbf{x}_i^g \\}_{i=1}^N$ in the board’s frame. The measured marker points in the world frame are $\\{ \\mathbf{x}_i^o \\}_{i=1}^N$. The observed image markers in camera 1 are $\\{ \\mathbf{u}_i^1 \\}_{i=1}^{N_1}$ and the observed image markers in the second camera are $\\{ \\mathbf{u}_i^2 \\}_{i=1}^{N_2}$.\nWe construct the loss as:\n$$ \\begin{aligned} \\mathcal{L} \u0026= \\sum_i \\ell_{\\mathbf{T}_0, \\mathbf{x}_i} (\\mathbf{x}_i^g, \\mathbf{x}_i) + \\sum_i \\ell_{\\mathbf{x}_i} (\\mathbf{x}_i^o, \\mathbf{x}_i) \\\\ \u0026 + \\sum_i \\ell_{\\mathbf{x}_i, \\mathbf{T}_0, \\mathbf{T}_1} \\Big( \\pi^{-1}(\\mathbf{u}_i^1), \\mathbf{x}_i \\Big) + \\sum_i \\ell_{\\mathbf{x}_i, \\mathbf{T}_0, \\mathbf{T}_2} \\Big( \\pi^{-1}(\\mathbf{u}_i^2), \\mathbf{x}_i \\Big) \\\\ \u0026+ \\sum_{i \\in C_{1,2}} \\ell_{\\mathbf{T}_0, \\mathbf{T}_1, \\mathbf{T}_2} \\Big( \\pi^{-1}(\\mathbf{u}_i^1), \\pi^{-1}(\\mathbf{u}_i^2) \\Big) \\end{aligned} $$Where:\nthe transformation from the local board to the world board, $\\mathbf{T}_0$; The world coordinates of the board, $\\{\\mathbf{x}_i\\}$; The transformation from the cameras to the world board, $\\mathbf{T}_i$, where $i = 1, 2$; $C_{1,2}$ is the marker set commonly seen by camera 1 and camera 2; $\\pi(\\cdot)$ is the intersection of the camera ray and the world plane. In the first part, we put a hard constraint that the true 3D position of the points should be a rigid transformation of the board.\n$$\\sum_i \\ell_{\\mathbf{T}_0, \\mathbf{x}_i}(\\mathbf{x}_i^g, \\mathbf{x}_i) = \\sum_i I_{\\infty}(\\mathbf{x}_i - \\mathbf{T}_0 \\mathbf{x}_i^g)\\tag{2}$$where $I_\\infty(x)= \\begin{cases} 0, \\text{ if } x=0, \\\\ \\infty, \\text{otherwise} \\end{cases}$.\nThe second part of the loss is the difference between the observations of 3D points and the true position.\n$$\\sum_i \\ell_{\\mathbf{x}_i}(\\mathbf{x}_i, \\mathbf{x}_i^o) = \\sum_i \\|\\mathbf{x}_i - \\mathbf{x}_i^o\\|^2 \\tag{3}$$The third part is the perspective-n-point loss\n$$\\sum_{i\\in C_1} \\ell_{\\mathbf{x}_i, \\mathbf{T}_0,\\mathbf{T}_1}\\left(\\pi^{-1}(\\mathbf{u}_i^1), \\mathbf{x}_i \\right) = \\sum_{i\\in C_1} \\| \\pi^{-1}(\\mathbf{u}_i^1) - \\mathbf{x}_i \\|^2\\tag{4}$$$$\\sum_{i\\in C_2} \\ell_{\\mathbf{x}_i, \\mathbf{T}_0,\\mathbf{T}_2}\\left(\\pi^{-1}(\\mathbf{u}_i^2), \\mathbf{x}_i \\right) = \\sum_{i\\in C_2} \\| \\pi^{-1}(\\mathbf{u}_i^2) - \\mathbf{x}_i \\|^2\\tag{5}$$The last one is the consistency loss. Here, we can simply put the $\\ell_2$ loss on the points. Other losses are possible, e.g., image similarity loss, etc.\n$$\\sum_{i \\in C_{1,2}} \\ell_{\\mathbf{T}_0, \\mathbf{T}_1, \\mathbf{T}_2}\\left(\\pi^{-1}(\\mathbf{u}_i^1),\\, \\pi^{-1}(\\mathbf{u}_i^2)\\right) = \\sum_{i\\in C_{1,2}} \\|\\pi^{-1}(\\mathbf{u}_i^1) - \\pi^{-1}(\\mathbf{u}_i^2)\\|^2 \\tag{6}$$Simulations We construct a 8x8 chessboard with each square’s size be of 1m. We set the the origin as the center of the board. We place the board in the world coordinate with extrinsic:\n$$\\begin{pmatrix} 1 \u0026 0 \u0026 0 \u0026 0 \\\\ 0 \u0026 1 \u0026 0 \u0026 0 \\\\ 0 \u0026 0 \u0026 1 \u0026 8 \\\\ 0 \u0026 0 \u0026 0 \u0026 1 \\end{pmatrix} $$which means the normal of the board plane is $[0, 0, 1]^\\top$.\nWe add Gaussian noise on the corners coordinates with noise zero mean and $0.005$ standard deviation.\nWith the noisy corners’ coordinates, we can get the optimized board’s extrinsic according to step 3. The optimized normal is $[1.38*10^{-3}, -2.16*10^{-5}, 9.999*10^{-1}]^\\top$. That is already very close the ground truth.\nThen we simulate two cameras with the same intrinsic matrix: $f_x =800$, $c_x = 500$, $f_y = 800$, $c_y=400$, and $H=800$, $W=1000$. We rotate the first camera along the z-axis $10$ degrees and the second $-10$ degrees, and translate the first camera along the x-axis $2$ meters and the second $-2$ meters. Then the images of the chessboard in the two cameras are shown in the figure below.\nThe original images. Then, we apply Gaussian blur on the observed images and add Gaussian noise on them. The new images are shown in the figure below.\nThe simulated observed images. After that, we use opencv “findChessboardCorners” and find the rough corners and then use “cornerSubPix” to refine the corners’ coordinates. The refined corners are shown in the figure below.\nThe detected corners. Pay attention to the sequence of the detected corners. (The detected corners start from the blue one and end with the green one in the above figure.) Rearrange the detected corners according to the refined chessboard corners. Using the “solvePnP” function with method “SQPNP”, which is a global optimization method, we can find the estimated extrinsic of the two cameras. We record the errors of the estimation using the original measurements of the chessboard corners and the refined ones.\nCamera Corners Rotation Error (degrees) Translation Error (meters) Camera 1 Original 0.260 0.0372 Camera 1 Refined 0.0732 0.0117 Camera 2 Original 0.247 0.0318 Camera 2 Refined 0.0750 0.0118 The translation error is the norm of the difference between the estimated and the ground truth translation. The rotation error is defined as the norm of $\\text{Log}(\\mathbf{R}_1 \\boxminus \\mathbf{R}_2)$.\nAs shown in the table, the refined measurements result in lower errors for both rotation and translation, demonstrating the effectiveness of the corner refinement process.\nIn the final step, we do jointly optimization. We warp the image in camera 1 with parameters before and after jointly optimization. The results are shown in the figure below.\nThe warped images (blended with the image in camera 2) before and after jointly optimization. In the above figure, we can hardly tell which one is better. The translation error is $0.0298$ and $0.0257$ meters for camera 1 and camera 2 respectively. The rotation error is $0.204$ and $0.199$ degrees for camera 1 and camera 2 respectively. That is expected increased error for single camera calibration however more consistent for the two cameras.\nDetect Corners on the Warped Image Corner detection often becomes challenging on original images due to severe distortion or extreme viewing angles. To address this limitation, we can create a virtual camera with an optimized viewpoint. By warping the original image onto this virtual camera’s image plane, we can simulate a more frontal view of the chessboard. This transformation adjusts the perspective so that the chessboard appears as if viewed head-on, significantly improving corner detection reliability. We can then accurately detect the corners on this warped image rather than struggling with the difficult perspective of the original.\nThe figure below illustrates this approach. On the left is the original image where the severe viewing angle prevents the standard algorithm from successfully detecting the corners. On the right is the perspective-corrected warped image, where we can successfully identify and locate all corners.\nLeft shows the original observed image. Right shows the warped image and the detected corners. ","wordCount":"2234","inLanguage":"en","image":"https://livey.github.io/posts/2025-02-eol-calib/%3Cimage%20path/url%3E","datePublished":"2025-02-03T00:00:00Z","dateModified":"2025-02-03T00:00:00Z","author":{"@type":"Person","name":"Fuwei Li"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://livey.github.io/posts/2025-02-eol-calib/"},"publisher":{"@type":"Organization","name":"Fuwei's Tech Notes","logo":{"@type":"ImageObject","url":"https://livey.github.io/%3Clink%20/%20abs%20url%3E"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://livey.github.io/ accesskey=h title="Home (Alt + H)"><img src=https://livey.github.io/apple-touch-icon.png alt aria-label=logo height=35>Home</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://livey.github.io/posts/ title=Posts><span>Posts</span></a></li><li><a href=https://livey.github.io/archives/ title=Archive><span>Archive</span></a></li><li><a href=https://livey.github.io/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://livey.github.io/about/ title=About><span>About</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://livey.github.io/>Home</a>&nbsp;»&nbsp;<a href=https://livey.github.io/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles</h1><div class=post-description>This post is about end-of-line (EOL) camera extrinsic calibration, especially for camera bird's-eye view (BEV) extrinsic calibration.</div><div class=post-meta><span title='2025-02-03 00:00:00 +0000 UTC'>February 3, 2025</span>&nbsp;·&nbsp;11 min&nbsp;·&nbsp;2234 words&nbsp;·&nbsp;Fuwei Li&nbsp;|&nbsp;<a href=https://github.com/livey/livey.github.io/issues/new rel="noopener noreferrer" target=_blank>Suggest Changes</a></div></header><div class=toc><details><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#suggested-pipeline aria-label="Suggested Pipeline">Suggested Pipeline</a><ul><li><a href=#refine-the-corners-coordinates-by-the-board-constraints aria-label="Refine the Corner&rsquo;s Coordinates by the Board Constraints">Refine the Corner&rsquo;s Coordinates by the Board Constraints</a><ul><li><a href=#unknown-board-dimension aria-label="Unknown Board Dimension">Unknown Board Dimension</a></li></ul></li><li><a href=#the-intersection-of-the-image-ray-and-board-plane aria-label="The Intersection of the Image Ray and Board Plane">The Intersection of the Image Ray and Board Plane</a></li><li><a href=#solve-the-intersection-problem-as-an-optimization-problem aria-label="Solve the Intersection Problem as an Optimization Problem">Solve the Intersection Problem as an Optimization Problem</a></li><li><a href=#solve-step-3-and-6-jointly-as-a-bundle-adjustment-problem aria-label="Solve Step 3 and 6 Jointly as a Bundle Adjustment Problem">Solve Step 3 and 6 Jointly as a Bundle Adjustment Problem</a></li></ul></li><li><a href=#simulations aria-label=Simulations>Simulations</a><ul><li><a href=#detect-corners-on-the-warped-image aria-label="Detect Corners on the Warped Image">Detect Corners on the Warped Image</a></li></ul></li></ul></div></details></div><div class=post-content><p>In this post, we will discuss the end-of-line (EOL) camera calibration, especially for camera bird&rsquo;s-eye view (BEV) extrinsic calibration.</p><h1 id=suggested-pipeline>Suggested Pipeline<a hidden class=anchor aria-hidden=true href=#suggested-pipeline>#</a></h1><ol><li><p>Do single camera intrinsic calibration</p></li><li><p>Measure each corner in the world coordinate</p></li><li><p>Refine the corners&rsquo; coordinates according to board constraints (plane, parallel, equally spaced)</p></li><li><p>Find the plane equation in the world coordinate</p></li><li><p>Initialize each camera&rsquo;s extrinsic parameters by solving the perspective-n-point (PnP) problem</p></li><li><p>Estimate the 3D coordinates by the intersection of the image ray and board plane</p></li><li><p>Construct the objective loss function (consistency of different cameras with common seen points and single camera&rsquo;s observation)</p></li></ol><h2 id=refine-the-corners-coordinates-by-the-board-constraints>Refine the Corner&rsquo;s Coordinates by the Board Constraints<a hidden class=anchor aria-hidden=true href=#refine-the-corners-coordinates-by-the-board-constraints>#</a></h2><p>Assume the center of the board is located at the origin of a local coordinate, $(0,0,0)^\top$, the corner coordinate is located at $\{\mathbf{x}_i\}^N_{i=1}$, then the board normal is $(0,0,1)^\top$. Assume the board is transformed to the world coordinate by rotation, $\mathbf{R}$, and translation, $\mathbf{t}$. We have the observed coordinates $\{\hat{\mathbf{y}}_i\}$. Then we minimize the objectives:</p>$$\{\mathbf{y}_i^*, \mathbf{R}^*, \mathbf{t}^*\} = \underset{\mathbf{y}_i,\mathbf{R}, \mathbf{t}}{\arg\min}\sum_i \|\hat{\mathbf{y}}_i -\mathbf{y}_i\|^2\\
+<meta name=keywords content="Autonomous Driving,Camera Extrinsic Calibration,EOL,End-of-Line,BEV"><meta name=description content="This post is about end-of-line (EOL) camera extrinsic calibration, especially for camera bird's-eye view (BEV) extrinsic calibration."><meta name=author content="Fuwei Li"><link rel=canonical href=https://livey.github.io><link crossorigin=anonymous href=/assets/css/stylesheet.d6fcd20a4fb86efa4dfac8ec95da60244cc8871042183da1ef28e3a762ad79c8.css integrity="sha256-1vzSCk+4bvpN+sjsldpgJEzIhxBCGD2h7yjjp2Ktecg=" rel="preload stylesheet" as=style><link rel=icon href=https://livey.github.io/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=16x16 href=https://livey.github.io/%3Clink%20/%20abs%20url%3E><link rel=icon type=image/png sizes=32x32 href=https://livey.github.io/%3Clink%20/%20abs%20url%3E><link rel=apple-touch-icon href=https://livey.github.io/%3Clink%20/%20abs%20url%3E><link rel=mask-icon href=https://livey.github.io/%3Clink%20/%20abs%20url%3E><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://livey.github.io/posts/2025-02-eol-calib/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="index, follow"><meta name=author content="Fuwei Li"><meta name=description content="This post is about end-of-line (EOL) camera extrinsic calibration, especially for camera bird's-eye view (BEV) extrinsic calibration."><meta property="og:type" content="article"><meta property="og:url" content="https://livey.github.io/posts/2025-02-eol-calib/"><meta property="og:title" content="A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles"><meta property="og:description" content="This post is about end-of-line (EOL) camera extrinsic calibration, especially for camera bird's-eye view (BEV) extrinsic calibration."><meta property="og:image" content="https://livey.github.io/images/site-preview.jpg"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles"><meta name=twitter:description content="This post is about end-of-line (EOL) camera extrinsic calibration, especially for camera bird's-eye view (BEV) extrinsic calibration."><meta name=twitter:image content="https://livey.github.io/images/site-preview.jpg"><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css integrity=sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js integrity=sha384-VQ8d8WVFw0yHhCk5E8I86oOhv48xLpnDZx5T9GogA/Y84DcCKWXDmSDfn13bzFZY crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous onload=renderMathInElement(document.body)></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}]})})</script><meta property="og:url" content="https://livey.github.io/posts/2025-02-eol-calib/"><meta property="og:site_name" content="Fuwei's Tech Notes"><meta property="og:title" content="A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles"><meta property="og:description" content="This post is about end-of-line (EOL) camera extrinsic calibration, especially for camera bird's-eye view (BEV) extrinsic calibration."><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-02-03T00:00:00+00:00"><meta property="article:modified_time" content="2025-02-03T00:00:00+00:00"><meta property="article:tag" content="Autonomous Driving"><meta property="article:tag" content="Camera Extrinsic Calibration"><meta property="article:tag" content="EOL"><meta property="article:tag" content="End-of-Line"><meta property="article:tag" content="BEV"><meta property="og:image" content="https://livey.github.io/posts/2025-02-eol-calib/%3Cimage%20path/url%3E"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://livey.github.io/posts/2025-02-eol-calib/%3Cimage%20path/url%3E"><meta name=twitter:title content="A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles"><meta name=twitter:description content="This post is about end-of-line (EOL) camera extrinsic calibration, especially for camera bird's-eye view (BEV) extrinsic calibration."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://livey.github.io/posts/"},{"@type":"ListItem","position":2,"name":"A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles","item":"https://livey.github.io/posts/2025-02-eol-calib/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles","name":"A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles","description":"This post is about end-of-line (EOL) camera extrinsic calibration, especially for camera bird's-eye view (BEV) extrinsic calibration.","keywords":["Autonomous Driving","Camera Extrinsic Calibration","EOL","End-of-Line","BEV"],"articleBody":"In this post, we will discuss the end-of-line (EOL) camera calibration, especially for camera bird’s-eye view (BEV) extrinsic calibration.\nSuggested Pipeline Do single camera intrinsic calibration\nMeasure each corner in the world coordinate\nRefine the corners’ coordinates according to board constraints (plane, parallel, equally spaced)\nFind the plane equation in the world coordinate\nInitialize each camera’s extrinsic parameters by solving the perspective-n-point (PnP) problem\nEstimate the 3D coordinates by the intersection of the image ray and board plane\nConstruct the objective loss function (consistency of different cameras with common seen points and single camera’s observation)\nRefine the Corner’s Coordinates by the Board Constraints Assume the center of the board is located at the origin of a local coordinate, $(0,0,0)^\\top$, the corner coordinate is located at $\\{\\mathbf{x}_i\\}^N_{i=1}$, then the board normal is $(0,0,1)^\\top$. Assume the board is transformed to the world coordinate by rotation, $\\mathbf{R}$, and translation, $\\mathbf{t}$. We have the observed coordinates $\\{\\hat{\\mathbf{y}}_i\\}$. Then we minimize the objectives:\n$$\\{\\mathbf{y}_i^*, \\mathbf{R}^*, \\mathbf{t}^*\\} = \\underset{\\mathbf{y}_i,\\mathbf{R}, \\mathbf{t}}{\\arg\\min}\\sum_i \\|\\hat{\\mathbf{y}}_i -\\mathbf{y}_i\\|^2\\\\ \\text{s.t. } \\mathbf{y}_i = \\mathbf{R}\\mathbf{x}_i + \\mathbf{t} $$This problem can be easily solved since it is a simple Iterative Closest Point (ICP) problem.\nThen we can get the center of the board as $\\mathbf{x}_0=\\mathbf{t}^*$, and the normal of the board is $\\mathbf{R}^*[0, 0, 1]^\\top$.\nNow we have refined board corners in the world coordinates, i.e., $\\{\\mathbf{y}_i^*\\}^N_{i=1}$.\nUnknown Board Dimension If we do not have the board dimension, then we can directly fit the plane using the measured corners, $\\{\\mathbf{x}_i\\}^N_{i=1}$ (with a slight abuse of notation). Assume the plane equation is $\\mathbf{n}^\\top \\mathbf{x} - c = 0$ (with unit normal vector, i.e., $\\|\\mathbf{n}\\| = 1$). Then we can solve for $\\mathbf{n}$ and $c$ by minimizing the following objective:\n$$ \\underset{\\mathbf{n}, c}{\\text{argmin}} \\frac{1}{N}\\sum_i \\|\\mathbf{n}^\\top \\mathbf{x}_i - c\\|^2 \\\\ \\text{s.t. } \\|\\mathbf{n}\\| = 1 $$For any fixed $\\mathbf{n}$, taking derivative with respect to $c$ and setting it to zero, we have:\n$$ c = \\frac{1}{N} \\sum_i \\mathbf{n}^\\top \\mathbf{x}_i = \\mathbf{n}^\\top \\bar{\\mathbf{x}} $$where $\\bar{\\mathbf{x}} = \\frac{1}{N} \\sum_i \\mathbf{x}_i$ is the mean of the measured corners.\nSo, the objective function becomes:\n$$ \\begin{aligned} \u0026\\frac{1}{N}\\sum_i \\|\\mathbf{n}^\\top (\\mathbf{x}_i - \\bar{\\mathbf{x}})\\|^2 \\\\ \u0026= \\frac{1}{N}\\mathbf{n}^\\top \\left(\\sum_i (\\mathbf{x}_i - \\bar{\\mathbf{x}})(\\mathbf{x}_i - \\bar{\\mathbf{x}})^\\top\\right) \\mathbf{n} \\\\ \u0026 = \\mathbf{n}^\\top \\mathbf{\\Sigma}_x \\mathbf{n} \\end{aligned} $$where $\\mathbf{\\Sigma}_x = \\frac{1}{N} \\sum_i (\\mathbf{x}_i - \\bar{\\mathbf{x}})(\\mathbf{x}_i - \\bar{\\mathbf{x}})^\\top$ is the biased sample covariance matrix of the measured corners.\nConsidering $\\|\\mathbf{n}\\| = 1$, $\\mathbf{n}$ is the eigenvector of $\\mathbf{\\Sigma}_x$ corresponding to its smallest eigenvalue.\nThe refined corners’ coordinates are the projection of the measured corners on the plane, which can be written as:\n$$ \\mathbf{y}_i = \\mathbf{x}_i - \\mathbf{n}^\\top (\\mathbf{x}_i - \\bar{\\mathbf{x}}) \\mathbf{n} = \\mathbf{x}_i - (\\mathbf{n}^\\top\\mathbf{x}_i -c)\\mathbf{n}. $$which has clear geometric meaning: the measured corners minus the projection on the plane normal.\nThe Intersection of the Image Ray and Board Plane We are given a 3D plane:\n$$\\mathbf{n}^\\top \\mathbf{x} + c = 0,$$and a camera model with the projection equation:\n$$d\\, \\mathbf{u} = \\mathbf{K} (\\mathbf{R}\\, \\mathbf{x} + \\mathbf{t}),$$where:\n$\\mathbf{u} \\in \\mathbb{R}^3$ is the homogeneous image coordinate (usually $\\mathbf{u} = [u, v, 1]^\\top$) $d$ is an unknown scale (depth) factor $\\mathbf{K}$ is the camera intrinsic matrix $\\mathbf{R}$ and $\\mathbf{t}$ are the rotation and translation (extrinsic parameters) of the camera $\\mathbf{x} \\in \\mathbb{R}^3$ is the 3D point we wish to recover Our goal is to find $\\mathbf{x}$ in terms of the known quantities $\\mathbf{u}, \\mathbf{K}, \\mathbf{R}, \\mathbf{t}, \\mathbf{n},$ and $c$.\nRewrite the Projection Equation\n$$\\mathbf{x} = \\mathbf{R}^\\top \\left(d\\,\\mathbf{K}^{-1} \\mathbf{u} - \\mathbf{t}\\right).$$However, the scale factor $d$ is still unknown.\nUse the Plane Constraint to Solve for $d$\nSince $\\mathbf{x}$ lies on the plane, it must satisfy:\n$$\\mathbf{n}^\\top \\mathbf{x} + c = 0.$$Substitute the expression we just found for $\\mathbf{x}$:\n$$\\mathbf{n}^\\top \\Bigl(\\mathbf{R}^\\top (d\\,\\mathbf{K}^{-1} \\mathbf{u} - \\mathbf{t})\\Bigr) + c = 0.$$Because the scalar product is invariant under transposition, we can write:\nNow, solve for $d$:\n$$d = \\frac{\\mathbf{n}^\\top \\mathbf{R}^\\top \\mathbf{t} - c}{\\mathbf{n}^\\top \\mathbf{R}^\\top \\mathbf{K}^{-1} \\mathbf{u}}.$$Note: It is important that $\\mathbf{n}^\\top \\mathbf{R}^\\top \\mathbf{K}^{-1} \\mathbf{u} \\neq 0$ so that the division is valid (this means that the back-projected ray is not parallel to the plane).\nSubstitute the expression for $d$ back into the equation for $\\mathbf{x}$:\n$$\\mathbf{x} = \\mathbf{R}^\\top \\left( \\frac{\\mathbf{n}^\\top \\mathbf{R}^\\top \\mathbf{t} - c}{\\mathbf{n}^\\top \\mathbf{R}^\\top \\mathbf{K}^{-1} \\mathbf{u}}\\, \\mathbf{K}^{-1} \\mathbf{u} - \\mathbf{t} \\right).$$Solve the Intersection Problem as an Optimization Problem We wish to solve\n$$ \\min_{\\mathbf{x}} \\Big\\| \\mathbf{u} - \\frac{\\mathbf{R}\\mathbf{x} + \\mathbf{t}}{\\mathbf{e}^\\top (\\mathbf{R}\\mathbf{x} + \\mathbf{t})} \\Big\\|^2\\tag{1} $$subject to the plane constraint\n$$ \\mathbf{n}^\\top \\mathbf{x} + c = 0, $$where: •\t$\\mathbf{R}$ is the rotation matrix, •\t$\\mathbf{t}$ is the translation vector, •\t$\\mathbf{n}$ is the normal of the plane, •\t$c$ is a constant, and •\t$\\mathbf{e} = \\begin{pmatrix} 0 \\ 0 \\ 1 \\end{pmatrix}$ (which selects the depth coordinate).\nEven when the measured image coordinate $\\mathbf{u} \\in \\mathbb{R}^2$ is noisy, the pinhole camera model combined with the plane constraint induces a projective mapping (a homography) from the plane to the image. In other words, for any $\\mathbf{u}$ there exists an entire ray of points $\\mathbf{x}$ that project exactly to $\\mathbf{u}$. The plane constraint then selects one unique point on that ray.\nParameterizing the Back‐Projection Ray Any 3D point $\\mathbf{x}$ whose projection is $\\mathbf{u}$ must satisfy\n$$ \\frac{\\mathbf{R}\\mathbf{x} + \\mathbf{t}}{\\mathbf{e}^\\top (\\mathbf{R}\\mathbf{x} + \\mathbf{t})} = \\begin{pmatrix} \\mathbf{u} \\\\ 1 \\end{pmatrix}. $$This implies that there exists a scalar $\\lambda$ such that\n$$ \\mathbf{R}\\mathbf{x} + \\mathbf{t} = \\lambda \\begin{pmatrix} \\mathbf{u} \\\\ 1 \\end{pmatrix}. $$Solving for $\\mathbf{x}$ gives\n$$ \\mathbf{x} = \\mathbf{R}^{-1} \\Bigl( \\lambda \\begin{pmatrix} \\mathbf{u} \\\\ 1 \\end{pmatrix} - \\mathbf{t} \\Bigr). $$It is convenient to define the camera center in world coordinates as\n$$ \\mathbf{x}_c = -\\mathbf{R}^{-1}\\mathbf{t}, $$and to introduce the direction vector\n$$ \\mathbf{d} = \\mathbf{R}^{-1}\\begin{pmatrix} \\mathbf{u} \\\\ 1 \\end{pmatrix}. $$Thus, the 3D point $\\mathbf{x}$ can be written as\n$$ \\mathbf{x} = \\mathbf{x}_c + \\lambda \\mathbf{d}. $$All points of this form project exactly to $\\mathbf{u}$, which means the optimal value of Eq. (1) is zero\nEnforcing the Plane Constraint Since $\\mathbf{x}$ must lie on the plane, we impose\n$$ \\mathbf{n}^\\top \\mathbf{x} + c = 0. $$Substitute $\\mathbf{x} = \\mathbf{x}_c + \\lambda\\mathbf{d}$ into the plane equation:\n$$ \\mathbf{n}^\\top \\Bigl( \\mathbf{x}_c + \\lambda\\mathbf{d} \\Bigr) + c = 0. $$Expanding, we obtain\n$$ \\mathbf{n}^\\top \\mathbf{x}_c + \\lambda \\mathbf{n}^\\top \\mathbf{d} + c = 0. $$Recalling that $\\mathbf{x}_c = -\\mathbf{R}^{-1}\\mathbf{t}$, the equation becomes\n$$ \\mathbf{n}^\\top \\mathbf{R}^{-1}\\mathbf{t} + \\lambda \\mathbf{n}^\\top \\mathbf{d} + c = 0. $$Solving for $\\lambda$, we have\n$$ \\lambda \\mathbf{n}^\\top \\mathbf{d} = \\mathbf{n}^\\top \\mathbf{R}^{-1}\\mathbf{t} - c, $$or equivalently,\n$$ \\lambda = \\frac{\\mathbf{n}^\\top \\mathbf{R}^{-1}\\mathbf{t} - c}{\\mathbf{n}^\\top \\mathbf{d}} = \\frac{\\mathbf{n}^\\top \\mathbf{R}^{-1}\\mathbf{t} - c}{\\mathbf{n}^\\top \\mathbf{R}^{-1}\\begin{pmatrix} \\mathbf{u} \\ 1 \\end{pmatrix}}, $$provided that $\\mathbf{n}^\\top \\mathbf{d} \\neq 0$.\nThe Final Solution Substitute the value of $\\lambda$ back into the expression for $\\mathbf{x}$:\n$$ \\mathbf{x} = -\\mathbf{R}^{-1}\\mathbf{t} + \\frac{\\mathbf{n}^\\top \\mathbf{R}^{-1}\\mathbf{t} - c}{\\mathbf{n}^\\top \\mathbf{R}^{-1}\\begin{pmatrix} \\mathbf{u} \\\\ 1 \\end{pmatrix}} \\mathbf{R}^{-1}\\begin{pmatrix} \\mathbf{u} \\\\ 1 \\end{pmatrix}. $$This is the unique 3D point on the plane $\\mathbf{n}^\\top \\mathbf{x} + c = 0$ that minimizes the reprojection error, even when $\\mathbf{u}$ is noisy.\nSummary a. Back‐Projection: The projection model\n$$ \\mathbf{x} \\mapsto \\frac{\\mathbf{R}\\mathbf{x} + \\mathbf{t}}{\\mathbf{e}^\\top (\\mathbf{R}\\mathbf{x} + \\mathbf{t})} $$is a homography when restricted to the plane. Hence, every point along the ray\n$$ \\mathcal{R}(\\mathbf{u}) = \\Bigl\\{ \\mathbf{x} = -\\mathbf{R}^{-1}\\mathbf{t} + \\lambda \\mathbf{R}^{-1}\\begin{pmatrix} \\mathbf{u} \\\\ 1 \\end{pmatrix} : \\lambda \\in \\mathbb{R} \\Bigr\\} $$projects to $\\mathbf{u}$.\nb. Plane Intersection: The plane constraint $\\mathbf{n}^\\top \\mathbf{x} + c = 0$ uniquely determines the scalar $\\lambda$, and hence the unique point $\\mathbf{x}$.\nThus, the final answer is\n$$ \\boxed{ \\mathbf{x} = -\\mathbf{R}^{-1}\\mathbf{t} + \\frac{\\mathbf{n}^\\top \\mathbf{R}^{-1}\\mathbf{t} - c}{\\mathbf{n}^\\top \\mathbf{R}^{-1}\\begin{pmatrix} \\mathbf{u} \\\\ 1 \\end{pmatrix}} \\mathbf{R}^{-1}\\begin{pmatrix} \\mathbf{u} \\\\ 1 \\end{pmatrix}. } $$Solve Step 3 and 6 Jointly as a Bundle Adjustment Problem Suppose the board’s markers coordinate in the board’s frame are $\\{ \\mathbf{x}_i^g \\}_{i=1}^N$ in the board’s frame. The measured marker points in the world frame are $\\{ \\mathbf{x}_i^o \\}_{i=1}^N$. The observed image markers in camera 1 are $\\{ \\mathbf{u}_i^1 \\}_{i=1}^{N_1}$ and the observed image markers in the second camera are $\\{ \\mathbf{u}_i^2 \\}_{i=1}^{N_2}$.\nWe construct the loss as:\n$$ \\begin{aligned} \\mathcal{L} \u0026= \\sum_i \\ell_{\\mathbf{T}_0, \\mathbf{x}_i} (\\mathbf{x}_i^g, \\mathbf{x}_i) + \\sum_i \\ell_{\\mathbf{x}_i} (\\mathbf{x}_i^o, \\mathbf{x}_i) \\\\ \u0026 + \\sum_i \\ell_{\\mathbf{x}_i, \\mathbf{T}_0, \\mathbf{T}_1} \\Big( \\pi^{-1}(\\mathbf{u}_i^1), \\mathbf{x}_i \\Big) + \\sum_i \\ell_{\\mathbf{x}_i, \\mathbf{T}_0, \\mathbf{T}_2} \\Big( \\pi^{-1}(\\mathbf{u}_i^2), \\mathbf{x}_i \\Big) \\\\ \u0026+ \\sum_{i \\in C_{1,2}} \\ell_{\\mathbf{T}_0, \\mathbf{T}_1, \\mathbf{T}_2} \\Big( \\pi^{-1}(\\mathbf{u}_i^1), \\pi^{-1}(\\mathbf{u}_i^2) \\Big) \\end{aligned} $$Where:\nthe transformation from the local board to the world board, $\\mathbf{T}_0$; The world coordinates of the board, $\\{\\mathbf{x}_i\\}$; The transformation from the cameras to the world board, $\\mathbf{T}_i$, where $i = 1, 2$; $C_{1,2}$ is the marker set commonly seen by camera 1 and camera 2; $\\pi(\\cdot)$ is the intersection of the camera ray and the world plane. In the first part, we put a hard constraint that the true 3D position of the points should be a rigid transformation of the board.\n$$\\sum_i \\ell_{\\mathbf{T}_0, \\mathbf{x}_i}(\\mathbf{x}_i^g, \\mathbf{x}_i) = \\sum_i I_{\\infty}(\\mathbf{x}_i - \\mathbf{T}_0 \\mathbf{x}_i^g)\\tag{2}$$where $I_\\infty(x)= \\begin{cases} 0, \\text{ if } x=0, \\\\ \\infty, \\text{otherwise} \\end{cases}$.\nThe second part of the loss is the difference between the observations of 3D points and the true position.\n$$\\sum_i \\ell_{\\mathbf{x}_i}(\\mathbf{x}_i, \\mathbf{x}_i^o) = \\sum_i \\|\\mathbf{x}_i - \\mathbf{x}_i^o\\|^2 \\tag{3}$$The third part is the perspective-n-point loss\n$$\\sum_{i\\in C_1} \\ell_{\\mathbf{x}_i, \\mathbf{T}_0,\\mathbf{T}_1}\\left(\\pi^{-1}(\\mathbf{u}_i^1), \\mathbf{x}_i \\right) = \\sum_{i\\in C_1} \\| \\pi^{-1}(\\mathbf{u}_i^1) - \\mathbf{x}_i \\|^2\\tag{4}$$$$\\sum_{i\\in C_2} \\ell_{\\mathbf{x}_i, \\mathbf{T}_0,\\mathbf{T}_2}\\left(\\pi^{-1}(\\mathbf{u}_i^2), \\mathbf{x}_i \\right) = \\sum_{i\\in C_2} \\| \\pi^{-1}(\\mathbf{u}_i^2) - \\mathbf{x}_i \\|^2\\tag{5}$$The last one is the consistency loss. Here, we can simply put the $\\ell_2$ loss on the points. Other losses are possible, e.g., image similarity loss, etc.\n$$\\sum_{i \\in C_{1,2}} \\ell_{\\mathbf{T}_0, \\mathbf{T}_1, \\mathbf{T}_2}\\left(\\pi^{-1}(\\mathbf{u}_i^1),\\, \\pi^{-1}(\\mathbf{u}_i^2)\\right) = \\sum_{i\\in C_{1,2}} \\|\\pi^{-1}(\\mathbf{u}_i^1) - \\pi^{-1}(\\mathbf{u}_i^2)\\|^2 \\tag{6}$$Simulations We construct a 8x8 chessboard with each square’s size be of 1m. We set the the origin as the center of the board. We place the board in the world coordinate with extrinsic:\n$$\\begin{pmatrix} 1 \u0026 0 \u0026 0 \u0026 0 \\\\ 0 \u0026 1 \u0026 0 \u0026 0 \\\\ 0 \u0026 0 \u0026 1 \u0026 8 \\\\ 0 \u0026 0 \u0026 0 \u0026 1 \\end{pmatrix} $$which means the normal of the board plane is $[0, 0, 1]^\\top$.\nWe add Gaussian noise on the corners coordinates with noise zero mean and $0.005$ standard deviation.\nWith the noisy corners’ coordinates, we can get the optimized board’s extrinsic according to step 3. The optimized normal is $[1.38*10^{-3}, -2.16*10^{-5}, 9.999*10^{-1}]^\\top$. That is already very close the ground truth.\nThen we simulate two cameras with the same intrinsic matrix: $f_x =800$, $c_x = 500$, $f_y = 800$, $c_y=400$, and $H=800$, $W=1000$. We rotate the first camera along the z-axis $10$ degrees and the second $-10$ degrees, and translate the first camera along the x-axis $2$ meters and the second $-2$ meters. Then the images of the chessboard in the two cameras are shown in the figure below.\nThe original images. Then, we apply Gaussian blur on the observed images and add Gaussian noise on them. The new images are shown in the figure below.\nThe simulated observed images. After that, we use opencv “findChessboardCorners” and find the rough corners and then use “cornerSubPix” to refine the corners’ coordinates. The refined corners are shown in the figure below.\nThe detected corners. Pay attention to the sequence of the detected corners. (The detected corners start from the blue one and end with the green one in the above figure.) Rearrange the detected corners according to the refined chessboard corners. Using the “solvePnP” function with method “SQPNP”, which is a global optimization method, we can find the estimated extrinsic of the two cameras. We record the errors of the estimation using the original measurements of the chessboard corners and the refined ones.\nCamera Corners Rotation Error (degrees) Translation Error (meters) Camera 1 Original 0.260 0.0372 Camera 1 Refined 0.0732 0.0117 Camera 2 Original 0.247 0.0318 Camera 2 Refined 0.0750 0.0118 The translation error is the norm of the difference between the estimated and the ground truth translation. The rotation error is defined as the norm of $\\text{Log}(\\mathbf{R}_1 \\boxminus \\mathbf{R}_2)$.\nAs shown in the table, the refined measurements result in lower errors for both rotation and translation, demonstrating the effectiveness of the corner refinement process.\nIn the final step, we do jointly optimization. We warp the image in camera 1 with parameters before and after jointly optimization. The results are shown in the figure below.\nThe warped images (blended with the image in camera 2) before and after jointly optimization. In the above figure, we can hardly tell which one is better. The translation error is $0.0298$ and $0.0257$ meters for camera 1 and camera 2 respectively. The rotation error is $0.204$ and $0.199$ degrees for camera 1 and camera 2 respectively. That is expected increased error for single camera calibration however more consistent for the two cameras.\nDetect Corners on the Warped Image Corner detection often becomes challenging on original images due to severe distortion or extreme viewing angles. To address this limitation, we can create a virtual camera with an optimized viewpoint. By warping the original image onto this virtual camera’s image plane, we can simulate a more frontal view of the chessboard. This transformation adjusts the perspective so that the chessboard appears as if viewed head-on, significantly improving corner detection reliability. We can then accurately detect the corners on this warped image rather than struggling with the difficult perspective of the original.\nThe figure below illustrates this approach. On the left is the original image where the severe viewing angle prevents the standard algorithm from successfully detecting the corners. On the right is the perspective-corrected warped image, where we can successfully identify and locate all corners.\nLeft shows the original observed image. Right shows the warped image and the detected corners. Multi-Board and Multi-Camera Calibration Formulation For multiple boards and cameras, the observation structure should be defined at the marker-point level. Since each camera may see only a subset of the markers on a board, the primitive observation is a camera-point edge:\n$$ (c,p)\\in\\mathcal E \\quad\\Longleftrightarrow\\quad \\text{camera }c\\text{ observes marker point }p. $$A board-camera graph is only a compressed graph obtained after grouping all observed points on the same board. The post’s original two-camera formulation uses known board-frame marker coordinates, measured world-frame marker coordinates, image observations, a hard board-rigidity constraint, ray-plane inverse projection, and a cross-camera consistency term. The multi-board/multi-camera generalization should preserve the point-level observation structure.\nBelow is a careful formulation and two solvers: a point-level ADMM solver and a centralized sparse bundle-adjustment solver, which is what I would use when distribution is not required.\n1. Sets and Graph Let there be $B$ boards and $C$ cameras.\nBoards:\n$$ \\mathcal B=\\{1,\\dots,B\\}. $$Cameras:\n$$ \\mathcal C=\\{1,\\dots,C\\}. $$Board $b$ has known marker points:\n$$ \\mathcal I_b=\\{1,\\dots,N_b\\}. $$Marker $i$ on board $b$ has known board-frame coordinate:\n$$ q_{bi}\\in\\mathbb R^3. $$For a planar checkerboard or marker board, usually\n$$ q_{bi}= \\begin{bmatrix} x_{bi}\\\\ y_{bi}\\\\ 0 \\end{bmatrix}. $$Define the global point set:\n$$ \\mathcal P= \\{p=(b,i): b\\in\\mathcal B,\\ i\\in\\mathcal I_b\\}. $$For point $p=(b,i)$, define\n$$ \\beta(p)=b $$as the board containing point $p$, and define\n$$ q_p=q_{bi}. $$The camera-point observation graph is\n$$ \\boxed{ \\mathcal G=(\\mathcal C\\cup\\mathcal P,\\mathcal E), } $$where\n$$ \\boxed{ (c,p)\\in\\mathcal E \\quad\\Longleftrightarrow\\quad \\text{camera }c\\text{ observes point }p. } $$For each observation edge $(c,p)$, the measured image point is\n$$ u_{cp}\\in\\mathbb R^2. $$Camera $c$ has known intrinsic matrix\n$$ K_c. $$Define the neighborhoods:\n$$ \\mathcal N(c)=\\{p:(c,p)\\in\\mathcal E\\}, $$$$ \\mathcal N(p)=\\{c:(c,p)\\in\\mathcal E\\}, $$$$ \\mathcal P_b=\\{p\\in\\mathcal P:\\beta(p)=b\\}. $$2. Pose Variables and Coordinate Convention Use a uniform local-to-world pose convention for both boards and cameras. The leading world-frame symbol is omitted because local-to-world is the default: $T^B_b$ denotes the pose of board $b$, and $T^C_c$ denotes the pose of camera $c$.\nFor board $b$:\n$$ \\boxed{ T^B_b \\begin{bmatrix} R^B_b \u0026 t^B_b\\ 0 \u0026 1 \\end{bmatrix} \\in SE(3) } $$\nmaps board-local coordinates to world coordinates:\n$$ \\boxed{ X_p^W T^B_{\\beta(p)}\\bar q_p. } $$\nHere\n$$ \\bar q_p= \\begin{bmatrix} q_p\\\\ 1 \\end{bmatrix}. $$Equivalently,\n$$ \\boxed{ X_p^W R^B_{\\beta(p)} q_p+t^B_{\\beta(p)}. } $$\nFor camera $c$:\n$$ \\boxed{ T^C_c \\begin{bmatrix} R^C_c \u0026 t^C_c\\ 0 \u0026 1 \\end{bmatrix} \\in SE(3) } $$\nmaps camera-local coordinates to world coordinates. Therefore, to project a world point into camera $c$, use the inverse camera pose:\n$$ \\boxed{ \\bar X_{cp}^C (T^C_c)^{-1}\\bar X_p^W. } $$\nwhere $\\bar X_p^W=[(X_p^W)^\\top,1]^\\top$.\nExplicitly,\n$$ (T^C_c)^{-1} \\begin{bmatrix} (R^C_c)^{\\top} \u0026 -(R^C_c)^{\\top}t^C_c\\ 0 \u0026 1 \\end{bmatrix}, $$\nand\n$$ \\boxed{ X_{cp}^C (R^C_c)^{\\top} \\left( X_p^W-t^C_c \\right). } $$\nThis is consistent with treating both the board and camera variables as local-to-world poses. The usual computer-vision world-to-camera extrinsic still appears, but now it is written explicitly as $(T^C_c)^{-1}$.\n3. Projection Model For point $p=(b,i)$, the world coordinate is\n$$ \\boxed{ X_p^W T^B_{\\beta(p)}\\bar q_p. } $$\nThe camera-coordinate point is\n$$ \\boxed{ \\bar X_{cp}^C (T^C_c)^{-1}T^B_{\\beta(p)}\\bar q_p. } $$\nThe projected pixel is\n$$ \\boxed{ \\hat u_{cp} \\Pi\\left( K_c (T^C_c)^{-1} T^B_{\\beta(p)} \\bar q_p \\right). } $$\nIf\n$$ X_{cp}^C= \\begin{bmatrix} X\\\\Y\\\\Z \\end{bmatrix}, $$then, for a standard pinhole model,\n$$ \\boxed{ \\hat u_{cp} \\begin{bmatrix} f_{x,c}X/Z+c_{x,c}\\ f_{y,c}Y/Z+c_{y,c} \\end{bmatrix}. } $$\nIt is useful to define the shorthand\n$$ \\pi_c(X^W;T^C_c) \\Pi\\left(K_c(T^C_c)^{-1}\\bar X^W\\right), $$\nwhere $\\bar X^W=[(X^W)^\\top,1]^\\top$. The reprojection residual is\n$$ \\boxed{ r_{cp}(T^C_c,T^B_{\\beta(p)}) \\Pi\\left( K_c (T^C_c)^{-1} T^B_{\\beta(p)} \\bar q_p \\right)-u_{cp}. } $$\nIf the image measurement covariance is\n$$ \\Sigma_{u,cp}\\in\\mathbb R^{2\\times2}, $$the whitened residual is\n$$ \\boxed{ e_{cp}(T^C_c,T^B_{\\beta(p)}) \\Sigma_{u,cp}^{-1/2} \\left[ \\Pi\\left( K_c (T^C_c)^{-1} T^B_{\\beta(p)} \\bar q_p \\right) -u_{cp} \\right]. } $$\n4. Board/World Measurement Priors In the original EOL setup, some board marker coordinates may be measured in the world frame. Let\n$$ z_p\\in\\mathbb R^3 $$be the measured world coordinate of point $p$. Define the set of points with world measurements as\n$$ \\mathcal Z\\subseteq\\mathcal P. $$The board/world residual is\n$$ \\boxed{ r^z_p(T^B_{\\beta(p)}) R^B_{\\beta(p)} q_p+t^B_{\\beta(p)}-z_p. } $$\nWith covariance\n$$ \\Sigma_{z,p}, $$the board prior term is\n$$ \\boxed{ \\phi_b(T^B_b) \\frac12 \\sum_{p\\in\\mathcal P_b\\cap\\mathcal Z} \\left| R^B_b q_p+t^B_b-z_p \\right|{\\Sigma{z,p}^{-1}}^2. } $$\nYou may also have camera pose priors, rig priors, or a fixed reference camera. Write those directly on the camera pose. Let $\\bar T^C_c$ be the prior or nominal camera pose. The operator\n$$ \\operatorname{Log}: SE(3)\\rightarrow\\mathbb R^6 $$is the Lie-group logarithm that converts a relative pose into a 6D tangent-vector error, usually ordered as three translation components and three rotation components. For example:\n$$ \\boxed{ \\psi_c(T^C_c) \\frac12 \\left| \\operatorname{Log} \\left( (\\bar T^C_c)^{-1}T^C_c \\right) \\right|_{\\Sigma_c^{-1}}^2. } $$\n5. Correct Centralized Problem Formulation The cleanest problem is:\n$$ \\boxed{ \\begin{aligned} \\min_{\\{T^B_b\\},\\{T^C_c\\}} \u0026\\quad \\sum_{(c,p)\\in\\mathcal E} \\frac12 \\left\\| \\Sigma_{u,cp}^{-1/2} \\left[ \\Pi\\left( K_c (T^C_c)^{-1} T^B_{\\beta(p)} \\bar q_p \\right) -u_{cp} \\right] \\right\\|^2 \\\\ \u0026\\quad+ \\sum_{b\\in\\mathcal B}\\phi_b(T^B_b) + \\sum_{c\\in\\mathcal C}\\psi_c(T^C_c). \\end{aligned} } \\tag{P} $$This is the point-level multi-board, multi-camera bundle-adjustment problem.\nThe graph edge is $(c,p)$, but the residual depends on\n$$ T^C_c \\quad\\text{and}\\quad T^B_{\\beta(p)}. $$So the raw observation graph is camera-point, while the variable graph is camera-board because each point is rigidly attached to a board.\nThis shared board-generated point is also the multi-camera consistency constraint. If two cameras $c_1$ and $c_2$ observe the same point $p$, both reprojection residuals use the same world point\n$$ X_p^W=R^B_{\\beta(p)} q_p+t^B_{\\beta(p)}. $$Thus the two camera observations are coupled through the same board pose and the same physical marker point, rather than through two independent 3D point variables.\nWith the uniform local-to-world convention, the board-to-camera relative transform is\n$$ \\boxed{ T_{CB}^{(c,b)} (T^C_c)^{-1}T^B_b. } $$\nThis maps board $b$’s local coordinates into camera $c$’s local coordinates, so the projection can also be written as\n$$ \\boxed{ \\hat u_{cp} \\Pi \\left( K_c T_{CB}^{(c,\\beta(p))} \\bar q_p \\right). } $$\n6. Gauge Freedom and Identifiability Without an absolute anchor, each connected component has an $SE(3)$ gauge freedom.\nFor any\n$$ H\\in SE(3), $$the transformation\n$$ \\boxed{ (T^B_b)'=HT^B_b, } $$$$ \\boxed{ (T^C_c)'=HT^C_c } $$leaves every relative camera-board projection unchanged:\n$$ ((T^C_c)’)^{-1}(T^B_b)' (HT^C_c)^{-1}(HT^B_b) (T^C_c)^{-1}H^{-1}HT^B_b (T^C_c)^{-1}T^B_b. $$\nTherefore, every connected component needs at least one of the following:\n$$ \\text{one fixed board pose,} $$$$ \\text{one fixed camera pose,} $$$$ \\text{sufficient world-frame board-point measurements,} $$or\n$$ \\text{sufficient camera/rig priors.} $$Connectivity alone is not enough. The observations must also be geometrically nondegenerate: enough non-collinear board points, reasonable viewing angles, positive depth, and no nearly rank-deficient configurations.\n7. ADMM Formulation Using Camera-Local Point Copies ADMM is useful if you want a distributed or modular solver. Standard ADMM is a decomposition method well suited to distributed optimization, although the strongest convergence guarantees are for convex problems; this calibration problem is nonconvex because of $SE(3)$ and perspective projection.\nIntroduce a camera-local world-frame copy of each observed point:\n$$ Y_{cp}\\in\\mathbb R^3, \\qquad (c,p)\\in\\mathcal E. $$These are still world-frame points. At consensus, each copy must equal the world point generated by the board pose:\n$$ \\boxed{ Y_{cp} R^B_{\\beta(p)} q_p+t^B_{\\beta(p)}. } $$\nThis is the explicit consistency constraint across cameras. If cameras $c_1$ and $c_2$ both observe the same point $p$, then at ADMM consensus\n$$ Y_{c_1p} R^B_{\\beta(p)} q_p+t^B_{\\beta(p)} Y_{c_2p}. $$\nSo a separate pairwise term such as $\\|Y_{c_1p}-Y_{c_2p}\\|^2$ is not necessary; all camera-local copies are tied to the same board-generated world point.\nwhere $\\bar Y_{cp}=[Y_{cp}^\\top,1]^\\top$.\nDefine the local reprojection loss:\n$$ \\boxed{ \\ell_{cp}(T^C_c,Y_{cp}) \\frac12 \\left| \\Sigma_{u,cp}^{-1/2} \\left[ \\Pi\\left( K_c (T^C_c)^{-1} \\bar Y_{cp} \\right) -u_{cp} \\right] \\right|^2. } $$\nThen the ADMM-split problem is:\n$$ \\boxed{ \\begin{aligned} \\min_{{T^C_c},{T^B_b},{Y_{cp}}} \u0026\\quad \\sum_{(c,p)\\in\\mathcal E} \\ell_{cp}(T^C_c,Y_{cp}) + \\sum_b\\phi_b(T^B_b) + \\sum_c\\psi_c(T^C_c) \\ \\text{s.t.} \u0026\\quad Y_{cp} R^B_{\\beta(p)} q_p+t^B_{\\beta(p)}, \\qquad (c,p)\\in\\mathcal E. \\end{aligned} } \\tag{A} $$\nWhen the constraints are satisfied, this is equivalent to the centralized problem (P).\n8. Scaled Augmented Lagrangian For each observation edge, introduce a scaled dual variable\n$$ \\lambda_{cp}\\in\\mathbb R^3. $$Let the ADMM penalty be\n$$ \\mu_{cp}\u003e0. $$The scaled augmented Lagrangian is:\n$$ \\boxed{ \\begin{aligned} \\mathcal L_\\mu \u0026= \\sum_{(c,p)\\in\\mathcal E} \\ell_{cp}(T^C_c,Y_{cp}) + \\sum_b\\phi_b(T^B_b) + \\sum_c\\psi_c(T^C_c) \\ \u0026\\quad+ \\sum_{(c,p)\\in\\mathcal E} \\frac{\\mu_{cp}}{2} \\left| Y_{cp} R^B_{\\beta(p)} q_p t^B_{\\beta(p)} + \\lambda_{cp} \\right|^2. \\end{aligned} } $$\nConstants such as\n$$ -\\frac{\\mu_{cp}}{2}\\|\\lambda_{cp}\\|^2 $$are omitted because they do not affect the primal minimizers.\n9. ADMM Algorithm At iteration $k$, perform three steps.\nStep 1: Camera-Local Update For each camera $c$, solve independently:\n$$ \\boxed{ \\begin{aligned} (T^C_c)^{k+1}, {Y_{cp}^{k+1}}_{p\\in\\mathcal N(c)} \\arg\\min_{T^C_c,{Y_{cp}}} \u0026\\quad \\psi_c(T^C_c) \\ \u0026+ \\sum_{p\\in\\mathcal N(c)} \\frac12 \\left| \\Sigma_{u,cp}^{-1/2} \\left[ \\Pi\\left( K_c(T^C_c)^{-1}\\bar Y_{cp} \\right) -u_{cp} \\right] \\right|^2 \\ \u0026+ \\sum_{p\\in\\mathcal N(c)} \\frac{\\mu_{cp}}{2} \\left| Y_{cp} X_p^k + \\lambda_{cp}^k \\right|^2, \\end{aligned} } \\tag{ADMM-1} $$\nwhere\n$$ \\boxed{ X_p^k (R^B_{\\beta(p)})^k q_p+(t^B_{\\beta(p)})^k. } $$\nThis step is parallel over cameras.\nThe residuals used inside a Gauss-Newton or Levenberg-Marquardt solve are:\n$$ r_{cp}^{\\text{img}} \\Sigma_{u,cp}^{-1/2} \\left[ \\Pi\\left( K_c(T^C_c)^{-1}\\bar Y_{cp} \\right) -u_{cp} \\right], $$\nand\n$$ r_{cp}^{\\text{cons}} \\sqrt{\\mu_{cp}} \\left[ Y_{cp} X_p^k + \\lambda_{cp}^k \\right]. $$\nUse Lie updates for the camera pose:\n$$ \\boxed{ T^C_c \\leftarrow \\exp(\\delta\\xi_c^\\wedge)T^C_c. } $$The projection internally uses the inverse $(T^C_c)^{-1}$. Use ordinary Euclidean updates for the local point copies:\n$$ Y_{cp}\\leftarrow Y_{cp}+\\delta y_{cp}. $$This subproblem is still nonlinear because of projection, but it is local to one camera.\nStep 2: Board Update For each board $b$, solve independently:\n$$ \\boxed{ \\begin{aligned} (T^B_b)^{k+1} \\arg\\min_{T^B_b\\in SE(3)} \u0026\\quad \\phi_b(T^B_b) \\ \u0026+ \\sum_{p\\in\\mathcal P_b} \\sum_{c\\in\\mathcal N(p)} \\frac{\\mu_{cp}}{2} \\left| Y_{cp}^{k+1} R^B_b q_p t^B_b + \\lambda_{cp}^k \\right|^2. \\end{aligned} } \\tag{ADMM-2} $$\nThis step is parallel over boards.\nRewrite the ADMM target as:\n$$ R^B_b q_p+t^B_b \\approx Y_{cp}^{k+1}+\\lambda_{cp}^k. $$Define\n$$ \\tau_{cp}^{k+1} Y_{cp}^{k+1}+\\lambda_{cp}^k. $$\nIf $\\phi_b$ consists only of isotropic point measurements,\n$$ \\phi_b(T^B_b) \\sum_{p\\in\\mathcal P_b\\cap\\mathcal Z} \\frac{w_{z,p}}{2} |R^B_b q_p+t^B_b-z_p|^2, $$\nthen the board update is a weighted rigid alignment problem:\n$$ \\boxed{ \\min_{R^B_b,t^B_b} \\frac12 \\sum_j \\alpha_j \\|R^B_b q_j+t^B_b-\\tau_j\\|^2, \\qquad R^B_b\\in SO(3). } $$The target set contains two types of targets.\nFor every camera observation $(c,p)$:\n$$ \\tau_j=\\tau_{cp}^{k+1}=Y_{cp}^{k+1}+\\lambda_{cp}^k, \\qquad \\alpha_j=\\mu_{cp}. $$For every measured world point $p\\in\\mathcal P_b\\cap\\mathcal Z$:\n$$ \\tau_j=z_p, \\qquad \\alpha_j=w_{z,p}. $$Compute weighted centroids:\n$$ \\bar q \\frac{\\sum_j\\alpha_jq_j}{\\sum_j\\alpha_j}, $$\n$$ \\bar\\tau \\frac{\\sum_j\\alpha_j\\tau_j}{\\sum_j\\alpha_j}. $$\nCompute weighted covariance:\n$$ H \\sum_j \\alpha_j (q_j-\\bar q)(\\tau_j-\\bar\\tau)^\\top. $$\nTake the SVD:\n$$ H=U\\Sigma V^\\top. $$Then\n$$ \\boxed{ (R^B_b)^{k+1} V \\operatorname{diag} \\left( 1,1,\\det(VU^\\top) \\right) U^\\top, } $$\nand\n$$ \\boxed{ (t^B_b)^{k+1} \\bar\\tau-(R^B_b)^{k+1}\\bar q. } $$\nSo\n$$ \\boxed{ (T^B_b)^{k+1} \\begin{bmatrix} (R^B_b)^{k+1}\u0026(t^B_b)^{k+1}\\ 0\u00261 \\end{bmatrix}. } $$\nIf $\\phi_b$ has anisotropic covariances or a general pose prior, solve (ADMM-2) by a small 6-DoF LM solve instead of closed-form Kabsch.\nStep 3: Dual Update For every observation edge $(c,p)\\in\\mathcal E$:\n$$ \\boxed{ \\lambda_{cp}^{k+1} \\lambda_{cp}^{k} + Y_{cp}^{k+1} (R^B_{\\beta(p)})^{k+1} q_p (t^B_{\\beta(p)})^{k+1}. } \\tag{ADMM-3} $$\nThe primal residual is\n$$ \\boxed{ r_{p,cp}^{k+1} Y_{cp}^{k+1} (R^B_{\\beta(p)})^{k+1} q_p (t^B_{\\beta(p)})^{k+1}. } $$\nA practical dual residual is\n$$ \\boxed{ r_{d,cp}^{k+1} \\mu_{cp} \\left[ \\left((R^B_{\\beta(p)})^{k+1} q_p+(t^B_{\\beta(p)})^{k+1}\\right) \\left((R^B_{\\beta(p)})^{k} q_p+(t^B_{\\beta(p)})^{k}\\right) \\right]. } $$\nStop when\n$$ \\sum_{(c,p)\\in\\mathcal E}\\|r_{p,cp}\\|^2 $$and\n$$ \\sum_{(c,p)\\in\\mathcal E}\\|r_{d,cp}\\|^2 $$are below chosen tolerances.\n10. ADMM Pseudocode Input: Boards b = 1..B Cameras c = 1..C Points p = (b, i) Observation graph E = {(c, p)} Board-frame coordinates q[p] Pixel observations u[c, p] Intrinsics K[c] Optional world measurements z[p] Optional camera/rig priors Initialize: Board poses (T^B_b)^0 Camera poses (T^C_c)^0 Local copies: Y_cp^0 = (R^B_beta(p))^0 q_p + (t^B_beta(p))^0 Dual variables: lambda_cp^0 = 0 Penalties: mu_cp \u003e 0 Repeat until convergence: # Camera-local step: parallel over cameras for each camera c: solve nonlinear least squares over T^C_c and {Y_cp}_{p in N(c)}: image reprojection residuals using (T^C_c)^-1 + ADMM consensus residuals to current board points # Board step: parallel over boards for each board b: solve rigid alignment: board-generated points R^B_b q_p + t^B_b should match Y_cp + lambda_cp plus measured world points z_p, if available # Dual step: parallel over observation edges for each observation edge (c, p): lambda_cp \u003c- lambda_cp + Y_cp - R^B_beta(p) q_p - t^B_beta(p) Check primal and dual residuals. 11. Initialization ADMM will be sensitive to initialization because the problem is nonconvex.\nGood initialization options:\nIf world marker measurements exist: initialize each board pose $(T^B_b)^0$ by weighted Kabsch from $q_p\\mapsto z_p$. Initialize cameras from board/world points: once board poses are initialized, compute $$ X_p^W=R^B_{\\beta(p)} q_p+t^B_{\\beta(p)} $$and solve PnP for each camera using observed correspondences\n$$ (X_p^W,u_{cp}). $$ If no world measurements exist: fix one board pose or one camera pose to remove gauge, estimate local board-camera relative poses where possible, and propagate poses through the observation graph. Initialize local point copies with the current board predictions: $$ Y_{cp}^0=(R^B_{\\beta(p)})^0 q_p+(t^B_{\\beta(p)})^0. $$ Initialize duals to zero: $$ \\lambda_{cp}^0=0. $$12. Penalty Choice Use $\\mu_{cp}$ in world-coordinate units. If local point copies are in meters, $\\mu_{cp}$ has units like inverse square meters.\nA reasonable initial choice is to relate $\\mu_{cp}$ to expected 3D point uncertainty:\n$$ \\mu_{cp}\\approx \\frac{1}{\\sigma_X^2}. $$For example, if the board/world point uncertainty is about $5\\text{ mm}$,\n$$ \\sigma_X=0.005\\text{ m}, \\qquad \\mu\\approx 40000. $$But this can be too stiff early in optimization. A practical strategy is to start with a smaller $\\mu$, then increase it as the primal residual decreases.\nUse residual balancing:\n$$ \\|r_p\\| \u003e \\eta \\|r_d\\| \\quad\\Rightarrow\\quad \\mu\\leftarrow \\gamma\\mu, $$$$ \\|r_d\\| \u003e \\eta \\|r_p\\| \\quad\\Rightarrow\\quad \\mu\\leftarrow \\mu/\\gamma. $$When changing $\\mu$, rescale the scaled dual variable appropriately.\n13. What This ADMM Split Buys You This ADMM formulation respects the camera-point graph.\nIt gives:\n$$ \\text{camera-parallel local updates,} $$$$ \\text{board-parallel rigid alignment updates,} $$$$ \\text{simple point-level consensus constraints,} $$$$ \\text{no need for every camera to see a whole board,} $$$$ \\text{direct support for missing point observations.} $$This is better than a board-camera relative-pose ADMM when a camera may observe only a few points on a board. A board-camera relative pose\n$$ G_{cb}=(T^C_c)^{-1}T^B_b $$is only meaningful as a local measurement if camera $c$ sees enough non-collinear points on board $b$ to estimate the board pose. The point-level ADMM does not require that.\n14. Optional: Post-Style Ray-Plane Residual The formulation above uses reprojection error. That is the statistically cleaner choice.\nThe post instead discusses inverse ray-plane intersection. It derives the unique point where the back-projected image ray intersects a known plane, provided the ray is not parallel to the plane.\nFor board $b$, its world-frame plane is\n$$ n_b^\\top X+c_b=0, $$where\n$$ n_b=R^B_b e_3, \\qquad c_b=-n_b^\\top t^B_b, \\qquad e_3= \\begin{bmatrix} 0\\\\0\\\\1 \\end{bmatrix}. $$Camera $c$’s center in world coordinates is now directly:\n$$ \\boxed{ o_c=t^C_c. } $$For homogeneous image coordinate\n$$ \\tilde u_{cp}= \\begin{bmatrix} u_{cp}\\\\ v_{cp}\\\\ 1 \\end{bmatrix}, $$the ray direction in camera coordinates is\n$$ d_{cp}^{C} K_c^{-1}\\tilde u_{cp}. $$\nThe same direction in world coordinates is\n$$ \\boxed{ d_{cp}^{W} R^C_c d_{cp}^{C}. } $$\nThe ray-plane intersection is\n$$ \\boxed{ \\phi_{cp}(T^C_c,T^B_b) o_c \\frac{n_b^\\top o_c+c_b} {n_b^\\top d_{cp}^{W}} d_{cp}^{W}. } $$\nThe board-generated world point is\n$$ \\boxed{ X_p^W=R^B_b q_p+t^B_b. } $$The post-style residual would be\n$$ \\boxed{ r_{cp}^{\\text{ray}} P_b^\\top \\left[ \\phi_{cp}(T^C_c,T^B_{\\beta(p)}) \\left( R^B_{\\beta(p)} q_p+t^B_{\\beta(p)} \\right) \\right], } $$\nwhere\n$$ P_b= \\begin{bmatrix} R^B_b e_1 \u0026 R^B_b e_2 \\end{bmatrix} \\in\\mathbb R^{3\\times2} $$is the tangent basis of the board plane.\nI recommend using the tangent-plane residual, not the full 3D residual, because both points are supposed to lie on the board plane and the meaningful error is along the board surface.\nHowever, the reprojection objective is usually preferable because pixel noise is naturally modeled in image coordinates. The ray-plane residual requires converting pixel uncertainty into board-plane uncertainty, which depends on viewing angle and can become ill-conditioned when\n$$ n_b^\\top d_{cp}^{W}\\approx 0. $$15. Better Centralized Method: Sparse Bundle Adjustment If the calibration can be solved on one machine, I would use sparse nonlinear least squares instead of ADMM.\nThe problem is exactly:\n$$ \\boxed{ \\begin{aligned} \\min_{\\{T^B_b\\},\\{T^C_c\\}} \u0026\\quad \\sum_{(c,p)\\in\\mathcal E} \\frac12 \\left\\| \\Sigma_{u,cp}^{-1/2} \\left[ \\Pi\\left( K_c (T^C_c)^{-1} T^B_{\\beta(p)} \\bar q_p \\right) -u_{cp} \\right] \\right\\|^2 \\\\ \u0026\\quad+ \\sum_b\\phi_b(T^B_b) + \\sum_c\\psi_c(T^C_c). \\end{aligned} } $$Use pose increments:\n$$ T^B_b\\leftarrow \\exp(\\delta\\xi_b^\\wedge)T^B_b, $$$$ T^C_c\\leftarrow \\exp(\\delta\\eta_c^\\wedge)T^C_c. $$Linearize every residual:\n$$ e_{cp} \\approx e_{cp}^0 + J_{B,cp}\\delta\\xi_{\\beta(p)} + J_{C,cp}\\delta\\eta_c. $$Stack all residuals and solve the damped normal equations:\n$$ \\boxed{ \\left(J^\\top J+\\lambda D\\right)\\delta -J^\\top r. } $$\nEach residual touches only one board pose and one camera pose. Therefore the normal matrix has sparse block structure:\n$$ \\begin{bmatrix} H_{CC} \u0026 H_{CB}\\ H_{BC} \u0026 H_{BB} \\end{bmatrix} \\begin{bmatrix} \\delta C\\ \\delta B \\end{bmatrix} \\begin{bmatrix} g_C\\ g_B \\end{bmatrix}. $$\nIf there are no camera-camera priors, $H_{CC}$ is block diagonal over cameras before Schur fill-in. If there are no board-board priors, $H_{BB}$ is block diagonal over boards before Schur fill-in.\nYou can eliminate boards:\n$$ \\boxed{ \\left( H_{CC} H_{CB}H_{BB}^{-1}H_{BC} \\right) \\delta C -g_C + H_{CB}H_{BB}^{-1}g_B. } $$\nThen back-substitute:\n$$ \\boxed{ \\delta B -H_{BB}^{-1} \\left( g_B+H_{BC}\\delta C \\right). } $$\nOr eliminate cameras instead, depending on whether there are fewer cameras or fewer boards.\nThis is the same structural idea behind Schur methods in bundle adjustment. Ceres’ documentation describes bundle adjustment as minimizing reprojection error over cameras and 3D points, and its solver documentation explains that bundle adjustment has a special block structure that can be exploited with Schur complement methods.\n16. Factor-Graph View The centralized problem is also a factor graph.\nVariables:\n$$ \\{T^B_b\\}_{b=1}^B, \\qquad \\{T^C_c\\}_{c=1}^C. $$Factors:\n$$ f_{cp}(T^C_c,T^B_{\\beta(p)}) $$for every observation edge $(c,p)\\in\\mathcal E$.\nBoard priors:\n$$ \\phi_b(T^B_b). $$Camera priors:\n$$ \\psi_c(T^C_c). $$GTSAM describes factor graphs as bipartite graphs connecting factors to the variables they depend on, and emphasizes that such sparse structure is exploited by nonlinear optimization methods.\nThis is arguably the cleanest implementation model: one factor per camera-point observation, with the point’s board membership determining which board pose variable the factor touches.\n17. Practical Recommendation Use this hierarchy:\nBest if centralized\nUse sparse factor-graph bundle adjustment:\n$$ \\boxed{ \\min_{\\{T^B_b\\},\\{T^C_c\\}} \\sum_{(c,p)\\in\\mathcal E} \\text{reprojection error} + \\text{board priors} + \\text{camera/rig priors}. } $$This gives the best local convergence and avoids ADMM penalty tuning.\nBest if distributed\nUse point-level ADMM:\n$$ \\boxed{ Y_{cp}=R^B_{\\beta(p)} q_p+t^B_{\\beta(p)} } $$with:\n$$ \\text{camera-local update} \\rightarrow \\text{board rigid-alignment update} \\rightarrow \\text{dual update}. $$This respects the actual camera-point observation graph and supports partial board visibility.\nBest engineering pipeline\nInitialize board poses from world measurements, if available. Initialize cameras using PnP against current board-generated world points. Run sparse centralized BA if possible. Use ADMM only if the system must be distributed, parallelized by camera/board, or too large for a single optimizer. Optionally use robust losses or outlier rejection on image residuals. The main final formulation is:\n$$ \\boxed{ (c,p)\\in\\mathcal E \\quad\\text{is the primitive observation,} } $$$$ \\boxed{ X_p^W=R^B_{\\beta(p)} q_p+t^B_{\\beta(p)} \\quad\\text{is the hard board constraint,} } $$$$ \\boxed{ u_{cp} \\approx \\Pi\\left(K_c(T^C_c)^{-1}\\bar X_p^W\\right) \\quad\\text{is the camera measurement model.} } $$Use this convention consistently:\n$$ \\boxed{ T^B_b: \\text{board } b \\rightarrow \\text{world} } $$$$ \\boxed{ T^C_c: \\text{camera } c \\rightarrow \\text{world} } $$$$ \\boxed{ T_{CB}^{(c,b)} (T^C_c)^{-1}T^B_b: \\text{board } b \\rightarrow \\text{camera } c. } $$\nEverything else, including ADMM, sparse Schur bundle adjustment, and factor-graph optimization, is a solver strategy for this same constrained geometric estimation problem.\n18. How the Formulation Guides Board Placement The centralized formulation (P), not the ADMM split (A), is the useful object for deciding where to put the target board. The ADMM penalty, dual variables, and local point copies are solver artifacts. Board-placement decisions should be based on the physical reprojection terms and any measurement priors in (P).\nThe objective value itself is not a good placement guide. For a hypothetical board placement with perfectly predicted observations, the expected reprojection residual is zero almost everywhere. The useful placement information is in the local curvature of the objective: the reprojection Jacobian and the Hessian or information matrix.\nLinearized Measurement Information For point $p$ on board $b$, define the predicted camera-coordinate point\n$$ x_{cp} \\begin{bmatrix} X_{cp}\\Y_{cp}\\Z_{cp} \\end{bmatrix} (R^C_c)^\\top \\left( R^B_b q_p+t^B_b-t^C_c \\right). $$\nThe weighted reprojection residual is\n$$ r_{cp} \\Sigma_{u,cp}^{-1/2} \\left[ \\Pi(K_cx_{cp})-u_{cp} \\right]. $$\nFor a candidate board pose $T^B_b$, linearize the residual around the current camera and board estimates:\n$$ r_{cp} \\approx r_{cp}^{0} + A_{cp}\\delta\\eta_c + B_{cp}\\delta\\xi_b, $$where\n$$ A_{cp} \\frac{\\partial r_{cp}}{\\partial\\delta\\eta_c}, \\qquad B_{cp} \\frac{\\partial r_{cp}}{\\partial\\delta\\xi_b}. $$\nFor the pinhole model,\n$$ J_{\\pi}(x_{cp}) \\begin{bmatrix} f_{x,c}/Z_{cp} \u0026 0 \u0026 -f_{x,c}X_{cp}/Z_{cp}^{2} \\ 0 \u0026 f_{y,c}/Z_{cp} \u0026 -f_{y,c}Y_{cp}/Z_{cp}^{2} \\end{bmatrix}. $$\nFor this placement-scoring derivation, use local right perturbations\n$$ T^C_c\\leftarrow T^C_c\\exp(\\delta\\eta_c^\\wedge), \\qquad T^B_b\\leftarrow T^B_b\\exp(\\delta\\xi_b^\\wedge). $$Then the camera-pose Jacobian is\n$$ \\boxed{ A_{cp} \\Sigma_{u,cp}^{-1/2} J_\\pi(x_{cp}) \\begin{bmatrix} -I \u0026 [x_{cp}]_\\times \\end{bmatrix}. } $$\nThe board-pose Jacobian is\n$$ \\boxed{ B_{cp} \\Sigma_{u,cp}^{-1/2} J_\\pi(x_{cp}) (R^C_c)^\\top R^B_b \\begin{bmatrix} I \u0026 -[q_p]_\\times \\end{bmatrix}. } $$\nThese Jacobians convert a candidate physical board placement into expected camera-pose information.\nMarginalized Camera Information Stack all residual Jacobians for the candidate board pose:\n$$ A_b= \\begin{bmatrix} A_{c_1p_1}\\\\ \\vdots\\\\ A_{c_mp_m} \\end{bmatrix}, \\qquad B_b= \\begin{bmatrix} B_{c_1p_1}\\\\ \\vdots\\\\ B_{c_mp_m} \\end{bmatrix}. $$Here $m$ is the number of predicted camera-point observation edges for this candidate pose.\nLet $\\Lambda_b^{\\mathrm{prior}}$ denote the information supplied by surveyed world coordinates, a board-pose measurement, or another board prior. The candidate’s joint information contribution is\n$$ \\Delta H_b \\begin{bmatrix} A_b^\\top A_b \u0026 A_b^\\top B_b\\ B_b^\\top A_b \u0026 B_b^\\top B_b+\\Lambda_b^{\\mathrm{prior}} \\end{bmatrix}. $$\nFor camera-pose guidance, the board pose is usually a nuisance variable. Marginalizing it gives the effective information contributed to the camera pose:\n$$ \\boxed{ \\Delta\\Lambda_c(T^B_b) A_b^\\top A_b A_b^\\top B_b \\left( B_b^\\top B_b+\\Lambda_b^{\\mathrm{prior}} \\right)^{-1} B_b^\\top A_b. } $$\nThis expression has three useful interpretations.\nIf the board pose is accurately known, then $\\Lambda_b^{\\mathrm{prior}}\\rightarrow\\infty$, and $\\Delta\\Lambda_c\\approx A_b^\\top A_b$. Almost all image information contributes to the camera pose. If the board pose is poorly known, the second term becomes large. Much of the apparent image information is spent estimating the board pose. With no world anchor, a simultaneous global transformation of all camera and board poses leaves projections unchanged. Absolute camera pose is unobservable; only relative board-to-camera pose is constrained. For the complete multi-camera system, append the hypothetical candidate information to the current normal matrix:\n$$ H(T^B_b) H_{\\mathrm{current}} + \\Delta H(T^B_b). $$\nPartition the result into camera poses $C$ and nuisance variables $N$, including board poses:\n$$ H \\begin{bmatrix} H_{CC} \u0026 H_{CN}\\ H_{NC} \u0026 H_{NN} \\end{bmatrix}. $$\nThe marginalized camera-pose information is\n$$ \\boxed{ \\Lambda_C(T^B_b) H_{CC} H_{CN}H_{NN}^{-1}H_{NC}. } $$\nThe predicted camera-pose covariance is approximately\n$$ \\boxed{ \\Sigma_C(T^B_b) \\approx \\Lambda_C(T^B_b)^{-1}. } $$This is the next-best-pose principle: append the expected measurements of a hypothetical pose, compute the resulting information, and select the pose that gives the largest uncertainty reduction.\nBoard-Placement Objective A direct next-board-placement problem is\n$$ \\boxed{ (T^B_b)^* \\underset{T^B_b\\in\\mathcal F}{\\arg\\min} ; \\operatorname{tr} \\left( D\\Sigma_C(T^B_b)D^\\top \\right), } $$\nwhere $\\mathcal F$ is the feasible set of board poses, and $D$ normalizes translation and rotation by required tolerances. For a single camera pose, one example is\n$$ D \\operatorname{diag} \\left( 1/\\tau_x,, 1/\\tau_y,, 1/\\tau_z,, 1/\\tau_{\\mathrm{roll}},, 1/\\tau_{\\mathrm{pitch}},, 1/\\tau_{\\mathrm{yaw}} \\right). $$\nFor multiple cameras, use the corresponding block-diagonal normalization.\nOther useful criteria are the D-optimal score\n$$ \\boxed{ \\max_{T^B_b\\in\\mathcal F} \\log\\det\\Lambda_C(T^B_b), } $$which reduces the overall uncertainty volume, and the E-optimal score\n$$ \\boxed{ \\max_{T^B_b\\in\\mathcal F} \\lambda_{\\min} \\left( D^{-T}\\Lambda_C(T^B_b)D^{-1} \\right), } $$which improves the least observable camera-pose direction. For extrinsic calibration, the E-optimal criterion is often the more practical one, because a calibration can have a small average error while still containing one poorly constrained combination, such as camera height and pitch.\nPhysical Placement Preferences The information matrix translates into concrete board-placement guidance:\nBoard-placement property Effect on pose estimation Large board footprint in the image The $1/Z$ terms in $J_\\pi$ increase, and widely separated points provide stronger rotational leverage. Corners distributed across both image axes Improves sensitivity to optical-axis translation and rotation; avoids concentrating information near the principal point. Moderate tilt about both board axes Introduces depth variation across the board and separates pitch/yaw errors from translation errors. Different board normals across acquisitions Adds complementary information instead of repeatedly measuring the same weak parameter combinations. Different lateral positions and depths Reduces correlations such as $t_x$-yaw, $t_y$-pitch, and $t_z$-tilt. Accurate world measurement of the board pose Prevents camera information from being lost while jointly estimating an uncertain board pose. Simultaneous visibility in overlapping cameras Couples those camera poses through one shared physical board and strengthens relative calibration. Therefore, repeatedly placing a small, fronto-parallel board at the image center is usually inefficient. It generates nearly redundant Jacobian rows. A better sequence contains:\nA large, well-centered observation for robust initialization. A laterally displaced observation with tilt about one board axis. An observation on the opposite side with tilt about the other axis. A different board-to-camera distance. For multi-camera calibration, placements in camera-overlap regions so the same board points are observed by multiple cameras. The exact next placement should be determined by the weakest eigenvector of the current marginalized information matrix. For example, if the largest covariance direction is mostly a combination of camera $t_z$ and pitch, the next-best score will usually favor a laterally displaced and tilted board rather than another centered, fronto-parallel observation.\nVisibility and Corner-Quality Constraints Pure geometric information can favor an excessively oblique board. In practice, strong foreshortening makes corners elongated, blurred, or difficult to detect. Candidate scoring should therefore use pose-dependent image covariance,\n$$ \\Sigma_{u,cp} \\Sigma_{u,cp}(T^B_b), $$\nor an expected detection probability:\n$$ \\Delta H(T^B_b) \\sum_{(c,p)\\in\\mathcal E(T^B_b)} p_{\\mathrm{det},cp}(T^B_b) J_{cp}^{\\top} \\Sigma_{u,cp}^{-1}(T^B_b) J_{cp}. $$\nThis balances geometric strength against actual feature-localization accuracy. Otherwise, the placement optimizer can prefer grazing views that look informative geometrically but produce anisotropic and unreliable corner measurements.\nThe feasible set $\\mathcal F$ should therefore require:\n$$ Z_{cp}\u003e0, $$enough visible markers, image points inside the image with a safety margin, sufficient projected square size, acceptable focus and illumination, and a non-grazing incidence angle.\nPractical Next-Board-Placement Loop The resulting EOL procedure is:\nSolve centralized problem (P) using all measurements currently available. Compute the current sparse Hessian and camera-pose covariance. Generate feasible candidate board poses in the calibration workspace. For each candidate, predict visibility, pixel positions, corner covariance, and reprojection Jacobians. Add its predicted information to the current Hessian. Marginalize board poses and other nuisance variables with the Schur complement. Select the board pose giving the largest normalized camera-pose uncertainty reduction. Place and survey the board, capture the observations, resolve (P), and repeat. The central idea is:\n$$ \\boxed{ \\text{The loss estimates the poses; its marginalized curvature tells us where to place the board.} } $$","wordCount":"6460","inLanguage":"en","image":"https://livey.github.io/posts/2025-02-eol-calib/%3Cimage%20path/url%3E","datePublished":"2025-02-03T00:00:00Z","dateModified":"2025-02-03T00:00:00Z","author":{"@type":"Person","name":"Fuwei Li"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://livey.github.io/posts/2025-02-eol-calib/"},"publisher":{"@type":"Organization","name":"Fuwei's Tech Notes","logo":{"@type":"ImageObject","url":"https://livey.github.io/%3Clink%20/%20abs%20url%3E"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://livey.github.io/ accesskey=h title="Home (Alt + H)"><img src=https://livey.github.io/apple-touch-icon.png alt aria-label=logo height=35>Home</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://livey.github.io/posts/ title=Posts><span>Posts</span></a></li><li><a href=https://livey.github.io/archives/ title=Archive><span>Archive</span></a></li><li><a href=https://livey.github.io/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://livey.github.io/about/ title=About><span>About</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://livey.github.io/>Home</a>&nbsp;»&nbsp;<a href=https://livey.github.io/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles</h1><div class=post-description>This post is about end-of-line (EOL) camera extrinsic calibration, especially for camera bird's-eye view (BEV) extrinsic calibration.</div><div class=post-meta><span title='2025-02-03 00:00:00 +0000 UTC'>February 3, 2025</span>&nbsp;·&nbsp;31 min&nbsp;·&nbsp;6460 words&nbsp;·&nbsp;Fuwei Li&nbsp;|&nbsp;<a href=https://github.com/livey/livey.github.io/issues/new rel="noopener noreferrer" target=_blank>Suggest Changes</a></div></header><div class=toc><details><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#suggested-pipeline aria-label="Suggested Pipeline">Suggested Pipeline</a><ul><li><a href=#refine-the-corners-coordinates-by-the-board-constraints aria-label="Refine the Corner&rsquo;s Coordinates by the Board Constraints">Refine the Corner&rsquo;s Coordinates by the Board Constraints</a><ul><li><a href=#unknown-board-dimension aria-label="Unknown Board Dimension">Unknown Board Dimension</a></li></ul></li><li><a href=#the-intersection-of-the-image-ray-and-board-plane aria-label="The Intersection of the Image Ray and Board Plane">The Intersection of the Image Ray and Board Plane</a></li><li><a href=#solve-the-intersection-problem-as-an-optimization-problem aria-label="Solve the Intersection Problem as an Optimization Problem">Solve the Intersection Problem as an Optimization Problem</a></li><li><a href=#solve-step-3-and-6-jointly-as-a-bundle-adjustment-problem aria-label="Solve Step 3 and 6 Jointly as a Bundle Adjustment Problem">Solve Step 3 and 6 Jointly as a Bundle Adjustment Problem</a></li></ul></li><li><a href=#simulations aria-label=Simulations>Simulations</a><ul><li><a href=#detect-corners-on-the-warped-image aria-label="Detect Corners on the Warped Image">Detect Corners on the Warped Image</a></li></ul></li><li><a href=#multi-board-and-multi-camera-calibration-formulation aria-label="Multi-Board and Multi-Camera Calibration Formulation">Multi-Board and Multi-Camera Calibration Formulation</a><ul><li><a href=#1-sets-and-graph aria-label="1. Sets and Graph">1. Sets and Graph</a></li><li><a href=#2-pose-variables-and-coordinate-convention aria-label="2. Pose Variables and Coordinate Convention">2. Pose Variables and Coordinate Convention</a></li><li><a href=#3-projection-model aria-label="3. Projection Model">3. Projection Model</a></li><li><a href=#4-boardworld-measurement-priors aria-label="4. Board/World Measurement Priors">4. Board/World Measurement Priors</a></li><li><a href=#5-correct-centralized-problem-formulation aria-label="5. Correct Centralized Problem Formulation">5. Correct Centralized Problem Formulation</a></li><li><a href=#6-gauge-freedom-and-identifiability aria-label="6. Gauge Freedom and Identifiability">6. Gauge Freedom and Identifiability</a></li></ul></li><li><a href=#htc_c-1htb_b aria-label=(HT^C_c)^{-1}(HT^B_b)>(HT^C_c)^{-1}(HT^B_b)</a></li><li><a href=#tc_c-1h-1htb_b aria-label=(T^C_c)^{-1}H^{-1}HT^B_b>(T^C_c)^{-1}H^{-1}HT^B_b</a><ul><li><a href=#7-admm-formulation-using-camera-local-point-copies aria-label="7. ADMM Formulation Using Camera-Local Point Copies">7. ADMM Formulation Using Camera-Local Point Copies</a></li></ul></li><li><a href=#rb_betap-q_ptb_betap aria-label="R^B_{\beta(p)} q_p+t^B_{\beta(p)}">R^B_{\beta(p)} q_p+t^B_{\beta(p)}</a><ul><li><a href=#8-scaled-augmented-lagrangian aria-label="8. Scaled Augmented Lagrangian">8. Scaled Augmented Lagrangian</a></li><li><a href=#rb_betap-q_p aria-label="R^B_{\beta(p)} q_p">R^B_{\beta(p)} q_p</a></li><li><a href=#9-admm-algorithm aria-label="9. ADMM Algorithm">9. ADMM Algorithm</a><ul><li><a href=#step-1-camera-local-update aria-label="Step 1: Camera-Local Update">Step 1: Camera-Local Update</a></li><li><a href=#step-2-board-update aria-label="Step 2: Board Update">Step 2: Board Update</a></li></ul></li><li><a href=#rb_b-q_p aria-label="R^B_b q_p">R^B_b q_p</a><ul><li><a href=#step-3-dual-update aria-label="Step 3: Dual Update">Step 3: Dual Update</a></li></ul></li><li><a href=#rb_betapk1-q_p aria-label="(R^B_{\beta(p)})^{k+1} q_p">(R^B_{\beta(p)})^{k+1} q_p</a></li><li><a href=#y_cpk1-2 aria-label=Y_{cp}^{k+1}>Y_{cp}^{k+1}</a></li><li><a href=#rb_betapk1-q_p-1 aria-label="(R^B_{\beta(p)})^{k+1} q_p">(R^B_{\beta(p)})^{k+1} q_p</a></li><li><a href=#10-admm-pseudocode aria-label="10. ADMM Pseudocode">10. ADMM Pseudocode</a></li><li><a href=#11-initialization aria-label="11. Initialization">11. Initialization</a></li><li><a href=#12-penalty-choice aria-label="12. Penalty Choice">12. Penalty Choice</a></li><li><a href=#13-what-this-admm-split-buys-you aria-label="13. What This ADMM Split Buys You">13. What This ADMM Split Buys You</a></li><li><a href=#14-optional-post-style-ray-plane-residual aria-label="14. Optional: Post-Style Ray-Plane Residual">14. Optional: Post-Style Ray-Plane Residual</a></li><li><a href=#o_c aria-label=o_c>o_c</a></li><li><a href=#15-better-centralized-method-sparse-bundle-adjustment aria-label="15. Better Centralized Method: Sparse Bundle Adjustment">15. Better Centralized Method: Sparse Bundle Adjustment</a></li><li><a href=#16-factor-graph-view aria-label="16. Factor-Graph View">16. Factor-Graph View</a></li><li><a href=#17-practical-recommendation aria-label="17. Practical Recommendation">17. Practical Recommendation</a></li><li><a href=#18-how-the-formulation-guides-board-placement aria-label="18. How the Formulation Guides Board Placement">18. How the Formulation Guides Board Placement</a><ul><li><a href=#linearized-measurement-information aria-label="Linearized Measurement Information">Linearized Measurement Information</a></li><li><a href=#marginalized-camera-information aria-label="Marginalized Camera Information">Marginalized Camera Information</a></li></ul></li><li><a href=#a_btop-a_b aria-label="A_b^\top A_b">A_b^\top A_b</a></li><li><a href=#h_cc-1 aria-label=H_{CC}>H_{CC}</a><ul><li><a href=#board-placement-objective aria-label="Board-Placement Objective">Board-Placement Objective</a></li><li><a href=#physical-placement-preferences aria-label="Physical Placement Preferences">Physical Placement Preferences</a></li><li><a href=#visibility-and-corner-quality-constraints aria-label="Visibility and Corner-Quality Constraints">Visibility and Corner-Quality Constraints</a></li><li><a href=#practical-next-board-placement-loop aria-label="Practical Next-Board-Placement Loop">Practical Next-Board-Placement Loop</a></li></ul></li></ul></li></ul></div></details></div><div class=post-content><p>In this post, we will discuss the end-of-line (EOL) camera calibration, especially for camera bird&rsquo;s-eye view (BEV) extrinsic calibration.</p><h1 id=suggested-pipeline>Suggested Pipeline<a hidden class=anchor aria-hidden=true href=#suggested-pipeline>#</a></h1><ol><li><p>Do single camera intrinsic calibration</p></li><li><p>Measure each corner in the world coordinate</p></li><li><p>Refine the corners&rsquo; coordinates according to board constraints (plane, parallel, equally spaced)</p></li><li><p>Find the plane equation in the world coordinate</p></li><li><p>Initialize each camera&rsquo;s extrinsic parameters by solving the perspective-n-point (PnP) problem</p></li><li><p>Estimate the 3D coordinates by the intersection of the image ray and board plane</p></li><li><p>Construct the objective loss function (consistency of different cameras with common seen points and single camera&rsquo;s observation)</p></li></ol><h2 id=refine-the-corners-coordinates-by-the-board-constraints>Refine the Corner&rsquo;s Coordinates by the Board Constraints<a hidden class=anchor aria-hidden=true href=#refine-the-corners-coordinates-by-the-board-constraints>#</a></h2><p>Assume the center of the board is located at the origin of a local coordinate, $(0,0,0)^\top$, the corner coordinate is located at $\{\mathbf{x}_i\}^N_{i=1}$, then the board normal is $(0,0,1)^\top$. Assume the board is transformed to the world coordinate by rotation, $\mathbf{R}$, and translation, $\mathbf{t}$. We have the observed coordinates $\{\hat{\mathbf{y}}_i\}$. Then we minimize the objectives:</p>$$\{\mathbf{y}_i^*, \mathbf{R}^*, \mathbf{t}^*\} = \underset{\mathbf{y}_i,\mathbf{R}, \mathbf{t}}{\arg\min}\sum_i \|\hat{\mathbf{y}}_i -\mathbf{y}_i\|^2\\
 \text{s.t. } \mathbf{y}_i = \mathbf{R}\mathbf{x}_i + \mathbf{t} $$<p>This problem can be easily solved since it is a simple <a href=https://livey.github.io/posts/2024-12-icp/>Iterative Closest Point (ICP) problem</a>.</p><p>Then we can get the center of the board as $\mathbf{x}_0=\mathbf{t}^*$, and the normal of the board is $\mathbf{R}^*[0, 0, 1]^\top$.</p><p>Now we have refined board corners in the world coordinates, i.e., $\{\mathbf{y}_i^*\}^N_{i=1}$.</p><h3 id=unknown-board-dimension>Unknown Board Dimension<a hidden class=anchor aria-hidden=true href=#unknown-board-dimension>#</a></h3><p>If we do not have the board dimension, then we can directly fit the plane using the measured corners, $\{\mathbf{x}_i\}^N_{i=1}$ (with a slight abuse of notation). Assume the plane equation is $\mathbf{n}^\top \mathbf{x} - c = 0$ (with unit normal vector, i.e., $\|\mathbf{n}\| = 1$). Then we can solve for $\mathbf{n}$ and $c$ by minimizing the following objective:</p>$$
 \underset{\mathbf{n}, c}{\text{argmin}} \frac{1}{N}\sum_i \|\mathbf{n}^\top \mathbf{x}_i - c\|^2 \\
 \text{s.t. } \|\mathbf{n}\| = 1
@@ -85,7 +85,882 @@ $$<p>Where:</p><ul><li>the transformation from the local board to the world boar
 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 8 \\ 0 & 0 & 0 & 1 
 \end{pmatrix}
 $$<p>which means the normal of the board plane is $[0, 0, 1]^\top$.</p><p>We add Gaussian noise on the corners coordinates with noise zero mean and $0.005$ standard deviation.</p><p>With the noisy corners&rsquo; coordinates, we can get the optimized board&rsquo;s extrinsic according to step 3. The optimized normal is $[1.38*10^{-3}, -2.16*10^{-5}, 9.999*10^{-1}]^\top$. That is already very close the ground truth.</p><p>Then we simulate two cameras with the same intrinsic matrix: $f_x =800$, $c_x = 500$, $f_y = 800$, $c_y=400$, and $H=800$, $W=1000$.
-We rotate the first camera along the z-axis $10$ degrees and the second $-10$ degrees, and translate the first camera along the x-axis $2$ meters and the second $-2$ meters. Then the images of the chessboard in the two cameras are shown in the figure below.</p><figure style=text-align:center><img src=./resources/original_observed.png alt="original observe" style="width:100%;margin:0 auto;display:block"><figcaption style=font-weight:400>The original images.</figcaption></figure><p>Then, we apply Gaussian blur on the observed images and add Gaussian noise on them. The new images are shown in the figure below.</p><figure style=text-align:center><img src=./resources/noise_observed.png alt="blur observe" style="width:100%;margin:0 auto;display:block"><figcaption style=font-weight:400>The simulated observed images.</figcaption></figure><p>After that, we use opencv &ldquo;findChessboardCorners&rdquo; and find the rough corners and then use &ldquo;cornerSubPix&rdquo; to refine the corners&rsquo; coordinates. The refined corners are shown in the figure below.</p><figure style=text-align:center><img src=./resources/chess_corners_observed.png alt="refined corners" style="width:100%;margin:0 auto;display:block"><figcaption style=font-weight:400>The detected corners.</figcaption></figure><p>Pay attention to the sequence of the detected corners. (The detected corners start from the blue one and end with the green one in the above figure.) Rearrange the detected corners according to the refined chessboard corners. Using the &ldquo;solvePnP&rdquo; function with method &ldquo;SQPNP&rdquo;, which is a global optimization method, we can find the estimated extrinsic of the two cameras. We record the errors of the estimation using the original measurements of the chessboard corners and the refined ones.</p><table><thead><tr><th>Camera</th><th>Corners</th><th>Rotation Error (degrees)</th><th>Translation Error (meters)</th></tr></thead><tbody><tr><td>Camera 1</td><td>Original</td><td>0.260</td><td>0.0372</td></tr><tr><td>Camera 1</td><td>Refined</td><td>0.0732</td><td>0.0117</td></tr><tr><td>Camera 2</td><td>Original</td><td>0.247</td><td>0.0318</td></tr><tr><td>Camera 2</td><td>Refined</td><td>0.0750</td><td>0.0118</td></tr></tbody></table><p>The translation error is the norm of the difference between the estimated and the ground truth translation. The rotation error is defined as the norm of $\text{Log}(\mathbf{R}_1 \boxminus \mathbf{R}_2)$.</p><p>As shown in the table, the refined measurements result in lower errors for both rotation and translation, demonstrating the effectiveness of the corner refinement process.</p><p>In the final step, we do jointly optimization. We warp the image in camera 1 with parameters before and after jointly optimization. The results are shown in the figure below.</p><figure style=text-align:center><img src=./resources/optimized_warped_image.png alt="The warped images using before and after jointly optimization" style="width:100%;margin:0 auto;display:block"><figcaption style=font-weight:400>The warped images (blended with the image in camera 2) before and after jointly optimization.</figcaption></figure><p>In the above figure, we can hardly tell which one is better. The translation error is $0.0298$ and $0.0257$ meters for camera 1 and camera 2 respectively. The rotation error is $0.204$ and $0.199$ degrees for camera 1 and camera 2 respectively. That is expected increased error for single camera calibration however more consistent for the two cameras.</p><h2 id=detect-corners-on-the-warped-image>Detect Corners on the Warped Image<a hidden class=anchor aria-hidden=true href=#detect-corners-on-the-warped-image>#</a></h2><p>Corner detection often becomes challenging on original images due to severe distortion or extreme viewing angles. To address this limitation, we can create a virtual camera with an optimized viewpoint. By warping the original image onto this virtual camera&rsquo;s image plane, we can simulate a more frontal view of the chessboard. This transformation adjusts the perspective so that the chessboard appears as if viewed head-on, significantly improving corner detection reliability. We can then accurately detect the corners on this warped image rather than struggling with the difficult perspective of the original.</p><p>The figure below illustrates this approach. On the left is the original image where the severe viewing angle prevents the standard algorithm from successfully detecting the corners. On the right is the perspective-corrected warped image, where we can successfully identify and locate all corners.</p><figure style=text-align:center><img src=./resources/warped_image_corners.png alt="The original and warped images" style="width:100%;margin:0 auto;display:block"><figcaption style=font-weight:400>Left shows the original observed image. Right shows the warped image and the detected corners.</figcaption></figure></div><footer class=post-footer><ul class=post-tags><li><a href=https://livey.github.io/tags/autonomous-driving/>Autonomous Driving</a></li><li><a href=https://livey.github.io/tags/camera-extrinsic-calibration/>Camera Extrinsic Calibration</a></li><li><a href=https://livey.github.io/tags/eol/>EOL</a></li><li><a href=https://livey.github.io/tags/end-of-line/>End-of-Line</a></li><li><a href=https://livey.github.io/tags/bev/>BEV</a></li></ul><nav class=paginav><a class=prev href=https://livey.github.io/posts/2025-02-07-coordinate/><span class=title>« Prev</span><br><span>Coordinate Systems in Autonomous Driving</span>
+We rotate the first camera along the z-axis $10$ degrees and the second $-10$ degrees, and translate the first camera along the x-axis $2$ meters and the second $-2$ meters. Then the images of the chessboard in the two cameras are shown in the figure below.</p><figure style=text-align:center><img src=./resources/original_observed.png alt="original observe" style="width:100%;margin:0 auto;display:block"><figcaption style=font-weight:400>The original images.</figcaption></figure><p>Then, we apply Gaussian blur on the observed images and add Gaussian noise on them. The new images are shown in the figure below.</p><figure style=text-align:center><img src=./resources/noise_observed.png alt="blur observe" style="width:100%;margin:0 auto;display:block"><figcaption style=font-weight:400>The simulated observed images.</figcaption></figure><p>After that, we use opencv &ldquo;findChessboardCorners&rdquo; and find the rough corners and then use &ldquo;cornerSubPix&rdquo; to refine the corners&rsquo; coordinates. The refined corners are shown in the figure below.</p><figure style=text-align:center><img src=./resources/chess_corners_observed.png alt="refined corners" style="width:100%;margin:0 auto;display:block"><figcaption style=font-weight:400>The detected corners.</figcaption></figure><p>Pay attention to the sequence of the detected corners. (The detected corners start from the blue one and end with the green one in the above figure.) Rearrange the detected corners according to the refined chessboard corners. Using the &ldquo;solvePnP&rdquo; function with method &ldquo;SQPNP&rdquo;, which is a global optimization method, we can find the estimated extrinsic of the two cameras. We record the errors of the estimation using the original measurements of the chessboard corners and the refined ones.</p><table><thead><tr><th>Camera</th><th>Corners</th><th>Rotation Error (degrees)</th><th>Translation Error (meters)</th></tr></thead><tbody><tr><td>Camera 1</td><td>Original</td><td>0.260</td><td>0.0372</td></tr><tr><td>Camera 1</td><td>Refined</td><td>0.0732</td><td>0.0117</td></tr><tr><td>Camera 2</td><td>Original</td><td>0.247</td><td>0.0318</td></tr><tr><td>Camera 2</td><td>Refined</td><td>0.0750</td><td>0.0118</td></tr></tbody></table><p>The translation error is the norm of the difference between the estimated and the ground truth translation. The rotation error is defined as the norm of $\text{Log}(\mathbf{R}_1 \boxminus \mathbf{R}_2)$.</p><p>As shown in the table, the refined measurements result in lower errors for both rotation and translation, demonstrating the effectiveness of the corner refinement process.</p><p>In the final step, we do jointly optimization. We warp the image in camera 1 with parameters before and after jointly optimization. The results are shown in the figure below.</p><figure style=text-align:center><img src=./resources/optimized_warped_image.png alt="The warped images using before and after jointly optimization" style="width:100%;margin:0 auto;display:block"><figcaption style=font-weight:400>The warped images (blended with the image in camera 2) before and after jointly optimization.</figcaption></figure><p>In the above figure, we can hardly tell which one is better. The translation error is $0.0298$ and $0.0257$ meters for camera 1 and camera 2 respectively. The rotation error is $0.204$ and $0.199$ degrees for camera 1 and camera 2 respectively. That is expected increased error for single camera calibration however more consistent for the two cameras.</p><h2 id=detect-corners-on-the-warped-image>Detect Corners on the Warped Image<a hidden class=anchor aria-hidden=true href=#detect-corners-on-the-warped-image>#</a></h2><p>Corner detection often becomes challenging on original images due to severe distortion or extreme viewing angles. To address this limitation, we can create a virtual camera with an optimized viewpoint. By warping the original image onto this virtual camera&rsquo;s image plane, we can simulate a more frontal view of the chessboard. This transformation adjusts the perspective so that the chessboard appears as if viewed head-on, significantly improving corner detection reliability. We can then accurately detect the corners on this warped image rather than struggling with the difficult perspective of the original.</p><p>The figure below illustrates this approach. On the left is the original image where the severe viewing angle prevents the standard algorithm from successfully detecting the corners. On the right is the perspective-corrected warped image, where we can successfully identify and locate all corners.</p><figure style=text-align:center><img src=./resources/warped_image_corners.png alt="The original and warped images" style="width:100%;margin:0 auto;display:block"><figcaption style=font-weight:400>Left shows the original observed image. Right shows the warped image and the detected corners.</figcaption></figure><h1 id=multi-board-and-multi-camera-calibration-formulation>Multi-Board and Multi-Camera Calibration Formulation<a hidden class=anchor aria-hidden=true href=#multi-board-and-multi-camera-calibration-formulation>#</a></h1><p>For multiple boards and cameras, the observation structure should be defined at the marker-point level. Since each camera may see only a subset of the markers on a board, the primitive observation is a camera-point edge:</p>$$
+(c,p)\in\mathcal E
+\quad\Longleftrightarrow\quad
+\text{camera }c\text{ observes marker point }p.
+$$<p>A board-camera graph is only a compressed graph obtained after grouping all observed points on the same board. The post&rsquo;s original two-camera formulation uses known board-frame marker coordinates, measured world-frame marker coordinates, image observations, a hard board-rigidity constraint, ray-plane inverse projection, and a cross-camera consistency term. The multi-board/multi-camera generalization should preserve the point-level observation structure.</p><p>Below is a careful formulation and two solvers: a point-level ADMM solver and a centralized sparse bundle-adjustment solver, which is what I would use when distribution is not required.</p><h2 id=1-sets-and-graph>1. Sets and Graph<a hidden class=anchor aria-hidden=true href=#1-sets-and-graph>#</a></h2><p>Let there be $B$ boards and $C$ cameras.</p><p>Boards:</p>$$
+\mathcal B=\{1,\dots,B\}.
+$$<p>Cameras:</p>$$
+\mathcal C=\{1,\dots,C\}.
+$$<p>Board $b$ has known marker points:</p>$$
+\mathcal I_b=\{1,\dots,N_b\}.
+$$<p>Marker $i$ on board $b$ has known board-frame coordinate:</p>$$
+q_{bi}\in\mathbb R^3.
+$$<p>For a planar checkerboard or marker board, usually</p>$$
+q_{bi}=
+\begin{bmatrix}
+x_{bi}\\
+y_{bi}\\
+0
+\end{bmatrix}.
+$$<p>Define the global point set:</p>$$
+\mathcal P=
+\{p=(b,i): b\in\mathcal B,\ i\in\mathcal I_b\}.
+$$<p>For point $p=(b,i)$, define</p>$$
+\beta(p)=b
+$$<p>as the board containing point $p$, and define</p>$$
+q_p=q_{bi}.
+$$<p>The camera-point observation graph is</p>$$
+\boxed{
+\mathcal G=(\mathcal C\cup\mathcal P,\mathcal E),
+}
+$$<p>where</p>$$
+\boxed{
+(c,p)\in\mathcal E
+\quad\Longleftrightarrow\quad
+\text{camera }c\text{ observes point }p.
+}
+$$<p>For each observation edge $(c,p)$, the measured image point is</p>$$
+u_{cp}\in\mathbb R^2.
+$$<p>Camera $c$ has known intrinsic matrix</p>$$
+K_c.
+$$<p>Define the neighborhoods:</p>$$
+\mathcal N(c)=\{p:(c,p)\in\mathcal E\},
+$$$$
+\mathcal N(p)=\{c:(c,p)\in\mathcal E\},
+$$$$
+\mathcal P_b=\{p\in\mathcal P:\beta(p)=b\}.
+$$<h2 id=2-pose-variables-and-coordinate-convention>2. Pose Variables and Coordinate Convention<a hidden class=anchor aria-hidden=true href=#2-pose-variables-and-coordinate-convention>#</a></h2><p>Use a uniform local-to-world pose convention for both boards and cameras. The leading world-frame symbol is omitted because local-to-world is the default: $T^B_b$ denotes the pose of board $b$, and $T^C_c$ denotes the pose of camera $c$.</p><p>For board $b$:</p><h1 id=tb_b>$$
+\boxed{
+T^B_b</h1><p>\begin{bmatrix}
+R^B_b & t^B_b\
+0 & 1
+\end{bmatrix}
+\in SE(3)
+}
+$$</p><p>maps board-local coordinates to world coordinates:</p><h1 id=x_pw>$$
+\boxed{
+X_p^W</h1><p>T^B_{\beta(p)}\bar q_p.
+}
+$$</p><p>Here</p>$$
+\bar q_p=
+\begin{bmatrix}
+q_p\\
+1
+\end{bmatrix}.
+$$<p>Equivalently,</p><h1 id=x_pw-1>$$
+\boxed{
+X_p^W</h1><p>R^B_{\beta(p)} q_p+t^B_{\beta(p)}.
+}
+$$</p><p>For camera $c$:</p><h1 id=tc_c>$$
+\boxed{
+T^C_c</h1><p>\begin{bmatrix}
+R^C_c & t^C_c\
+0 & 1
+\end{bmatrix}
+\in SE(3)
+}
+$$</p><p>maps camera-local coordinates to world coordinates. Therefore, to project a world point into camera $c$, use the inverse camera pose:</p><h1 id=bar-x_cpc>$$
+\boxed{
+\bar X_{cp}^C</h1><p>(T^C_c)^{-1}\bar X_p^W.
+}
+$$</p><p>where $\bar X_p^W=[(X_p^W)^\top,1]^\top$.</p><p>Explicitly,</p><h1 id=tc_c-1>$$
+(T^C_c)^{-1}</h1><p>\begin{bmatrix}
+(R^C_c)^{\top} & -(R^C_c)^{\top}t^C_c\
+0 & 1
+\end{bmatrix},
+$$</p><p>and</p><h1 id=x_cpc>$$
+\boxed{
+X_{cp}^C</h1><p>(R^C_c)^{\top}
+\left(
+X_p^W-t^C_c
+\right).
+}
+$$</p><p>This is consistent with treating both the board and camera variables as local-to-world poses. The usual computer-vision world-to-camera extrinsic still appears, but now it is written explicitly as $(T^C_c)^{-1}$.</p><h2 id=3-projection-model>3. Projection Model<a hidden class=anchor aria-hidden=true href=#3-projection-model>#</a></h2><p>For point $p=(b,i)$, the world coordinate is</p><h1 id=x_pw-2>$$
+\boxed{
+X_p^W</h1><p>T^B_{\beta(p)}\bar q_p.
+}
+$$</p><p>The camera-coordinate point is</p><h1 id=bar-x_cpc-1>$$
+\boxed{
+\bar X_{cp}^C</h1><p>(T^C_c)^{-1}T^B_{\beta(p)}\bar q_p.
+}
+$$</p><p>The projected pixel is</p><h1 id=hat-u_cp>$$
+\boxed{
+\hat u_{cp}</h1><p>\Pi\left(
+K_c
+(T^C_c)^{-1}
+T^B_{\beta(p)}
+\bar q_p
+\right).
+}
+$$</p><p>If</p>$$
+X_{cp}^C=
+\begin{bmatrix}
+X\\Y\\Z
+\end{bmatrix},
+$$<p>then, for a standard pinhole model,</p><h1 id=hat-u_cp-1>$$
+\boxed{
+\hat u_{cp}</h1><p>\begin{bmatrix}
+f_{x,c}X/Z+c_{x,c}\
+f_{y,c}Y/Z+c_{y,c}
+\end{bmatrix}.
+}
+$$</p><p>It is useful to define the shorthand</p><h1 id=pi_cxwtc_c>$$
+\pi_c(X^W;T^C_c)</h1><p>\Pi\left(K_c(T^C_c)^{-1}\bar X^W\right),
+$$</p><p>where $\bar X^W=[(X^W)^\top,1]^\top$. The reprojection residual is</p><h1 id=r_cptc_ctb_betap>$$
+\boxed{
+r_{cp}(T^C_c,T^B_{\beta(p)})</h1><p>\Pi\left(
+K_c
+(T^C_c)^{-1}
+T^B_{\beta(p)}
+\bar q_p
+\right)-u_{cp}.
+}
+$$</p><p>If the image measurement covariance is</p>$$
+\Sigma_{u,cp}\in\mathbb R^{2\times2},
+$$<p>the whitened residual is</p><h1 id=e_cptc_ctb_betap>$$
+\boxed{
+e_{cp}(T^C_c,T^B_{\beta(p)})</h1><p>\Sigma_{u,cp}^{-1/2}
+\left[
+\Pi\left(
+K_c
+(T^C_c)^{-1}
+T^B_{\beta(p)}
+\bar q_p
+\right)
+-u_{cp}
+\right].
+}
+$$</p><h2 id=4-boardworld-measurement-priors>4. Board/World Measurement Priors<a hidden class=anchor aria-hidden=true href=#4-boardworld-measurement-priors>#</a></h2><p>In the original EOL setup, some board marker coordinates may be measured in the world frame. Let</p>$$
+z_p\in\mathbb R^3
+$$<p>be the measured world coordinate of point $p$. Define the set of points with world measurements as</p>$$
+\mathcal Z\subseteq\mathcal P.
+$$<p>The board/world residual is</p><h1 id=rz_ptb_betap>$$
+\boxed{
+r^z_p(T^B_{\beta(p)})</h1><p>R^B_{\beta(p)} q_p+t^B_{\beta(p)}-z_p.
+}
+$$</p><p>With covariance</p>$$
+\Sigma_{z,p},
+$$<p>the board prior term is</p><h1 id=phi_btb_b>$$
+\boxed{
+\phi_b(T^B_b)</h1><p>\frac12
+\sum_{p\in\mathcal P_b\cap\mathcal Z}
+\left|
+R^B_b q_p+t^B_b-z_p
+\right|<em>{\Sigma</em>{z,p}^{-1}}^2.
+}
+$$</p><p>You may also have camera pose priors, rig priors, or a fixed reference camera. Write those directly on the camera pose. Let $\bar T^C_c$ be the prior or nominal camera pose. The operator</p>$$
+\operatorname{Log}: SE(3)\rightarrow\mathbb R^6
+$$<p>is the Lie-group logarithm that converts a relative pose into a 6D tangent-vector error, usually ordered as three translation components and three rotation components. For example:</p><h1 id=psi_ctc_c>$$
+\boxed{
+\psi_c(T^C_c)</h1><p>\frac12
+\left|
+\operatorname{Log}
+\left(
+(\bar T^C_c)^{-1}T^C_c
+\right)
+\right|_{\Sigma_c^{-1}}^2.
+}
+$$</p><h2 id=5-correct-centralized-problem-formulation>5. Correct Centralized Problem Formulation<a hidden class=anchor aria-hidden=true href=#5-correct-centralized-problem-formulation>#</a></h2><p>The cleanest problem is:</p>$$
+\boxed{
+\begin{aligned}
+\min_{\{T^B_b\},\{T^C_c\}}
+&\quad
+\sum_{(c,p)\in\mathcal E}
+\frac12
+\left\|
+\Sigma_{u,cp}^{-1/2}
+\left[
+\Pi\left(
+K_c
+(T^C_c)^{-1}
+T^B_{\beta(p)}
+\bar q_p
+\right)
+-u_{cp}
+\right]
+\right\|^2
+\\
+&\quad+
+\sum_{b\in\mathcal B}\phi_b(T^B_b)
++
+\sum_{c\in\mathcal C}\psi_c(T^C_c).
+\end{aligned}
+}
+\tag{P}
+$$<p>This is the point-level multi-board, multi-camera bundle-adjustment problem.</p><p>The graph edge is $(c,p)$, but the residual depends on</p>$$
+T^C_c
+\quad\text{and}\quad
+T^B_{\beta(p)}.
+$$<p>So the raw observation graph is camera-point, while the variable graph is camera-board because each point is rigidly attached to a board.</p><p>This shared board-generated point is also the multi-camera consistency constraint. If two cameras $c_1$ and $c_2$ observe the same point $p$, both reprojection residuals use the same world point</p>$$
+X_p^W=R^B_{\beta(p)} q_p+t^B_{\beta(p)}.
+$$<p>Thus the two camera observations are coupled through the same board pose and the same physical marker point, rather than through two independent 3D point variables.</p><p>With the uniform local-to-world convention, the board-to-camera relative transform is</p><h1 id=t_cbcb>$$
+\boxed{
+T_{CB}^{(c,b)}</h1><p>(T^C_c)^{-1}T^B_b.
+}
+$$</p><p>This maps board $b$&rsquo;s local coordinates into camera $c$&rsquo;s local coordinates, so the projection can also be written as</p><h1 id=hat-u_cp-2>$$
+\boxed{
+\hat u_{cp}</h1><p>\Pi
+\left(
+K_c
+T_{CB}^{(c,\beta(p))}
+\bar q_p
+\right).
+}
+$$</p><h2 id=6-gauge-freedom-and-identifiability>6. Gauge Freedom and Identifiability<a hidden class=anchor aria-hidden=true href=#6-gauge-freedom-and-identifiability>#</a></h2><p>Without an absolute anchor, each connected component has an $SE(3)$ gauge freedom.</p><p>For any</p>$$
+H\in SE(3),
+$$<p>the transformation</p>$$
+\boxed{
+(T^B_b)'=HT^B_b,
+}
+$$$$
+\boxed{
+(T^C_c)'=HT^C_c
+}
+$$<p>leaves every relative camera-board projection unchanged:</p><h1 id=tc_c-1tb_b>$$
+((T^C_c)&rsquo;)^{-1}(T^B_b)'</h1><h1 id=htc_c-1htb_b>(HT^C_c)^{-1}(HT^B_b)<a hidden class=anchor aria-hidden=true href=#htc_c-1htb_b>#</a></h1><h1 id=tc_c-1h-1htb_b>(T^C_c)^{-1}H^{-1}HT^B_b<a hidden class=anchor aria-hidden=true href=#tc_c-1h-1htb_b>#</a></h1><p>(T^C_c)^{-1}T^B_b.
+$$</p><p>Therefore, every connected component needs at least one of the following:</p>$$
+\text{one fixed board pose,}
+$$$$
+\text{one fixed camera pose,}
+$$$$
+\text{sufficient world-frame board-point measurements,}
+$$<p>or</p>$$
+\text{sufficient camera/rig priors.}
+$$<p>Connectivity alone is not enough. The observations must also be geometrically nondegenerate: enough non-collinear board points, reasonable viewing angles, positive depth, and no nearly rank-deficient configurations.</p><h2 id=7-admm-formulation-using-camera-local-point-copies>7. ADMM Formulation Using Camera-Local Point Copies<a hidden class=anchor aria-hidden=true href=#7-admm-formulation-using-camera-local-point-copies>#</a></h2><p>ADMM is useful if you want a distributed or modular solver. Standard ADMM is a decomposition method well suited to distributed optimization, although the strongest convergence guarantees are for convex problems; this calibration problem is nonconvex because of $SE(3)$ and perspective projection.</p><p>Introduce a camera-local world-frame copy of each observed point:</p>$$
+Y_{cp}\in\mathbb R^3,
+\qquad
+(c,p)\in\mathcal E.
+$$<p>These are still world-frame points. At consensus, each copy must equal the world point generated by the board pose:</p><h1 id=y_cp>$$
+\boxed{
+Y_{cp}</h1><p>R^B_{\beta(p)} q_p+t^B_{\beta(p)}.
+}
+$$</p><p>This is the explicit consistency constraint across cameras. If cameras $c_1$ and $c_2$ both observe the same point $p$, then at ADMM consensus</p><h1 id=y_c_1p>$$
+Y_{c_1p}</h1><h1 id=rb_betap-q_ptb_betap>R^B_{\beta(p)} q_p+t^B_{\beta(p)}<a hidden class=anchor aria-hidden=true href=#rb_betap-q_ptb_betap>#</a></h1><p>Y_{c_2p}.
+$$</p><p>So a separate pairwise term such as $\|Y_{c_1p}-Y_{c_2p}\|^2$ is not necessary; all camera-local copies are tied to the same board-generated world point.</p><p>where $\bar Y_{cp}=[Y_{cp}^\top,1]^\top$.</p><p>Define the local reprojection loss:</p><h1 id=ell_cptc_cy_cp>$$
+\boxed{
+\ell_{cp}(T^C_c,Y_{cp})</h1><p>\frac12
+\left|
+\Sigma_{u,cp}^{-1/2}
+\left[
+\Pi\left(
+K_c
+(T^C_c)^{-1}
+\bar Y_{cp}
+\right)
+-u_{cp}
+\right]
+\right|^2.
+}
+$$</p><p>Then the ADMM-split problem is:</p><h1 id=y_cp-1>$$
+\boxed{
+\begin{aligned}
+\min_{{T^C_c},{T^B_b},{Y_{cp}}}
+&\quad
+\sum_{(c,p)\in\mathcal E}
+\ell_{cp}(T^C_c,Y_{cp})
++
+\sum_b\phi_b(T^B_b)
++
+\sum_c\psi_c(T^C_c)
+\
+\text{s.t.}
+&\quad
+Y_{cp}</h1><p>R^B_{\beta(p)} q_p+t^B_{\beta(p)},
+\qquad
+(c,p)\in\mathcal E.
+\end{aligned}
+}
+\tag{A}
+$$</p><p>When the constraints are satisfied, this is equivalent to the centralized problem (P).</p><h2 id=8-scaled-augmented-lagrangian>8. Scaled Augmented Lagrangian<a hidden class=anchor aria-hidden=true href=#8-scaled-augmented-lagrangian>#</a></h2><p>For each observation edge, introduce a scaled dual variable</p>$$
+\lambda_{cp}\in\mathbb R^3.
+$$<p>Let the ADMM penalty be</p>$$
+\mu_{cp}>0.
+$$<p>The scaled augmented Lagrangian is:</p><h2 id=y_cp-2>$$
+\boxed{
+\begin{aligned}
+\mathcal L_\mu
+&=
+\sum_{(c,p)\in\mathcal E}
+\ell_{cp}(T^C_c,Y_{cp})
++
+\sum_b\phi_b(T^B_b)
++
+\sum_c\psi_c(T^C_c)
+\
+&\quad+
+\sum_{(c,p)\in\mathcal E}
+\frac{\mu_{cp}}{2}
+\left|
+Y_{cp}</h2><h2 id=rb_betap-q_p>R^B_{\beta(p)} q_p<a hidden class=anchor aria-hidden=true href=#rb_betap-q_p>#</a></h2><p>t^B_{\beta(p)}
++
+\lambda_{cp}
+\right|^2.
+\end{aligned}
+}
+$$</p><p>Constants such as</p>$$
+-\frac{\mu_{cp}}{2}\|\lambda_{cp}\|^2
+$$<p>are omitted because they do not affect the primal minimizers.</p><h2 id=9-admm-algorithm>9. ADMM Algorithm<a hidden class=anchor aria-hidden=true href=#9-admm-algorithm>#</a></h2><p>At iteration $k$, perform three steps.</p><h3 id=step-1-camera-local-update>Step 1: Camera-Local Update<a hidden class=anchor aria-hidden=true href=#step-1-camera-local-update>#</a></h3><p>For each camera $c$, solve independently:</p><h1 id=y_cpk1_pinmathcal-nc>$$
+\boxed{
+\begin{aligned}
+(T^C_c)^{k+1},
+{Y_{cp}^{k+1}}_{p\in\mathcal N(c)}</h1><h2 id=y_cp-3>\arg\min_{T^C_c,{Y_{cp}}}
+&\quad
+\psi_c(T^C_c)
+\
+&+
+\sum_{p\in\mathcal N(c)}
+\frac12
+\left|
+\Sigma_{u,cp}^{-1/2}
+\left[
+\Pi\left(
+K_c(T^C_c)^{-1}\bar Y_{cp}
+\right)
+-u_{cp}
+\right]
+\right|^2
+\
+&+
+\sum_{p\in\mathcal N(c)}
+\frac{\mu_{cp}}{2}
+\left|
+Y_{cp}</h2><p>X_p^k
++
+\lambda_{cp}^k
+\right|^2,
+\end{aligned}
+}
+\tag{ADMM-1}
+$$</p><p>where</p><h1 id=x_pk>$$
+\boxed{
+X_p^k</h1><p>(R^B_{\beta(p)})^k q_p+(t^B_{\beta(p)})^k.
+}
+$$</p><p>This step is parallel over cameras.</p><p>The residuals used inside a Gauss-Newton or Levenberg-Marquardt solve are:</p><h1 id=r_cptextimg>$$
+r_{cp}^{\text{img}}</h1><p>\Sigma_{u,cp}^{-1/2}
+\left[
+\Pi\left(
+K_c(T^C_c)^{-1}\bar Y_{cp}
+\right)
+-u_{cp}
+\right],
+$$</p><p>and</p><h1 id=r_cptextcons>$$
+r_{cp}^{\text{cons}}</h1><h2 id=y_cp-4>\sqrt{\mu_{cp}}
+\left[
+Y_{cp}</h2><p>X_p^k
++
+\lambda_{cp}^k
+\right].
+$$</p><p>Use Lie updates for the camera pose:</p>$$
+\boxed{
+T^C_c
+\leftarrow
+\exp(\delta\xi_c^\wedge)T^C_c.
+}
+$$<p>The projection internally uses the inverse $(T^C_c)^{-1}$. Use ordinary Euclidean updates for the local point copies:</p>$$
+Y_{cp}\leftarrow Y_{cp}+\delta y_{cp}.
+$$<p>This subproblem is still nonlinear because of projection, but it is local to one camera.</p><h3 id=step-2-board-update>Step 2: Board Update<a hidden class=anchor aria-hidden=true href=#step-2-board-update>#</a></h3><p>For each board $b$, solve independently:</p><h1 id=tb_bk1>$$
+\boxed{
+\begin{aligned}
+(T^B_b)^{k+1}</h1><h2 id=y_cpk1>\arg\min_{T^B_b\in SE(3)}
+&\quad
+\phi_b(T^B_b)
+\
+&+
+\sum_{p\in\mathcal P_b}
+\sum_{c\in\mathcal N(p)}
+\frac{\mu_{cp}}{2}
+\left|
+Y_{cp}^{k+1}</h2><h2 id=rb_b-q_p>R^B_b q_p<a hidden class=anchor aria-hidden=true href=#rb_b-q_p>#</a></h2><p>t^B_b
++
+\lambda_{cp}^k
+\right|^2.
+\end{aligned}
+}
+\tag{ADMM-2}
+$$</p><p>This step is parallel over boards.</p><p>Rewrite the ADMM target as:</p>$$
+R^B_b q_p+t^B_b
+\approx
+Y_{cp}^{k+1}+\lambda_{cp}^k.
+$$<p>Define</p><h1 id=tau_cpk1>$$
+\tau_{cp}^{k+1}</h1><p>Y_{cp}^{k+1}+\lambda_{cp}^k.
+$$</p><p>If $\phi_b$ consists only of isotropic point measurements,</p><h1 id=phi_btb_b-1>$$
+\phi_b(T^B_b)</h1><p>\sum_{p\in\mathcal P_b\cap\mathcal Z}
+\frac{w_{z,p}}{2}
+|R^B_b q_p+t^B_b-z_p|^2,
+$$</p><p>then the board update is a weighted rigid alignment problem:</p>$$
+\boxed{
+\min_{R^B_b,t^B_b}
+\frac12
+\sum_j
+\alpha_j
+\|R^B_b q_j+t^B_b-\tau_j\|^2,
+\qquad
+R^B_b\in SO(3).
+}
+$$<p>The target set contains two types of targets.</p><p>For every camera observation $(c,p)$:</p>$$
+\tau_j=\tau_{cp}^{k+1}=Y_{cp}^{k+1}+\lambda_{cp}^k,
+\qquad
+\alpha_j=\mu_{cp}.
+$$<p>For every measured world point $p\in\mathcal P_b\cap\mathcal Z$:</p>$$
+\tau_j=z_p,
+\qquad
+\alpha_j=w_{z,p}.
+$$<p>Compute weighted centroids:</p><h1 id=bar-q>$$
+\bar q</h1><p>\frac{\sum_j\alpha_jq_j}{\sum_j\alpha_j},
+$$</p><h1 id=bartau>$$
+\bar\tau</h1><p>\frac{\sum_j\alpha_j\tau_j}{\sum_j\alpha_j}.
+$$</p><p>Compute weighted covariance:</p><h1 id=h>$$
+H</h1><p>\sum_j
+\alpha_j
+(q_j-\bar q)(\tau_j-\bar\tau)^\top.
+$$</p><p>Take the SVD:</p>$$
+H=U\Sigma V^\top.
+$$<p>Then</p><h1 id=rb_bk1>$$
+\boxed{
+(R^B_b)^{k+1}</h1><p>V
+\operatorname{diag}
+\left(
+1,1,\det(VU^\top)
+\right)
+U^\top,
+}
+$$</p><p>and</p><h1 id=tb_bk1-1>$$
+\boxed{
+(t^B_b)^{k+1}</h1><p>\bar\tau-(R^B_b)^{k+1}\bar q.
+}
+$$</p><p>So</p><h1 id=tb_bk1-2>$$
+\boxed{
+(T^B_b)^{k+1}</h1><p>\begin{bmatrix}
+(R^B_b)^{k+1}&(t^B_b)^{k+1}\
+0&amp;1
+\end{bmatrix}.
+}
+$$</p><p>If $\phi_b$ has anisotropic covariances or a general pose prior, solve (ADMM-2) by a small 6-DoF LM solve instead of closed-form Kabsch.</p><h3 id=step-3-dual-update>Step 3: Dual Update<a hidden class=anchor aria-hidden=true href=#step-3-dual-update>#</a></h3><p>For every observation edge $(c,p)\in\mathcal E$:</p><h1 id=lambda_cpk1>$$
+\boxed{
+\lambda_{cp}^{k+1}</h1><h2 id=y_cpk1-1>\lambda_{cp}^{k}
++
+Y_{cp}^{k+1}</h2><h2 id=rb_betapk1-q_p>(R^B_{\beta(p)})^{k+1} q_p<a hidden class=anchor aria-hidden=true href=#rb_betapk1-q_p>#</a></h2><p>(t^B_{\beta(p)})^{k+1}.
+}
+\tag{ADMM-3}
+$$</p><p>The primal residual is</p><h1 id=r_pcpk1>$$
+\boxed{
+r_{p,cp}^{k+1}</h1><h2 id=y_cpk1-2>Y_{cp}^{k+1}<a hidden class=anchor aria-hidden=true href=#y_cpk1-2>#</a></h2><h2 id=rb_betapk1-q_p-1>(R^B_{\beta(p)})^{k+1} q_p<a hidden class=anchor aria-hidden=true href=#rb_betapk1-q_p-1>#</a></h2><p>(t^B_{\beta(p)})^{k+1}.
+}
+$$</p><p>A practical dual residual is</p><h1 id=r_dcpk1>$$
+\boxed{
+r_{d,cp}^{k+1}</h1><h2 id=leftrb_betapk1-q_ptb_betapk1right>\mu_{cp}
+\left[
+\left((R^B_{\beta(p)})^{k+1} q_p+(t^B_{\beta(p)})^{k+1}\right)</h2><p>\left((R^B_{\beta(p)})^{k} q_p+(t^B_{\beta(p)})^{k}\right)
+\right].
+}
+$$</p><p>Stop when</p>$$
+\sum_{(c,p)\in\mathcal E}\|r_{p,cp}\|^2
+$$<p>and</p>$$
+\sum_{(c,p)\in\mathcal E}\|r_{d,cp}\|^2
+$$<p>are below chosen tolerances.</p><h2 id=10-admm-pseudocode>10. ADMM Pseudocode<a hidden class=anchor aria-hidden=true href=#10-admm-pseudocode>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>Input:
+</span></span><span class=line><span class=cl>  Boards b = 1..B
+</span></span><span class=line><span class=cl>  Cameras c = 1..C
+</span></span><span class=line><span class=cl>  Points p = (b, i)
+</span></span><span class=line><span class=cl>  Observation graph E = {(c, p)}
+</span></span><span class=line><span class=cl>  Board-frame coordinates q[p]
+</span></span><span class=line><span class=cl>  Pixel observations u[c, p]
+</span></span><span class=line><span class=cl>  Intrinsics K[c]
+</span></span><span class=line><span class=cl>  Optional world measurements z[p]
+</span></span><span class=line><span class=cl>  Optional camera/rig priors
+</span></span><span class=line><span class=cl>Initialize:
+</span></span><span class=line><span class=cl>  Board poses (T^B_b)^0
+</span></span><span class=line><span class=cl>  Camera poses (T^C_c)^0
+</span></span><span class=line><span class=cl>  Local copies:
+</span></span><span class=line><span class=cl>      Y_cp^0 = (R^B_beta(p))^0 q_p + (t^B_beta(p))^0
+</span></span><span class=line><span class=cl>  Dual variables:
+</span></span><span class=line><span class=cl>      lambda_cp^0 = 0
+</span></span><span class=line><span class=cl>  Penalties:
+</span></span><span class=line><span class=cl>      mu_cp &gt; 0
+</span></span><span class=line><span class=cl>Repeat until convergence:
+</span></span><span class=line><span class=cl>  # Camera-local step: parallel over cameras
+</span></span><span class=line><span class=cl>  for each camera c:
+</span></span><span class=line><span class=cl>      solve nonlinear least squares over T^C_c and {Y_cp}_{p in N(c)}:
+</span></span><span class=line><span class=cl>          image reprojection residuals using (T^C_c)^-1
+</span></span><span class=line><span class=cl>          + ADMM consensus residuals to current board points
+</span></span><span class=line><span class=cl>  # Board step: parallel over boards
+</span></span><span class=line><span class=cl>  for each board b:
+</span></span><span class=line><span class=cl>      solve rigid alignment:
+</span></span><span class=line><span class=cl>          board-generated points R^B_b q_p + t^B_b
+</span></span><span class=line><span class=cl>          should match Y_cp + lambda_cp
+</span></span><span class=line><span class=cl>          plus measured world points z_p, if available
+</span></span><span class=line><span class=cl>  # Dual step: parallel over observation edges
+</span></span><span class=line><span class=cl>  for each observation edge (c, p):
+</span></span><span class=line><span class=cl>      lambda_cp &lt;- lambda_cp
+</span></span><span class=line><span class=cl>                   + Y_cp
+</span></span><span class=line><span class=cl>                   - R^B_beta(p) q_p
+</span></span><span class=line><span class=cl>                   - t^B_beta(p)
+</span></span><span class=line><span class=cl>  Check primal and dual residuals.
+</span></span></code></pre></div><h2 id=11-initialization>11. Initialization<a hidden class=anchor aria-hidden=true href=#11-initialization>#</a></h2><p>ADMM will be sensitive to initialization because the problem is nonconvex.</p><p>Good initialization options:</p><ol><li>If world marker measurements exist: initialize each board pose $(T^B_b)^0$ by weighted Kabsch from $q_p\mapsto z_p$.</li><li>Initialize cameras from board/world points: once board poses are initialized, compute</li></ol>$$
+X_p^W=R^B_{\beta(p)} q_p+t^B_{\beta(p)}
+$$<p>and solve PnP for each camera using observed correspondences</p>$$
+(X_p^W,u_{cp}).
+$$<ol><li>If no world measurements exist: fix one board pose or one camera pose to remove gauge, estimate local board-camera relative poses where possible, and propagate poses through the observation graph.</li><li>Initialize local point copies with the current board predictions:</li></ol>$$
+Y_{cp}^0=(R^B_{\beta(p)})^0 q_p+(t^B_{\beta(p)})^0.
+$$<ol><li>Initialize duals to zero:</li></ol>$$
+\lambda_{cp}^0=0.
+$$<h2 id=12-penalty-choice>12. Penalty Choice<a hidden class=anchor aria-hidden=true href=#12-penalty-choice>#</a></h2><p>Use $\mu_{cp}$ in world-coordinate units. If local point copies are in meters, $\mu_{cp}$ has units like inverse square meters.</p><p>A reasonable initial choice is to relate $\mu_{cp}$ to expected 3D point uncertainty:</p>$$
+\mu_{cp}\approx \frac{1}{\sigma_X^2}.
+$$<p>For example, if the board/world point uncertainty is about $5\text{ mm}$,</p>$$
+\sigma_X=0.005\text{ m},
+\qquad
+\mu\approx 40000.
+$$<p>But this can be too stiff early in optimization. A practical strategy is to start with a smaller $\mu$, then increase it as the primal residual decreases.</p><p>Use residual balancing:</p>$$
+\|r_p\| > \eta \|r_d\|
+\quad\Rightarrow\quad
+\mu\leftarrow \gamma\mu,
+$$$$
+\|r_d\| > \eta \|r_p\|
+\quad\Rightarrow\quad
+\mu\leftarrow \mu/\gamma.
+$$<p>When changing $\mu$, rescale the scaled dual variable appropriately.</p><h2 id=13-what-this-admm-split-buys-you>13. What This ADMM Split Buys You<a hidden class=anchor aria-hidden=true href=#13-what-this-admm-split-buys-you>#</a></h2><p>This ADMM formulation respects the camera-point graph.</p><p>It gives:</p>$$
+\text{camera-parallel local updates,}
+$$$$
+\text{board-parallel rigid alignment updates,}
+$$$$
+\text{simple point-level consensus constraints,}
+$$$$
+\text{no need for every camera to see a whole board,}
+$$$$
+\text{direct support for missing point observations.}
+$$<p>This is better than a board-camera relative-pose ADMM when a camera may observe only a few points on a board. A board-camera relative pose</p>$$
+G_{cb}=(T^C_c)^{-1}T^B_b
+$$<p>is only meaningful as a local measurement if camera $c$ sees enough non-collinear points on board $b$ to estimate the board pose. The point-level ADMM does not require that.</p><h2 id=14-optional-post-style-ray-plane-residual>14. Optional: Post-Style Ray-Plane Residual<a hidden class=anchor aria-hidden=true href=#14-optional-post-style-ray-plane-residual>#</a></h2><p>The formulation above uses reprojection error. That is the statistically cleaner choice.</p><p>The post instead discusses inverse ray-plane intersection. It derives the unique point where the back-projected image ray intersects a known plane, provided the ray is not parallel to the plane.</p><p>For board $b$, its world-frame plane is</p>$$
+n_b^\top X+c_b=0,
+$$<p>where</p>$$
+n_b=R^B_b e_3,
+\qquad
+c_b=-n_b^\top t^B_b,
+\qquad
+e_3=
+\begin{bmatrix}
+0\\0\\1
+\end{bmatrix}.
+$$<p>Camera $c$&rsquo;s center in world coordinates is now directly:</p>$$
+\boxed{
+o_c=t^C_c.
+}
+$$<p>For homogeneous image coordinate</p>$$
+\tilde u_{cp}=
+\begin{bmatrix}
+u_{cp}\\
+v_{cp}\\
+1
+\end{bmatrix},
+$$<p>the ray direction in camera coordinates is</p><h1 id=d_cpc>$$
+d_{cp}^{C}</h1><p>K_c^{-1}\tilde u_{cp}.
+$$</p><p>The same direction in world coordinates is</p><h1 id=d_cpw>$$
+\boxed{
+d_{cp}^{W}</h1><p>R^C_c d_{cp}^{C}.
+}
+$$</p><p>The ray-plane intersection is</p><h1 id=phi_cptc_ctb_b>$$
+\boxed{
+\phi_{cp}(T^C_c,T^B_b)</h1><h2 id=o_c>o_c<a hidden class=anchor aria-hidden=true href=#o_c>#</a></h2><p>\frac{n_b^\top o_c+c_b}
+{n_b^\top d_{cp}^{W}}
+d_{cp}^{W}.
+}
+$$</p><p>The board-generated world point is</p>$$
+\boxed{
+X_p^W=R^B_b q_p+t^B_b.
+}
+$$<p>The post-style residual would be</p><h1 id=r_cptextray>$$
+\boxed{
+r_{cp}^{\text{ray}}</h1><h2 id=phi_cptc_ctb_betap>P_b^\top
+\left[
+\phi_{cp}(T^C_c,T^B_{\beta(p)})</h2><p>\left(
+R^B_{\beta(p)} q_p+t^B_{\beta(p)}
+\right)
+\right],
+}
+$$</p><p>where</p>$$
+P_b=
+\begin{bmatrix}
+R^B_b e_1 & R^B_b e_2
+\end{bmatrix}
+\in\mathbb R^{3\times2}
+$$<p>is the tangent basis of the board plane.</p><p>I recommend using the tangent-plane residual, not the full 3D residual, because both points are supposed to lie on the board plane and the meaningful error is along the board surface.</p><p>However, the reprojection objective is usually preferable because pixel noise is naturally modeled in image coordinates. The ray-plane residual requires converting pixel uncertainty into board-plane uncertainty, which depends on viewing angle and can become ill-conditioned when</p>$$
+n_b^\top d_{cp}^{W}\approx 0.
+$$<h2 id=15-better-centralized-method-sparse-bundle-adjustment>15. Better Centralized Method: Sparse Bundle Adjustment<a hidden class=anchor aria-hidden=true href=#15-better-centralized-method-sparse-bundle-adjustment>#</a></h2><p>If the calibration can be solved on one machine, I would use sparse nonlinear least squares instead of ADMM.</p><p>The problem is exactly:</p>$$
+\boxed{
+\begin{aligned}
+\min_{\{T^B_b\},\{T^C_c\}}
+&\quad
+\sum_{(c,p)\in\mathcal E}
+\frac12
+\left\|
+\Sigma_{u,cp}^{-1/2}
+\left[
+\Pi\left(
+K_c
+(T^C_c)^{-1}
+T^B_{\beta(p)}
+\bar q_p
+\right)
+-u_{cp}
+\right]
+\right\|^2
+\\
+&\quad+
+\sum_b\phi_b(T^B_b)
++
+\sum_c\psi_c(T^C_c).
+\end{aligned}
+}
+$$<p>Use pose increments:</p>$$
+T^B_b\leftarrow \exp(\delta\xi_b^\wedge)T^B_b,
+$$$$
+T^C_c\leftarrow \exp(\delta\eta_c^\wedge)T^C_c.
+$$<p>Linearize every residual:</p>$$
+e_{cp}
+\approx
+e_{cp}^0
++
+J_{B,cp}\delta\xi_{\beta(p)}
++
+J_{C,cp}\delta\eta_c.
+$$<p>Stack all residuals and solve the damped normal equations:</p><h1 id=leftjtop-jlambda-drightdelta>$$
+\boxed{
+\left(J^\top J+\lambda D\right)\delta</h1><p>-J^\top r.
+}
+$$</p><p>Each residual touches only one board pose and one camera pose. Therefore the normal matrix has sparse block structure:</p><h1 id=endbmatrix>$$
+\begin{bmatrix}
+H_{CC} & H_{CB}\
+H_{BC} & H_{BB}
+\end{bmatrix}
+\begin{bmatrix}
+\delta C\
+\delta B
+\end{bmatrix}</h1><ul><li></li></ul><p>\begin{bmatrix}
+g_C\
+g_B
+\end{bmatrix}.
+$$</p><p>If there are no camera-camera priors, $H_{CC}$ is block diagonal over cameras before Schur fill-in. If there are no board-board priors, $H_{BB}$ is block diagonal over boards before Schur fill-in.</p><p>You can eliminate boards:</p><h2 id=h_cc>$$
+\boxed{
+\left(
+H_{CC}</h2><h1 id=delta-c>H_{CB}H_{BB}^{-1}H_{BC}
+\right)
+\delta C</h1><p>-g_C
++
+H_{CB}H_{BB}^{-1}g_B.
+}
+$$</p><p>Then back-substitute:</p><h1 id=delta-b>$$
+\boxed{
+\delta B</h1><p>-H_{BB}^{-1}
+\left(
+g_B+H_{BC}\delta C
+\right).
+}
+$$</p><p>Or eliminate cameras instead, depending on whether there are fewer cameras or fewer boards.</p><p>This is the same structural idea behind Schur methods in bundle adjustment. Ceres&rsquo; documentation describes bundle adjustment as minimizing reprojection error over cameras and 3D points, and its solver documentation explains that bundle adjustment has a special block structure that can be exploited with Schur complement methods.</p><h2 id=16-factor-graph-view>16. Factor-Graph View<a hidden class=anchor aria-hidden=true href=#16-factor-graph-view>#</a></h2><p>The centralized problem is also a factor graph.</p><p>Variables:</p>$$
+\{T^B_b\}_{b=1}^B,
+\qquad
+\{T^C_c\}_{c=1}^C.
+$$<p>Factors:</p>$$
+f_{cp}(T^C_c,T^B_{\beta(p)})
+$$<p>for every observation edge $(c,p)\in\mathcal E$.</p><p>Board priors:</p>$$
+\phi_b(T^B_b).
+$$<p>Camera priors:</p>$$
+\psi_c(T^C_c).
+$$<p>GTSAM describes factor graphs as bipartite graphs connecting factors to the variables they depend on, and emphasizes that such sparse structure is exploited by nonlinear optimization methods.</p><p>This is arguably the cleanest implementation model: one factor per camera-point observation, with the point&rsquo;s board membership determining which board pose variable the factor touches.</p><h2 id=17-practical-recommendation>17. Practical Recommendation<a hidden class=anchor aria-hidden=true href=#17-practical-recommendation>#</a></h2><p>Use this hierarchy:</p><p><strong>Best if centralized</strong></p><p>Use sparse factor-graph bundle adjustment:</p>$$
+\boxed{
+\min_{\{T^B_b\},\{T^C_c\}}
+\sum_{(c,p)\in\mathcal E}
+\text{reprojection error}
++
+\text{board priors}
++
+\text{camera/rig priors}.
+}
+$$<p>This gives the best local convergence and avoids ADMM penalty tuning.</p><p><strong>Best if distributed</strong></p><p>Use point-level ADMM:</p>$$
+\boxed{
+Y_{cp}=R^B_{\beta(p)} q_p+t^B_{\beta(p)}
+}
+$$<p>with:</p>$$
+\text{camera-local update}
+\rightarrow
+\text{board rigid-alignment update}
+\rightarrow
+\text{dual update}.
+$$<p>This respects the actual camera-point observation graph and supports partial board visibility.</p><p><strong>Best engineering pipeline</strong></p><ol><li>Initialize board poses from world measurements, if available.</li><li>Initialize cameras using PnP against current board-generated world points.</li><li>Run sparse centralized BA if possible.</li><li>Use ADMM only if the system must be distributed, parallelized by camera/board, or too large for a single optimizer.</li><li>Optionally use robust losses or outlier rejection on image residuals.</li></ol><p>The main final formulation is:</p>$$
+\boxed{
+(c,p)\in\mathcal E
+\quad\text{is the primitive observation,}
+}
+$$$$
+\boxed{
+X_p^W=R^B_{\beta(p)} q_p+t^B_{\beta(p)}
+\quad\text{is the hard board constraint,}
+}
+$$$$
+\boxed{
+u_{cp}
+\approx
+\Pi\left(K_c(T^C_c)^{-1}\bar X_p^W\right)
+\quad\text{is the camera measurement model.}
+}
+$$<p>Use this convention consistently:</p>$$
+\boxed{
+T^B_b: \text{board } b \rightarrow \text{world}
+}
+$$$$
+\boxed{
+T^C_c: \text{camera } c \rightarrow \text{world}
+}
+$$<h1 id=t_cbcb-1>$$
+\boxed{
+T_{CB}^{(c,b)}</h1><p>(T^C_c)^{-1}T^B_b: \text{board } b \rightarrow \text{camera } c.
+}
+$$</p><p>Everything else, including ADMM, sparse Schur bundle adjustment, and factor-graph optimization, is a solver strategy for this same constrained geometric estimation problem.</p><h2 id=18-how-the-formulation-guides-board-placement>18. How the Formulation Guides Board Placement<a hidden class=anchor aria-hidden=true href=#18-how-the-formulation-guides-board-placement>#</a></h2><p>The centralized formulation (P), not the ADMM split (A), is the useful object for deciding where to put the target board. The ADMM penalty, dual variables, and local point copies are solver artifacts. Board-placement decisions should be based on the physical reprojection terms and any measurement priors in (P).</p><p>The objective value itself is not a good placement guide. For a hypothetical board placement with perfectly predicted observations, the expected reprojection residual is zero almost everywhere. The useful placement information is in the local curvature of the objective: the reprojection Jacobian and the Hessian or information matrix.</p><h3 id=linearized-measurement-information>Linearized Measurement Information<a hidden class=anchor aria-hidden=true href=#linearized-measurement-information>#</a></h3><p>For point $p$ on board $b$, define the predicted camera-coordinate point</p><h1 id=x_cp>$$
+x_{cp}</h1><h1 id=endbmatrix-1>\begin{bmatrix}
+X_{cp}\Y_{cp}\Z_{cp}
+\end{bmatrix}</h1><p>(R^C_c)^\top
+\left(
+R^B_b q_p+t^B_b-t^C_c
+\right).
+$$</p><p>The weighted reprojection residual is</p><h1 id=r_cp>$$
+r_{cp}</h1><p>\Sigma_{u,cp}^{-1/2}
+\left[
+\Pi(K_cx_{cp})-u_{cp}
+\right].
+$$</p><p>For a candidate board pose $T^B_b$, linearize the residual around the current camera and board estimates:</p>$$
+r_{cp}
+\approx
+r_{cp}^{0}
++
+A_{cp}\delta\eta_c
++
+B_{cp}\delta\xi_b,
+$$<p>where</p><h1 id=a_cp>$$
+A_{cp}</h1><h1 id=b_cp>\frac{\partial r_{cp}}{\partial\delta\eta_c},
+\qquad
+B_{cp}</h1><p>\frac{\partial r_{cp}}{\partial\delta\xi_b}.
+$$</p><p>For the pinhole model,</p><h1 id=j_pix_cp>$$
+J_{\pi}(x_{cp})</h1><p>\begin{bmatrix}
+f_{x,c}/Z_{cp} & 0 &
+-f_{x,c}X_{cp}/Z_{cp}^{2}
+\
+0 & f_{y,c}/Z_{cp} &
+-f_{y,c}Y_{cp}/Z_{cp}^{2}
+\end{bmatrix}.
+$$</p><p>For this placement-scoring derivation, use local right perturbations</p>$$
+T^C_c\leftarrow T^C_c\exp(\delta\eta_c^\wedge),
+\qquad
+T^B_b\leftarrow T^B_b\exp(\delta\xi_b^\wedge).
+$$<p>Then the camera-pose Jacobian is</p><h1 id=a_cp-1>$$
+\boxed{
+A_{cp}</h1><p>\Sigma_{u,cp}^{-1/2}
+J_\pi(x_{cp})
+\begin{bmatrix}
+-I & [x_{cp}]_\times
+\end{bmatrix}.
+}
+$$</p><p>The board-pose Jacobian is</p><h1 id=b_cp-1>$$
+\boxed{
+B_{cp}</h1><p>\Sigma_{u,cp}^{-1/2}
+J_\pi(x_{cp})
+(R^C_c)^\top R^B_b
+\begin{bmatrix}
+I & -[q_p]_\times
+\end{bmatrix}.
+}
+$$</p><p>These Jacobians convert a candidate physical board placement into expected camera-pose information.</p><h3 id=marginalized-camera-information>Marginalized Camera Information<a hidden class=anchor aria-hidden=true href=#marginalized-camera-information>#</a></h3><p>Stack all residual Jacobians for the candidate board pose:</p>$$
+A_b=
+\begin{bmatrix}
+A_{c_1p_1}\\
+\vdots\\
+A_{c_mp_m}
+\end{bmatrix},
+\qquad
+B_b=
+\begin{bmatrix}
+B_{c_1p_1}\\
+\vdots\\
+B_{c_mp_m}
+\end{bmatrix}.
+$$<p>Here $m$ is the number of predicted camera-point observation edges for this candidate pose.</p><p>Let $\Lambda_b^{\mathrm{prior}}$ denote the information supplied by surveyed world coordinates, a board-pose measurement, or another board prior. The candidate&rsquo;s joint information contribution is</p><h1 id=delta-h_b>$$
+\Delta H_b</h1><p>\begin{bmatrix}
+A_b^\top A_b & A_b^\top B_b\
+B_b^\top A_b & B_b^\top B_b+\Lambda_b^{\mathrm{prior}}
+\end{bmatrix}.
+$$</p><p>For camera-pose guidance, the board pose is usually a nuisance variable. Marginalizing it gives the effective information contributed to the camera pose:</p><h1 id=deltalambda_ctb_b>$$
+\boxed{
+\Delta\Lambda_c(T^B_b)</h1><h2 id=a_btop-a_b>A_b^\top A_b<a hidden class=anchor aria-hidden=true href=#a_btop-a_b>#</a></h2><p>A_b^\top B_b
+\left(
+B_b^\top B_b+\Lambda_b^{\mathrm{prior}}
+\right)^{-1}
+B_b^\top A_b.
+}
+$$</p><p>This expression has three useful interpretations.</p><ol><li>If the board pose is accurately known, then $\Lambda_b^{\mathrm{prior}}\rightarrow\infty$, and $\Delta\Lambda_c\approx A_b^\top A_b$. Almost all image information contributes to the camera pose.</li><li>If the board pose is poorly known, the second term becomes large. Much of the apparent image information is spent estimating the board pose.</li><li>With no world anchor, a simultaneous global transformation of all camera and board poses leaves projections unchanged. Absolute camera pose is unobservable; only relative board-to-camera pose is constrained.</li></ol><p>For the complete multi-camera system, append the hypothetical candidate information to the current normal matrix:</p><h1 id=htb_b>$$
+H(T^B_b)</h1><p>H_{\mathrm{current}}
++
+\Delta H(T^B_b).
+$$</p><p>Partition the result into camera poses $C$ and nuisance variables $N$, including board poses:</p><h1 id=h-1>$$
+H</h1><p>\begin{bmatrix}
+H_{CC} & H_{CN}\
+H_{NC} & H_{NN}
+\end{bmatrix}.
+$$</p><p>The marginalized camera-pose information is</p><h1 id=lambda_ctb_b>$$
+\boxed{
+\Lambda_C(T^B_b)</h1><h2 id=h_cc-1>H_{CC}<a hidden class=anchor aria-hidden=true href=#h_cc-1>#</a></h2><p>H_{CN}H_{NN}^{-1}H_{NC}.
+}
+$$</p><p>The predicted camera-pose covariance is approximately</p>$$
+\boxed{
+\Sigma_C(T^B_b)
+\approx
+\Lambda_C(T^B_b)^{-1}.
+}
+$$<p>This is the next-best-pose principle: append the expected measurements of a hypothetical pose, compute the resulting information, and select the pose that gives the largest uncertainty reduction.</p><h3 id=board-placement-objective>Board-Placement Objective<a hidden class=anchor aria-hidden=true href=#board-placement-objective>#</a></h3><p>A direct next-board-placement problem is</p><h1 id=tb_b-1>$$
+\boxed{
+(T^B_b)^*</h1><p>\underset{T^B_b\in\mathcal F}{\arg\min}
+;
+\operatorname{tr}
+\left(
+D\Sigma_C(T^B_b)D^\top
+\right),
+}
+$$</p><p>where $\mathcal F$ is the feasible set of board poses, and $D$ normalizes translation and rotation by required tolerances. For a single camera pose, one example is</p><h1 id=d>$$
+D</h1><p>\operatorname{diag}
+\left(
+1/\tau_x,,
+1/\tau_y,,
+1/\tau_z,,
+1/\tau_{\mathrm{roll}},,
+1/\tau_{\mathrm{pitch}},,
+1/\tau_{\mathrm{yaw}}
+\right).
+$$</p><p>For multiple cameras, use the corresponding block-diagonal normalization.</p><p>Other useful criteria are the D-optimal score</p>$$
+\boxed{
+\max_{T^B_b\in\mathcal F}
+\log\det\Lambda_C(T^B_b),
+}
+$$<p>which reduces the overall uncertainty volume, and the E-optimal score</p>$$
+\boxed{
+\max_{T^B_b\in\mathcal F}
+\lambda_{\min}
+\left(
+D^{-T}\Lambda_C(T^B_b)D^{-1}
+\right),
+}
+$$<p>which improves the least observable camera-pose direction. For extrinsic calibration, the E-optimal criterion is often the more practical one, because a calibration can have a small average error while still containing one poorly constrained combination, such as camera height and pitch.</p><h3 id=physical-placement-preferences>Physical Placement Preferences<a hidden class=anchor aria-hidden=true href=#physical-placement-preferences>#</a></h3><p>The information matrix translates into concrete board-placement guidance:</p><table><thead><tr><th>Board-placement property</th><th>Effect on pose estimation</th></tr></thead><tbody><tr><td>Large board footprint in the image</td><td>The $1/Z$ terms in $J_\pi$ increase, and widely separated points provide stronger rotational leverage.</td></tr><tr><td>Corners distributed across both image axes</td><td>Improves sensitivity to optical-axis translation and rotation; avoids concentrating information near the principal point.</td></tr><tr><td>Moderate tilt about both board axes</td><td>Introduces depth variation across the board and separates pitch/yaw errors from translation errors.</td></tr><tr><td>Different board normals across acquisitions</td><td>Adds complementary information instead of repeatedly measuring the same weak parameter combinations.</td></tr><tr><td>Different lateral positions and depths</td><td>Reduces correlations such as $t_x$-yaw, $t_y$-pitch, and $t_z$-tilt.</td></tr><tr><td>Accurate world measurement of the board pose</td><td>Prevents camera information from being lost while jointly estimating an uncertain board pose.</td></tr><tr><td>Simultaneous visibility in overlapping cameras</td><td>Couples those camera poses through one shared physical board and strengthens relative calibration.</td></tr></tbody></table><p>Therefore, repeatedly placing a small, fronto-parallel board at the image center is usually inefficient. It generates nearly redundant Jacobian rows. A better sequence contains:</p><ol><li>A large, well-centered observation for robust initialization.</li><li>A laterally displaced observation with tilt about one board axis.</li><li>An observation on the opposite side with tilt about the other axis.</li><li>A different board-to-camera distance.</li><li>For multi-camera calibration, placements in camera-overlap regions so the same board points are observed by multiple cameras.</li></ol><p>The exact next placement should be determined by the weakest eigenvector of the current marginalized information matrix. For example, if the largest covariance direction is mostly a combination of camera $t_z$ and pitch, the next-best score will usually favor a laterally displaced and tilted board rather than another centered, fronto-parallel observation.</p><h3 id=visibility-and-corner-quality-constraints>Visibility and Corner-Quality Constraints<a hidden class=anchor aria-hidden=true href=#visibility-and-corner-quality-constraints>#</a></h3><p>Pure geometric information can favor an excessively oblique board. In practice, strong foreshortening makes corners elongated, blurred, or difficult to detect. Candidate scoring should therefore use pose-dependent image covariance,</p><h1 id=sigma_ucp>$$
+\Sigma_{u,cp}</h1><p>\Sigma_{u,cp}(T^B_b),
+$$</p><p>or an expected detection probability:</p><h1 id=delta-htb_b>$$
+\Delta H(T^B_b)</h1><p>\sum_{(c,p)\in\mathcal E(T^B_b)}
+p_{\mathrm{det},cp}(T^B_b)
+J_{cp}^{\top}
+\Sigma_{u,cp}^{-1}(T^B_b)
+J_{cp}.
+$$</p><p>This balances geometric strength against actual feature-localization accuracy. Otherwise, the placement optimizer can prefer grazing views that look informative geometrically but produce anisotropic and unreliable corner measurements.</p><p>The feasible set $\mathcal F$ should therefore require:</p>$$
+Z_{cp}>0,
+$$<p>enough visible markers, image points inside the image with a safety margin, sufficient projected square size, acceptable focus and illumination, and a non-grazing incidence angle.</p><h3 id=practical-next-board-placement-loop>Practical Next-Board-Placement Loop<a hidden class=anchor aria-hidden=true href=#practical-next-board-placement-loop>#</a></h3><p>The resulting EOL procedure is:</p><ol><li>Solve centralized problem (P) using all measurements currently available.</li><li>Compute the current sparse Hessian and camera-pose covariance.</li><li>Generate feasible candidate board poses in the calibration workspace.</li><li>For each candidate, predict visibility, pixel positions, corner covariance, and reprojection Jacobians.</li><li>Add its predicted information to the current Hessian.</li><li>Marginalize board poses and other nuisance variables with the Schur complement.</li><li>Select the board pose giving the largest normalized camera-pose uncertainty reduction.</li><li>Place and survey the board, capture the observations, resolve (P), and repeat.</li></ol><p>The central idea is:</p>$$
+\boxed{
+\text{The loss estimates the poses; its marginalized curvature tells us where to place the board.}
+}
+$$</div><footer class=post-footer><ul class=post-tags><li><a href=https://livey.github.io/tags/autonomous-driving/>Autonomous Driving</a></li><li><a href=https://livey.github.io/tags/camera-extrinsic-calibration/>Camera Extrinsic Calibration</a></li><li><a href=https://livey.github.io/tags/eol/>EOL</a></li><li><a href=https://livey.github.io/tags/end-of-line/>End-of-Line</a></li><li><a href=https://livey.github.io/tags/bev/>BEV</a></li></ul><nav class=paginav><a class=prev href=https://livey.github.io/posts/2025-02-07-coordinate/><span class=title>« Prev</span><br><span>Coordinate Systems in Autonomous Driving</span>
 </a><a class=next href=https://livey.github.io/posts/2024-12-3dgs/><span class=title>Next »</span><br><span>An In-Depth Guide to 3D Gaussian Splatting for Real-Time 3D Reconstruction</span></a></nav><ul class=share-buttons><li><a target=_blank rel="noopener noreferrer" aria-label="share A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles on x" href="https://x.com/intent/tweet/?text=A%20Deep%20Dive%20into%20End-of-Line%20Camera%20Extrinsic%20Calibration%20for%20Autonomous%20Vehicles&amp;url=https%3a%2f%2flivey.github.io%2fposts%2f2025-02-eol-calib%2f&amp;hashtags=AutonomousDriving%2cCameraExtrinsicCalibration%2cEOL%2cEnd-of-Line%2cBEV"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446C483.971.0 512 28.03 512 62.554zM269.951 190.75 182.567 75.216H56L207.216 272.95 63.9 436.783h61.366L235.9 310.383l96.667 126.4H456L298.367 228.367l134-153.151H371.033zM127.633 110h36.468l219.38 290.065H349.5z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2flivey.github.io%2fposts%2f2025-02-eol-calib%2f&amp;title=A%20Deep%20Dive%20into%20End-of-Line%20Camera%20Extrinsic%20Calibration%20for%20Autonomous%20Vehicles&amp;summary=A%20Deep%20Dive%20into%20End-of-Line%20Camera%20Extrinsic%20Calibration%20for%20Autonomous%20Vehicles&amp;source=https%3a%2f%2flivey.github.io%2fposts%2f2025-02-eol-calib%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles on reddit" href="https://reddit.com/submit?url=https%3a%2f%2flivey.github.io%2fposts%2f2025-02-eol-calib%2f&title=A%20Deep%20Dive%20into%20End-of-Line%20Camera%20Extrinsic%20Calibration%20for%20Autonomous%20Vehicles"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles on facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2flivey.github.io%2fposts%2f2025-02-eol-calib%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles on whatsapp" href="https://api.whatsapp.com/send?text=A%20Deep%20Dive%20into%20End-of-Line%20Camera%20Extrinsic%20Calibration%20for%20Autonomous%20Vehicles%20-%20https%3a%2f%2flivey.github.io%2fposts%2f2025-02-eol-calib%2f"><svg viewBox="0 0 512 512" height="30" width="30" fill="currentcolor"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles on telegram" href="https://telegram.me/share/url?text=A%20Deep%20Dive%20into%20End-of-Line%20Camera%20Extrinsic%20Calibration%20for%20Autonomous%20Vehicles&amp;url=https%3a%2f%2flivey.github.io%2fposts%2f2025-02-eol-calib%2f"><svg viewBox="2 2 28 28" height="30" width="30" fill="currentcolor"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg></a></li><li><a target=_blank rel="noopener noreferrer" aria-label="share A Deep Dive into End-of-Line Camera Extrinsic Calibration for Autonomous Vehicles on ycombinator" href="https://news.ycombinator.com/submitlink?t=A%20Deep%20Dive%20into%20End-of-Line%20Camera%20Extrinsic%20Calibration%20for%20Autonomous%20Vehicles&u=https%3a%2f%2flivey.github.io%2fposts%2f2025-02-eol-calib%2f"><svg width="30" height="30" viewBox="0 0 512 512" fill="currentcolor" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"><path d="M449.446.0C483.971.0 512 28.03 512 62.554V449.446C512 483.97 483.97 512 449.446 512H62.554C28.03 512 0 483.97.0 449.446V62.554C0 28.03 28.029.0 62.554.0H449.446zM183.8767 87.9921h-62.034L230.6673 292.4508V424.0079h50.6655V292.4508L390.1575 87.9921H328.1233L256 238.2489z"/></svg></a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://livey.github.io/>Fuwei's Tech Notes</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
