@@ -15,9 +15,9 @@
     <atom:link href="https://livey.github.io/tags/path-generating/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Connecting Points with Grace: A Study on Natural Path Generation Methods</title>
-      <link>https://livey.github.io/posts/2025-04-16-path-genrating/</link>
+      <link>https://livey.github.io/posts/2025-04-16-path-generating/</link>
       <pubDate>Wed, 16 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>https://livey.github.io/posts/2025-04-16-path-genrating/</guid>
+      <guid>https://livey.github.io/posts/2025-04-16-path-generating/</guid>
       <description>Generating a natural path to connect two given points.</description>
     </item>
   </channel>
