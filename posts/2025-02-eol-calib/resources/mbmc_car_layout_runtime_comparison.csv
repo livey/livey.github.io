@@ -1,0 +1,19 @@
+scenario,boards,observations,method,runtime_s,outer_iterations,observations_per_second,notes
+car_layout_8_boards,8,481,Centralized BA,0.9360149999993155,39,513.8806536223798,one sparse nonlinear least-squares solve
+car_layout_8_boards,8,481,Point-level ADMM,1.3362333749973914,12,359.96706039537366,camera subproblems plus board Kabsch updates
+car_layout_8_boards,8,481,Pose-copy ADMM,1.5508438340038992,12,310.1537301522976,camera pose plus local board-pose copies
+car_layout_12_boards,12,656,Centralized BA,1.2224047080089804,38,536.6471477915649,one sparse nonlinear least-squares solve
+car_layout_12_boards,12,656,Point-level ADMM,1.7601112499978626,12,372.7037140412554,camera subproblems plus board Kabsch updates
+car_layout_12_boards,12,656,Pose-copy ADMM,2.0786327499954496,12,315.59206406299336,camera pose plus local board-pose copies
+car_layout_16_boards,16,893,Centralized BA,1.2349613330006832,27,723.0995628261553,one sparse nonlinear least-squares solve
+car_layout_16_boards,16,893,Point-level ADMM,2.1296286249998957,12,419.32193694102125,camera subproblems plus board Kabsch updates
+car_layout_16_boards,16,893,Pose-copy ADMM,2.610403666010825,12,342.092685367956,camera pose plus local board-pose copies
+car_layout_24_boards,24,1327,Centralized BA,2.553050291011459,43,519.7704113671311,one sparse nonlinear least-squares solve
+car_layout_24_boards,24,1327,Point-level ADMM,3.0355832079949323,12,437.14828719075433,camera subproblems plus board Kabsch updates
+car_layout_24_boards,24,1327,Pose-copy ADMM,3.36285575000511,12,394.6050912228345,camera pose plus local board-pose copies
+car_layout_32_boards,32,1765,Centralized BA,2.3941542499960633,30,737.2123162084908,one sparse nonlinear least-squares solve
+car_layout_32_boards,32,1765,Point-level ADMM,3.9040899999963585,12,452.08998768000896,camera subproblems plus board Kabsch updates
+car_layout_32_boards,32,1765,Pose-copy ADMM,3.923949416988762,12,449.801924652347,camera pose plus local board-pose copies
+car_layout_40_boards,40,2185,Centralized BA,1.6326990419911454,15,1338.2748098726759,one sparse nonlinear least-squares solve
+car_layout_40_boards,40,2185,Point-level ADMM,4.755914124994888,12,459.4279758998694,camera subproblems plus board Kabsch updates
+car_layout_40_boards,40,2185,Pose-copy ADMM,4.659467709003366,12,468.93768482996086,camera pose plus local board-pose copies

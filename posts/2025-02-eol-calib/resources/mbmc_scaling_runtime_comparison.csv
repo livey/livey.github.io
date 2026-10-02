@@ -1,0 +1,9 @@
+scenario,cameras,boards,observations,method,runtime_s,outer_iterations,observations_per_second,notes
+4_cameras_6_boards,4,6,335,Centralized BA,0.17436429200461134,10,1921.2649341709275,one sparse nonlinear least-squares solve
+4_cameras_6_boards,4,6,335,Point-level ADMM,0.8780811660108157,12,381.5137062122953,camera subproblems plus board Kabsch updates
+8_cameras_6_boards,8,6,598,Centralized BA,0.48767458301153965,16,1226.2275312918036,one sparse nonlinear least-squares solve
+8_cameras_6_boards,8,6,598,Point-level ADMM,1.7083340840181336,12,350.0486266676,camera subproblems plus board Kabsch updates
+8_cameras_12_boards,8,12,1264,Centralized BA,1.443650583998533,25,875.5581260522556,one sparse nonlinear least-squares solve
+8_cameras_12_boards,8,12,1264,Point-level ADMM,3.1140714999928605,12,405.89947918758384,camera subproblems plus board Kabsch updates
+8_cameras_24_boards,8,24,2712,Centralized BA,1.408640750014456,11,1925.2602198056306,one sparse nonlinear least-squares solve
+8_cameras_24_boards,8,24,2712,Point-level ADMM,6.11792804201832,12,443.28733214477364,camera subproblems plus board Kabsch updates

@@ -1,0 +1,179 @@
+{
+  "versions": {
+    "python": "3.10.9",
+    "numpy": "1.23.5",
+    "scipy": "1.10.0",
+    "matplotlib": "3.7.0"
+  },
+  "platform": {
+    "system": "Darwin",
+    "machine": "arm64"
+  },
+  "pose_order": [
+    "x_m",
+    "y_m",
+    "z_m",
+    "rx_deg",
+    "ry_deg",
+    "rz_deg"
+  ],
+  "method": "SLSQP",
+  "derivatives": "Numerical derivatives with SciPy's default finite-difference step",
+  "off_centre_options": {
+    "maxiter": 200,
+    "ftol": 1e-10
+  },
+  "centred_options": {
+    "maxiter": 200,
+    "ftol": 1e-11
+  },
+  "original_start_pose": [
+    0.25,
+    0.15,
+    2.5,
+    5.0,
+    8.0,
+    0.0
+  ],
+  "centred_start_pose": [
+    0.0,
+    0.0,
+    1.0,
+    -10.130460675306479,
+    18.358361199829645,
+    -10.516391937634785
+  ],
+  "board_variable_scales": [
+    0.5,
+    0.5,
+    1.0,
+    30.0,
+    30.0,
+    30.0
+  ],
+  "camera_tolerance_scales_m_rad": [
+    0.005,
+    0.005,
+    0.005,
+    0.0017453292519943296,
+    0.0017453292519943296,
+    0.0017453292519943296
+  ],
+  "feasibility_tolerance": 1e-07,
+  "symmetry_rtol": 1e-10,
+  "symmetry_atol": 1e-12,
+  "off_centre_optimizer_success": true,
+  "off_centre_optimizer_status": "Optimization terminated successfully",
+  "centred_optimizer_success": true,
+  "centred_optimizer_status": "Optimization terminated successfully",
+  "comparison": [
+    {
+      "placement": "Centred",
+      "x_m": 0.0,
+      "y_m": 0.0,
+      "z_m": 1.0000000000000002,
+      "rx_deg": -0.0005162737586585607,
+      "ry_deg": 49.57275773592384,
+      "rz_deg": -10.516265718725377,
+      "score": 0.48927244186224605,
+      "predicted_translation_rms_mm": 1.0744774227014922,
+      "predicted_rotation_rms_deg": 0.06656518403688497,
+      "mean_sigma_px": 0.3927380824089228,
+      "max_viewing_angle_deg": 59.01540581597771,
+      "minimum_constraint": 0.1716298128344591,
+      "optimizer_iterations": 16
+    },
+    {
+      "placement": "Off-centre",
+      "x_m": -0.5409170251210668,
+      "y_m": 0.33603969326465744,
+      "z_m": 1.0,
+      "rx_deg": -10.130460675306479,
+      "ry_deg": 18.358361199829645,
+      "rz_deg": -10.516391937634785,
+      "score": 0.42765855240471806,
+      "predicted_translation_rms_mm": 1.2356098390373493,
+      "predicted_rotation_rms_deg": 0.06054661719961586,
+      "mean_sigma_px": 0.37974173619945345,
+      "max_viewing_angle_deg": 56.90967544684854,
+      "minimum_constraint": -6.892264536872971e-14,
+      "optimizer_iterations": 35
+    }
+  ],
+  "off_centre_score_reduction_percent": 12.592961341336961,
+  "mirror_checks": [
+    {
+      "placement": "Original",
+      "x_m": -0.5409170251210668,
+      "y_m": 0.33603969326465744,
+      "z_m": 1.0,
+      "rx_deg": -10.130460675306479,
+      "ry_deg": 18.358361199829645,
+      "rz_deg": -10.516391937634785,
+      "score": 0.42765855240471806,
+      "predicted_translation_rms_mm": 1.2356098390373493,
+      "predicted_rotation_rms_deg": 0.06054661719961586,
+      "mean_sigma_px": 0.37974173619945345,
+      "max_viewing_angle_deg": 56.90967544684854,
+      "minimum_constraint": -6.892264536872971e-14,
+      "score_difference_from_original": 0.0,
+      "feasible": true,
+      "symmetry_check_passed": true
+    },
+    {
+      "placement": "Reflect x",
+      "x_m": 0.5409170251210668,
+      "y_m": 0.33603969326465744,
+      "z_m": 1.0,
+      "rx_deg": -10.130460675306479,
+      "ry_deg": -18.358361199829645,
+      "rz_deg": 10.516391937634785,
+      "score": 0.4276585524047178,
+      "predicted_translation_rms_mm": 1.235609839037349,
+      "predicted_rotation_rms_deg": 0.060546617199615835,
+      "mean_sigma_px": 0.3797417361994535,
+      "max_viewing_angle_deg": 56.90967544684854,
+      "minimum_constraint": -6.892264536872971e-14,
+      "score_difference_from_original": -2.7755575615628914e-16,
+      "feasible": true,
+      "symmetry_check_passed": true
+    },
+    {
+      "placement": "Reflect y",
+      "x_m": -0.5409170251210668,
+      "y_m": -0.33603969326465744,
+      "z_m": 1.0,
+      "rx_deg": 10.130460675306479,
+      "ry_deg": 18.358361199829645,
+      "rz_deg": 10.516391937634785,
+      "score": 0.4276585524047177,
+      "predicted_translation_rms_mm": 1.2356098390373491,
+      "predicted_rotation_rms_deg": 0.06054661719961582,
+      "mean_sigma_px": 0.3797417361994535,
+      "max_viewing_angle_deg": 56.90967544684854,
+      "minimum_constraint": -6.892264536872971e-14,
+      "score_difference_from_original": -3.885780586188048e-16,
+      "feasible": true,
+      "symmetry_check_passed": true
+    },
+    {
+      "placement": "Reflect x and y",
+      "x_m": 0.5409170251210668,
+      "y_m": -0.33603969326465744,
+      "z_m": 1.0,
+      "rx_deg": 10.130460675306479,
+      "ry_deg": -18.358361199829645,
+      "rz_deg": -10.516391937634785,
+      "score": 0.4276585524047182,
+      "predicted_translation_rms_mm": 1.23560983903735,
+      "predicted_rotation_rms_deg": 0.060546617199615876,
+      "mean_sigma_px": 0.3797417361994535,
+      "max_viewing_angle_deg": 56.90967544684854,
+      "minimum_constraint": -6.892264536872971e-14,
+      "score_difference_from_original": 1.1102230246251565e-16,
+      "feasible": true,
+      "symmetry_check_passed": true
+    }
+  ],
+  "validation": "Predicted covariance only; these diagnostics use no random data or Monte Carlo selection"
+}

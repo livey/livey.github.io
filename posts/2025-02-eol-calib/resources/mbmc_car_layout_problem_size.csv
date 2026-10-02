@@ -1,0 +1,7 @@
+scenario,cameras,boards,points_per_board,camera_board_pairs,camera_point_observations,pose_variables,image_residuals,world_point_residuals
+car_layout_8_boards,7,8,35,18,481,90,962,840
+car_layout_12_boards,7,12,35,28,656,114,1312,1260
+car_layout_16_boards,7,16,35,34,893,138,1786,1680
+car_layout_24_boards,7,24,35,54,1327,186,2654,2520
+car_layout_32_boards,7,32,35,72,1765,234,3530,3360
+car_layout_40_boards,7,40,35,89,2185,282,4370,4200

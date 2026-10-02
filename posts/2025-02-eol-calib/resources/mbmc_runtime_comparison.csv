@@ -1,0 +1,3 @@
+method,runtime_s,outer_iterations,observations_per_second,notes
+Centralized BA,1.408640750014456,11,1925.2602198056306,one sparse nonlinear least-squares solve
+Point-level ADMM,6.11792804201832,12,443.28733214477364,camera subproblems plus board Kabsch updates

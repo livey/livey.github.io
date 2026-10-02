@@ -1,0 +1,5 @@
+scenario,cameras,boards,points_per_board,camera_board_pairs,camera_point_observations,pose_variables,image_residuals,world_point_residuals
+4_cameras_6_boards,4,6,35,10,335,60,670,630
+8_cameras_6_boards,8,6,35,18,598,84,1196,630
+8_cameras_12_boards,8,12,35,38,1264,120,2528,1260
+8_cameras_24_boards,8,24,35,82,2712,192,5424,2520
