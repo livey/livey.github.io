@@ -11,27 +11,69 @@
     </image>
     <generator>Hugo -- 0.140.1</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 13 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 05 Oct 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://livey.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Autonomous Driving</title>
       <link>https://livey.github.io/tags/autonomous-driving/</link>
-      <pubDate>Tue, 13 Jan 2026 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 05 Oct 2026 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/tags/autonomous-driving/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Balanced Sampling</title>
+      <link>https://livey.github.io/tags/balanced-sampling/</link>
+      <pubDate>Mon, 05 Oct 2026 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/balanced-sampling/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Convex Optimization</title>
+      <link>https://livey.github.io/tags/convex-optimization/</link>
+      <pubDate>Mon, 05 Oct 2026 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/convex-optimization/</guid>
       <description></description>
     </item>
     <item>
       <title>Data Distribution</title>
       <link>https://livey.github.io/tags/data-distribution/</link>
-      <pubDate>Tue, 13 Jan 2026 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 05 Oct 2026 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/tags/data-distribution/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Duality</title>
+      <link>https://livey.github.io/tags/duality/</link>
+      <pubDate>Mon, 05 Oct 2026 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/duality/</guid>
       <description></description>
     </item>
     <item>
       <title>End-to-End Learning</title>
       <link>https://livey.github.io/tags/end-to-end-learning/</link>
-      <pubDate>Tue, 13 Jan 2026 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 05 Oct 2026 00:00:00 +0000</pubDate>
       <guid>https://livey.github.io/tags/end-to-end-learning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>FISTA</title>
+      <link>https://livey.github.io/tags/fista/</link>
+      <pubDate>Mon, 05 Oct 2026 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/fista/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Newton Method</title>
+      <link>https://livey.github.io/tags/newton-method/</link>
+      <pubDate>Mon, 05 Oct 2026 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/newton-method/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Raking</title>
+      <link>https://livey.github.io/tags/raking/</link>
+      <pubDate>Mon, 05 Oct 2026 00:00:00 +0000</pubDate>
+      <guid>https://livey.github.io/tags/raking/</guid>
       <description></description>
     </item>
     <item>
